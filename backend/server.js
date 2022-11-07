@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
 
 app.get("/uptime-check", async (req, res) => {
   await makeTheRequest();
-  console.log("uptime-check", success);
+  console.log("uptime-check success");
   res.send("<div>Request Made</div>");
 });
 

@@ -1,0 +1,25 @@
+{
+  "name": "uptime-monitor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chathurperera/uptime-monitor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chathurperera/uptime-monitor/issues"
+  },
+  "homepage": "https://github.com/chathurperera/uptime-monitor#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.1"
+  }
+}

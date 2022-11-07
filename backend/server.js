@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
 const cron = require("node-cron");
+const path = require('path');
 const app = express();
 const connectDB = require("./config/db");
 const https = require("https");
@@ -23,12 +24,16 @@ const makeTheRequest = () => {
   });
 };
 
-//Schedule tasks to be run on the server.
+// Schedule tasks to be run on the server.
 cron.schedule("* * * * *", function () {
   console.log("running a task every minute");
   makeTheRequest();
 });
 
+
+app.get('/',(req,res) => {
+    res.send('<div>Hello world</div>')
+})
 //CONNECTING TO THE DATABASE
 mongoose.connection.once("open", () => {
   console.log("connected to MongoDB");

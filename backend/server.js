@@ -8,6 +8,7 @@ const connectDB = require("./config/db");
 const https = require("https");
 const History = require("./models/historyModel");
 connectDB(process.env.MONGO_URI);
+const axios = require("axios");
 
 //Middleware
 app.use(express.json());
@@ -15,13 +16,18 @@ app.use(express.urlencoded({ extended: false }));
 
 const PORT = process.env.PORT || 5000;
 
-const makeTheRequest = () => {
-  https.get("https://chathuraperera.netlify.app/", async (res) => {
-    console.log("res statusCode", res.statusCode);
-    await History.create({
-      statusCode: res.statusCode,
+const makeTheRequest = async () => {
+  await axios
+    .get("https://chathuraperera.netlify.app/")
+    .then(async (res) => {
+      console.log("res.status", res.status);
+      await History.create({
+        statusCode: res.statusCode,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
     });
-  });
 };
 
 // Schedule tasks to be run on the server.
@@ -30,15 +36,17 @@ cron.schedule("* * * * *", function () {
   makeTheRequest();
 });
 
+
 app.get("/", (req, res) => {
   res.send("<div>Hello world</div>");
 });
 
-app.get("/uptime-check", (req, res) => {
-  makeTheRequest();
+app.get("/uptime-check", async (req, res) => {
+  await makeTheRequest();
+  console.log("uptime-check", success);
   res.send("<div>Request Made</div>");
-  console.log("request made");
 });
+
 
 //CONNECTING TO THE DATABASE
 mongoose.connection.once("open", () => {

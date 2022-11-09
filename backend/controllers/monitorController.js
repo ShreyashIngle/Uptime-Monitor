@@ -6,6 +6,8 @@ const asyncHandler = require("express-async-handler");
 //@access Private
 const getMonitor = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  const monitor = await Monitor.findOne({ _id: id });
+  res.status(200).json(monitor);
 });
 
 //@desc   Add Monitor

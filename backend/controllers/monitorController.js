@@ -1,6 +1,13 @@
 const Monitor = require("../models/monitorModel");
 const asyncHandler = require("express-async-handler");
 
+//@desc   Get Monitor
+//@route  GET /api/v1/monitor
+//@access Private
+const getMonitor = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+});
+
 //@desc   Add Monitor
 //@route  POST /api/v1/monitor
 //@access Private
@@ -34,6 +41,7 @@ const updateMonitor = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+  getMonitor,
   addMonitor,
   updateMonitor,
 };

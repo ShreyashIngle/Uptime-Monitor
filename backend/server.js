@@ -11,6 +11,7 @@ connectDB(process.env.MONGO_URI);
 const axios = require("axios");
 const monitorRoutes = require("./routes/monitorRoutes");
 const authRoutes = require("./routes/authRoutes");
+const uptimeTestRoutes = require("./routes/uptimeTestRoute");
 
 //Middleware
 app.use(express.json());
@@ -41,15 +42,11 @@ const makeTheRequest = async () => {
 // Routes
 app.use("/api/v1/monitor", monitorRoutes);
 app.use("/api/v1", authRoutes);
+app.use("/uptime-check", uptimeTestRoutes);
+
 
 app.get("/", (req, res) => {
   res.send("<div>Hello world</div>");
-});
-
-app.get("/uptime-check", async (req, res) => {
-  await makeTheRequest();
-  console.log("uptime-check success");
-  res.send("<div>Request Made</div>");
 });
 
 //CONNECTING TO THE DATABASE

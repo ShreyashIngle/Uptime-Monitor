@@ -2,12 +2,29 @@ const Monitor = require("../models/monitorModel");
 const asyncHandler = require("express-async-handler");
 
 //@desc   Get Monitor
-//@route  GET /api/v1/monitor
+//@route  GET /api/v1/monitor/:id
 //@access Private
 const getMonitor = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const monitor = await Monitor.findOne({ _id: id });
   res.status(200).json(monitor);
+});
+
+//@desc   Get All Monitor
+//@route  GET /api/v1/monitor
+//@access Private
+const getAllMonitors = asyncHandler(async (req, res) => {
+  const allMonitors = await Monitor.find({});
+  res.status(200).json(allMonitors);
+});
+
+//@desc   Delete Monitor
+//@route  DELETE /api/v1/monitor/:id
+//@access Private
+const deleteMonitor = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  await Monitor.findOneAndDelete({ id });
+  res.status(200).json({ message: "Monitor deleted successfully" });
 });
 
 //@desc   Add Monitor
@@ -44,6 +61,8 @@ const updateMonitor = asyncHandler(async (req, res) => {
 
 module.exports = {
   getMonitor,
+  getAllMonitors,
+  deleteMonitor,
   addMonitor,
   updateMonitor,
 };

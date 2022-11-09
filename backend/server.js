@@ -9,6 +9,7 @@ const https = require("https");
 const History = require("./models/historyModel");
 connectDB(process.env.MONGO_URI);
 const axios = require("axios");
+const monitorRoutes = require("./routes/monitorRoutes");
 
 //Middleware
 app.use(express.json());
@@ -31,11 +32,13 @@ const makeTheRequest = async () => {
 };
 
 // Schedule tasks to be run on the server.
-cron.schedule("* * * * *", function () {
-  console.log("running a task every minute");
-  makeTheRequest();
-});
+// cron.schedule("* * * * *", function () {
+//   console.log("running a task every minute");
+//   makeTheRequest();
+// });
 
+// Routes
+app.get("/api/v1/monitor", monitorRoutes);
 
 app.get("/", (req, res) => {
   res.send("<div>Hello world</div>");
@@ -46,7 +49,6 @@ app.get("/uptime-check", async (req, res) => {
   console.log("uptime-check success");
   res.send("<div>Request Made</div>");
 });
-
 
 //CONNECTING TO THE DATABASE
 mongoose.connection.once("open", () => {

@@ -10,6 +10,7 @@ const History = require("./models/historyModel");
 connectDB(process.env.MONGO_URI);
 const axios = require("axios");
 const monitorRoutes = require("./routes/monitorRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 //Middleware
 app.use(express.json());
@@ -38,7 +39,8 @@ const makeTheRequest = async () => {
 // });
 
 // Routes
-app.get("/api/v1/monitor", monitorRoutes);
+app.use("/api/v1/monitor", monitorRoutes);
+app.use("/api/v1", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("<div>Hello world</div>");

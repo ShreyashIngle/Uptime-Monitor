@@ -5,6 +5,9 @@ const asyncHandler = require("express-async-handler");
 
 const jwtSecret = process.env.JWT_SECRET;
 
+//@desc   Register
+//@route  POST /api/v1/register
+//@access Public
 const register = asyncHandler(async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
 
@@ -30,6 +33,9 @@ const register = asyncHandler(async (req, res) => {
   res.status(201).json({ message: "registration successful" });
 });
 
+//@desc   Login
+//@route  POST /api/v1/login
+//@access Public
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 

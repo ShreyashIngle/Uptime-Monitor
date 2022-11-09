@@ -15,6 +15,25 @@ const addMonitor = asyncHandler(async (req, res) => {
   res.status(201).json({ message: "Monitor created successfully" });
 });
 
+//@desc   Update Monitor
+//@route  PATCH /api/v1/monitor/:id
+//@access Private
+const updateMonitor = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  const updatedMonitor = await Monitor.findOneAndUpdate({ _id: id }, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!updatedMonitor) {
+    return res.status(400).json({ message: "Monitor doesn't exists" });
+  } else {
+    return res.status(200).json({ message: "Monitor updated successfully" });
+  }
+});
+
 module.exports = {
   addMonitor,
+  updateMonitor,
 };

@@ -20,7 +20,7 @@ const MonitorSchema = new mongoose.Schema(
       emails: {
         type: Array,
       },
-      telegramAccounts: {
+      telegram: {
         type: Array,
       },
     },

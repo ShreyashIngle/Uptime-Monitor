@@ -9,12 +9,14 @@ const cron = require("node-cron");
 const monitorRoutes = require("./routes/monitorRoutes");
 const authRoutes = require("./routes/authRoutes");
 const uptimeTestRoutes = require("./routes/uptimeTestRoute");
+const addHistoryLog = require('./services/createLog');
 
 //Cron job test
 var task = cron.schedule(
   "* * * * *",
   () => {
     console.log("stopped task");
+    addHistoryLog();
   },
   {
     scheduled: false,

@@ -4,10 +4,24 @@ const mongoose = require("mongoose");
 const app = express();
 const connectDB = require("./config/db");
 connectDB(process.env.MONGO_URI);
+const cron = require("node-cron");
 
 const monitorRoutes = require("./routes/monitorRoutes");
 const authRoutes = require("./routes/authRoutes");
 const uptimeTestRoutes = require("./routes/uptimeTestRoute");
+
+//Cron job test
+var task = cron.schedule(
+  "* * * * *",
+  () => {
+    console.log("stopped task");
+  },
+  {
+    scheduled: false,
+  }
+);
+
+task.start();
 
 //Middleware
 app.use(express.json());
@@ -19,7 +33,6 @@ const PORT = process.env.PORT || 5000;
 app.use("/api/v1/monitor", monitorRoutes);
 app.use("/api/v1", authRoutes);
 app.use("/uptime-check", uptimeTestRoutes);
-
 
 app.get("/", (req, res) => {
   res.send("<div>Hello world</div>");

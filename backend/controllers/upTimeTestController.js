@@ -15,6 +15,7 @@ const availabilityCheck = asyncHandler(async (req, res) => {
           monitorId: site._id,
           statusCode: res.statusCode,
         });
+        console.log("history log created");
       })
       .catch((error) => {
         console.log(error);

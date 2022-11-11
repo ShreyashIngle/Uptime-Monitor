@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const outageSchema = new Schema(
+const donwntimeSchema = new Schema(
   {
     monitorId: {
       type: Schema.Types.ObjectId,
@@ -15,4 +15,4 @@ const outageSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("History", outageSchema);
+module.exports = mongoose.model("Downtime", donwntimeSchema);

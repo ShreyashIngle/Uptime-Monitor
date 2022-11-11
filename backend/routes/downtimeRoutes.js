@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { availabilityCheck } = require("../controllers/upTimeTestController");
+const { availabilityCheck } = require("../controllers/downtimeController");
 
 router.get("/", availabilityCheck);
 

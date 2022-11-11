@@ -6,7 +6,7 @@ const fetchUrl = require("../services/fetchUrl");
 const availabilityCheck = asyncHandler(async (req, res) => {
   console.log("availabilityCheck invoked");
   const sites = await Monitor.find({}).select("url");
-  sites.forEach((site) => fetchUrl(site));
+  await fetchUrl(sites);
   res.status(200).json(sites);
 });
 

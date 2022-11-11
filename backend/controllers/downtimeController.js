@@ -1,8 +1,8 @@
 const axios = require("axios");
 const asyncHandler = require("express-async-handler");
 const Monitor = require("../models/monitorModel");
-const History = require("../models/historyModel");
-const addHistoryLog = require("../services/createLog");
+const History = require("../models/downtimeModel");
+const fetchUrlRecursively = require("../services/fetchUrlRecursively");
 
 const availabilityCheck = asyncHandler(async (req, res) => {
   console.log("availabilityCheck invoked");

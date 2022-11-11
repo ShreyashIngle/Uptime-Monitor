@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const historySchema = new Schema(
+const outageSchema = new Schema(
   {
     monitorId: {
       type: Schema.Types.ObjectId,
@@ -15,4 +15,4 @@ const historySchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("History", historySchema);
+module.exports = mongoose.model("History", outageSchema);

@@ -7,10 +7,11 @@ const Downtime = require("../models/downtimeModel");
 const availabilityCheck = asyncHandler(async (req, res) => {
   console.log("availabilityCheck invoked");
   const sites = await Monitor.find({}).select("url");
-  sites.forEach((site) => fetchUrl(site));
+  // sites.forEach((site) => fetchUrl(site));
+  console.log("sites", sites);
 
   await Downtime.create({
-    monitorId: 1978634947967,
+    monitorId: sites[0]._id,
     statusCode: 400,
   });
 

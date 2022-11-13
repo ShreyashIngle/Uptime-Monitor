@@ -14,7 +14,7 @@ const availabilityCheck = asyncHandler(async (req, res) => {
     statusCode: 400,
   });
 
-  res.status(200).json(sites);
+  res.send("<div>availabilityCheck test</div>");
 });
 
 module.exports = { availabilityCheck };

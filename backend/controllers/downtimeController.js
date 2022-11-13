@@ -7,7 +7,9 @@ const Downtime = require("../models/downtimeModel");
 const availabilityCheck = asyncHandler(async (req, res) => {
   console.log("availabilityCheck invoked");
   const sites = await Monitor.find({}).select("url");
-  sites.forEach((site) => fetchUrl(site));
+  for (const site of sites) {
+    await fetchUrl(site);
+  }
   console.log("sites", sites);
   res.send("<div>availabilityCheck test</div>");
 });

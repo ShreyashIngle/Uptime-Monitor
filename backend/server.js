@@ -7,7 +7,7 @@ connectDB(process.env.MONGO_URI);
 
 const monitorRoutes = require("./routes/monitorRoutes");
 const authRoutes = require("./routes/authRoutes");
-const downtimeRoutes = require("./routes/downtimeRoutes");
+const incidentRoutes = require("./routes/incidentRoutes");
 
 
 //Middleware
@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 5000;
 // Routes
 app.use("/api/v1/monitor", monitorRoutes);
 app.use("/api/v1", authRoutes);
-app.use("/uptime-check", downtimeRoutes);
+app.use("/uptime-check", incidentRoutes);
 
 app.get("/", (req, res) => {
   res.send("<div>Hello world</div>");

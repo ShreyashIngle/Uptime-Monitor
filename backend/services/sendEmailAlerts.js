@@ -1,9 +1,9 @@
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const sendEmail = async (recipients) => {
+const sendEmail = async (monitor, statusCode) => {
   //Send emails to all the recipients
-  for (const recipient of recipients) {
+  for (const recipient of monitor.alerts.emails) {
     const msg = {
       to: recipient,
       from: "chathuraperera007@gamil.com",
@@ -17,23 +17,19 @@ const sendEmail = async (recipients) => {
         email: "chathuraperera007@gmail.com",
         name: "Uptime Monitor",
       },
-      templateId:"d-1fd9a750ea9846b39c81bbbe6af35214",
-      dynamicTemplateData:{
-        recipientName:"",
-        monitorID:"",
-        monitorURL:"",
-        statusCode:"",
-        createdAt:"",
-        
-      }
+      templateId: "d-1fd9a750ea9846b39c81bbbe6af35214",
+      dynamicTemplateData: {
+        monitorID: monitor._id,
+        monitorURL: monitor.url,
+        statusCode: statusCode,
+        createdAt: new Date().toJSON().slice(0, 10),
+      },
     });
 
     const response = await sgMail.send(msg).catch((error) => {
       console.log(error);
     });
-
-    console.log(response[0].statusCode);
-    console.log(response[0].headers);
+    console.log("email response", response);
   }
 };
 

@@ -2,20 +2,21 @@ const Incident = require("../models/incidentModel");
 const axios = require("axios");
 const sendEmail = require("./sendEmailAlerts");
 
-const fetchUrl = async (site) => {
-  await axios.get(site.url).catch(async (error) => {
+const fetchUrl = async (monitor) => {
+  await axios.get(monitor.url).catch(async (error) => {
     //Checks if an incident is already created
-    const existingIncident = await Incident.findOne({ monitorId: site._id });
+    const existingIncident = await Incident.findOne({ monitorId: monitor._id });
 
+    console.log("monitor", monitor);
     //Create an incident
     if (!existingIncident) {
       await Incident.create({
-        monitorId: site._id,
+        monitorId: monitor._id,
         statusCode: error.response.status,
       });
 
       //Sending email alerts
-      await sendEmail(site.alerts.emails);
+      await sendEmail(monitor, error.response.status);
     }
     console.log("history log created");
   });

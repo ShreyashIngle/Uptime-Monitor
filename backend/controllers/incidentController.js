@@ -3,12 +3,12 @@ const Monitor = require("../models/monitorModel");
 const fetchUrl = require("../services/fetchUrl");
 
 const availabilityCheck = asyncHandler(async (req, res) => {
-  const sites = await Monitor.find({}).select("url");
-  
+  const sites = await Monitor.find({ monitored: true }).select("url alerts");
+
   for (const site of sites) {
     await fetchUrl(site);
   }
-  
+
   res.send("<div>availabilityCheck test</div>");
 });
 

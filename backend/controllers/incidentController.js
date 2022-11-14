@@ -7,7 +7,6 @@ const availabilityCheck = asyncHandler(async (req, res) => {
     .select("url alerts userId")
     .populate({ path: "userId", select: "firstName" });
 
-  console.log("monitors", monitors);
   for (const monitor of monitors) {
     await fetchUrl(monitor);
   }

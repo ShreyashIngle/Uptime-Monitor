@@ -7,7 +7,6 @@ const fetchUrl = async (monitor) => {
     //Checks if an incident is already created
     const existingIncident = await Incident.findOne({ monitorId: monitor._id });
 
-    console.log("monitor", monitor);
     //Create an incident
     if (!existingIncident) {
       await Incident.create({

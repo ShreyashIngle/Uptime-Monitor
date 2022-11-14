@@ -4,11 +4,13 @@ const mongoose = require("mongoose");
 const app = express();
 const connectDB = require("./config/db");
 connectDB(process.env.MONGO_URI);
+const cors = require('cors');
+app.use(cors())
 
+//Imported routes
 const monitorRoutes = require("./routes/monitorRoutes");
 const authRoutes = require("./routes/authRoutes");
 const incidentRoutes = require("./routes/incidentRoutes");
-
 
 //Middleware
 app.use(express.json());

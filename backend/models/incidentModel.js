@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const donwntimeSchema = new Schema(
+const incidentSchema = new Schema(
   {
     monitorId: {
       type: Schema.Types.ObjectId,
@@ -15,4 +15,4 @@ const donwntimeSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Downtime", donwntimeSchema);
+module.exports = mongoose.model("Incident", incidentSchema);

@@ -51,7 +51,7 @@ const Login = () => {
     <main className={styles.register}>
       <div className={styles.registerLeft}>
         <div className={styles.registerLeftWrapper}>
-          <h4 className={styles.title}>Register</h4>
+          <h4 className={styles.title}>Login</h4>
           <p className={styles.desc}>
             Enter your credentials to access your account
           </p>

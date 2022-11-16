@@ -57,7 +57,7 @@ const Login = () => {
         <div className={styles.registerLeftWrapper}>
           <h4 className={styles.title}>Register</h4>
           <p className={styles.desc}>
-            Enter your credentials to access your account
+          It takes just 30 seconds. Go ahead!
           </p>
           {validationError && (
             <p className={styles.validationError}>{validationError}</p>

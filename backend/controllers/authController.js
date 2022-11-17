@@ -32,7 +32,7 @@ const register = asyncHandler(async (req, res) => {
 
   res.status(201).json({ message: "registration successful" });
 });
-F
+
 //@desc   Login
 //@route  POST /api/v1/login
 //@access Public

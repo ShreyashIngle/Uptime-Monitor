@@ -1,6 +1,5 @@
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-console.log("process.env.SENDGRID_API_KEY", process.env.SENDGRID_API_KEY);
 
 const sendEmail = async (monitor, statusCode) => {
   //Send emails to all the recipients

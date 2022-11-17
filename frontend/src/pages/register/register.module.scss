@@ -78,11 +78,14 @@
       gap: 10px;
       grid-template-columns: 1fr 1fr;
     }
-    .rememberLogin {
-      font-size: 14px;
+    .agreementCheckbox {
+      font-size: 13px;
       cursor: pointer;
       input {
         margin-right: 8px;
+      }
+      b{
+        color: #184ccf;
       }
     }
     .loginButton {

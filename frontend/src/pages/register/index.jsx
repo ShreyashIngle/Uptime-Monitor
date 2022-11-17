@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./register.module.scss";
 import Spinner from "../../components/Spinner";
 import { Link, useNavigate } from "react-router-dom";
+import API from "../../api/axios";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -28,41 +29,39 @@ const Login = () => {
     });
   };
 
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault();
-  //     if (!loginDetails.email && !loginDetails.password) {
-  //       setValidationError("Please fill all required fields");
-  //       return;
-  //     }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  //     setLoading(true);
-  //     await API.post("/login", loginDetails)
-  //       .then((res) => {
-  //         setLoading(false);
-  //         dispatch(loginSuccess(res.data));
-  //         navigate("/");
-  //         setLoginDetails({
-  //           email: "",
-  //           password: "",
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         dispatch(loginFailure());
-  //         setLoading(false);
-  //       });
-  //   };
+    setLoading(true);
+    
+    await API.post("/register", singUpDetails)
+      .then((res) => {
+        setLoading(false);
+        // dispatch(loginSuccess(res.data));
+        navigate("/");
+        setSignUpDetails({
+          email: "",
+          password: "",
+          confirmedPassword: "",
+          firstName: "",
+          lastName: "",
+        });
+      })
+      .catch((error) => {
+        // dispatch(loginFailure());
+        setLoading(false);
+      });
+  };
   return (
     <main className={styles.register}>
       <div className={styles.registerLeft}>
         <div className={styles.registerLeftWrapper}>
           <h4 className={styles.title}>Register</h4>
-          <p className={styles.desc}>
-          It takes just 30 seconds. Go ahead!
-          </p>
+          <p className={styles.desc}>It takes just 30 seconds. Go ahead!</p>
           {validationError && (
             <p className={styles.validationError}>{validationError}</p>
           )}
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className={styles.towCol}>
               <div className={styles.inputControl}>
                 <label>First Name</label>
@@ -123,9 +122,9 @@ const Login = () => {
               />
             </div>
 
-            <label htmlFor="rememberLogin" className={styles.rememberLogin}>
-              <input type="checkbox" name="" id="rememberLogin" />
-              Remember information
+            <label htmlFor="agreementCheckbox" className={styles.agreementCheckbox}>
+              <input type="checkbox" name="" id="agreementCheckbox" />
+              I agree with <b>Terms and Privacy</b>
             </label>
             <button className={styles.loginButton}>
               {loading ? <Spinner /> : "Sign up"}

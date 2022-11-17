@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useState } from "react";
 import styles from "../register/register.module.scss";
 import Spinner from "../../components/Spinner";
 import { Link, useNavigate } from "react-router-dom";

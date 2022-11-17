@@ -48,6 +48,7 @@ const Login = () => {
         });
       })
       .catch((error) => {
+        setValidationError("Something went wrong. Try again")
         setLoading(false);
       });
   };

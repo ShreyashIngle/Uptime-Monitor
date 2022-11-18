@@ -32,7 +32,27 @@ const useAuth = () => {
       });
   };
 
-  return { login , isLoading , validationError , user };
+  const register = async (userInfo) => {
+    setIsLoading(true);
+    await API.post("/register", userInfo)
+      .then((res) => {
+        setIsLoading(false);
+        navigate("/");
+      })
+      .catch((error) => {
+        setValidationError(error.response.data.message);
+        setIsLoading(false);
+      });
+  };
+
+  return {
+    login,
+    register,
+    isLoading,
+    validationError,
+    setValidationError,
+    user,
+  };
 };
 
 export default useAuth;

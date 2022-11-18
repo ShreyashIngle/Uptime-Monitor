@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
+import React, {  useState } from "react";
 import styles from "./register.module.scss";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 import Spinner from "../../components/Spinner";
-import { Link, useNavigate } from "react-router-dom";
-import API from "../../api/axios";
+import { Link } from "react-router-dom";
+import useAuth from "hooks/use-auth";
 
 const Login = () => {
-  const [loading, setLoading] = useState(false);
-  const [validationError, setValidationError] = useState("hello");
+  const { register, isLoading, validationError ,setValidationError} = useAuth();
   const [singUpDetails, setSignUpDetails] = useState({
     email: "lalith@gmail.com",
     password: "lalith123456",
@@ -15,8 +14,6 @@ const Login = () => {
     firstName: "lalith",
     lastName: "perera",
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setValidationError("");
@@ -31,27 +28,11 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    await register(singUpDetails);
+    console.log('success')
 
-    setLoading(true);
-
-    await API.post("/register", singUpDetails)
-      .then((res) => {
-        setLoading(false);
-        console.log(res);
-        navigate("/");
-        setSignUpDetails({
-          email: "",
-          password: "",
-          confirmedPassword: "",
-          firstName: "",
-          lastName: "",
-        });
-      })
-      .catch((error) => {
-        setValidationError("Something went wrong. Try again")
-        setLoading(false);
-      });
   };
+  
   return (
     <main className={styles.register}>
       <div className={styles.registerLeft}>
@@ -132,7 +113,7 @@ const Login = () => {
               with <b>Terms and Privacy</b>
             </label>
             <button className={styles.loginButton}>
-              {loading ? <Spinner /> : "Sign up"}
+              {isLoading ? <Spinner /> : "Sign up"}
             </button>
             <p className={styles.redirect}>
               Already have an account? <Link href="/login">Login</Link>{" "}

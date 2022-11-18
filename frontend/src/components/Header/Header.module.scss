@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #fff;
+  padding: 10px 0;
+  &_details {
+    display: flex;
+    align-items: center;
+    gap: 10px;  
+  }
+  &_pp{
+
+  }
+}

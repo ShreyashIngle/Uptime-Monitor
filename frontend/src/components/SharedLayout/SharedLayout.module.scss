@@ -6,4 +6,7 @@
   display: grid;
   background-color: $primary-blue;
   grid-template-columns: 2fr 9fr;
+  .content{
+    padding: 10px 30px;
+  }
 }

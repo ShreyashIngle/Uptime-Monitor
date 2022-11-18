@@ -10,7 +10,7 @@ const App = () => {
       {/* <Route path="/team" element={<SharedLayout />}>
       </Route> */}
       <Route path="/team" element={<SharedLayout />}>
-        {/* <Route index element={<Monitors />} /> */}
+        <Route index element={<Monitors />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

@@ -3,12 +3,12 @@ import styles from "./SidebarLink.module.scss";
 import { Link } from "react-router-dom";
 import { AiOutlineSecurityScan } from "react-icons/ai";
 
-const SidebarLink = () => {
+const SidebarLink = ({ children , text}) => {
   return (
     <div className={styles.sidebarLink}>
       <Link to="/">
-        <AiOutlineSecurityScan />
-        Monitors
+        {children}
+        {text}
       </Link>
     </div>
   );

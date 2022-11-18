@@ -1,4 +1,9 @@
+@import '../../assets/sass/utils/variables.scss';
+
 .layout {
+  min-height: 100vh;
+  border: 1px solid;
   display: grid;
+  background-color: $primary-blue;
   grid-template-columns: 2fr 7fr;
 }

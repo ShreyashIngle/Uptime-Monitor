@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Sidebar.module.scss";
 import { Link } from "react-router-dom";
 import {AiOutlineSecurityScan} from 'react-icons/ai';
-import logo from './assets/images/logo.png'
+import logo from 'assets/images/logo.png'
 
 const Sidebar = () => {
   return (

@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import styles from "../register/register.module.scss";
 import Spinner from "../../components/Spinner";
-import { Link, useNavigate } from "react-router-dom";
-import API from "api/axios";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import useAuth from "hooks/use-auth";
 
 const Login = () => {
-  const [loading, setLoading] = useState(false);
-  const [validationError, setValidationError] = useState("");
+  const { login, isLoading, validationError } = useAuth();
   const [loginDetails, setLoginDetails] = useState({
     email: "lalith@gmail.com",
     password: "lalith123456",
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -26,24 +24,10 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    setLoading(true);
-    await API.post("/login", loginDetails)
-      .then((res) => {
-        console.log(res);
-        setLoading(false);
-        // dispatch(loginSuccess(res.data));
-        navigate("/");
-        setLoginDetails({
-          email: "",
-          password: "",
-        });
-      })
-      .catch((error) => {
-        // dispatch(loginFailure());
-        setLoading(false);
-      });
+    await login(loginDetails);
+    console.log("login success");
   };
+
   return (
     <main className={styles.register}>
       <div className={styles.registerLeft}>
@@ -53,7 +37,9 @@ const Login = () => {
             Enter your credentials to access your account
           </p>
           {validationError && (
-            <p className={styles.validationError}>{validationError}</p>
+            <p className={styles.validationError}>
+              {validationError} <AiOutlineExclamationCircle />
+            </p>
           )}
           <form onSubmit={handleSubmit}>
             <div className={styles.inputControl}>
@@ -82,8 +68,12 @@ const Login = () => {
               <input type="checkbox" name="" id="rememberLogin" />
               Remember information
             </label>
-            <button type="submit" className={styles.loginButton}>
-              {loading ? <Spinner /> : "Login"}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className={styles.loginButton}
+            >
+              {isLoading ? <Spinner /> : "Login"}
             </button>
             <p className={styles.redirect}>
               New to ChatMore ? <Link to="/register">Sign up</Link>{" "}

@@ -1,3 +1,17 @@
-.monitors{
-    
+@import "../../assets/sass/utils/variables.scss";
+@import "../../assets/sass/utils/mixins.scss";
+
+.monitors {
+  &_head {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+    h2 {
+      color: #fff;
+      font-size: 3rem;
+    }
+    button {
+      @include primaryButton;
+    }
+  }
 }

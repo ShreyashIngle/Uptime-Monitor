@@ -1,0 +1,15 @@
+@import "./variables.scss";
+
+@mixin primaryButton {
+  background-color: $primary-button;
+
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  border: 2px solid $primary-button;
+  &:hover {
+    background-color: #4046ee;
+  }
+}

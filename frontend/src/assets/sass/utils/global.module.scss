@@ -1,0 +1,6 @@
+:global(.hoverEffect) {
+  &:hover {
+    transition: all ease .2s;
+    background-color: #939db834;
+  }
+}

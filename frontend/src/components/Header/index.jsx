@@ -6,7 +6,7 @@ const Header = () => {
   const [pp, setPp] = useState(false);
   return (
     <header className={styles.header}>
-      <div className={styles.header_details}>
+      <div className={`${styles.header_details} hoverEffect`}>
         <div className={styles.header_pp}>
           {!pp ? (
             <div className={styles.letters}>C P</div>

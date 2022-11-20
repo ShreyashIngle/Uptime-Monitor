@@ -2,11 +2,12 @@ import BackButton from "components/BackButton";
 import React, { useState } from "react";
 import styles from "./create-monitor.module.scss";
 import useMonitor from "hooks/use-monitor";
-import Spinner from "components/Sidebar";
+import Spinner from "components/Spinner";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 const CreateMonitor = () => {
   const { createMonitor, isLoading, isError } = useMonitor();
-
+  const [inputValidationError, setInputValidationError] = useState("");
   const [monitorDetails, setMonitorDetails] = useState({
     url: "https://google.com",
     team: "637a44d5d180dd5e7c3a62b9",
@@ -24,12 +25,27 @@ const CreateMonitor = () => {
     });
   };
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //Verifying the correct URL format
+    const urlFormat = monitorDetails.url.trim().substring(0, 5);
+    if (urlFormat !== "https") {
+      console.log("invalid");
+      return setInputValidationError("Invalid URL");
+    }
+    await createMonitor(monitorDetails);
+  };
+
   return (
     <main>
       <BackButton />
       <div className={styles.wrapper}>
         <h1>Create Monitor</h1>
+        {inputValidationError && (
+          <div className={styles.errorMessage}>
+            <AiOutlineExclamationCircle /> {inputValidationError}
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
           <section className="sectionWrapper">
             <div className="description">
@@ -60,8 +76,8 @@ const CreateMonitor = () => {
             </div>
           </section>
           <div className={styles.buttonWrapper}>
-            <button type="submit">
-              {isLoading ? <Spinner /> : "Create Monitor"}
+            <button type="submit" disabled={isLoading}>
+              {isLoading && <Spinner />}Create Monitor
             </button>
           </div>
         </form>

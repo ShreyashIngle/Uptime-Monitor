@@ -1,20 +1,19 @@
 .loader {
-  width: 15px;
-  height: 15px;
-  background: #fff;
-  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #FFF;
+  border-bottom-color: #b2b1b669;
   border-radius: 50%;
+  display: inline-block;
   box-sizing: border-box;
-  animation: animloader 1s ease-in infinite;
-}
+  animation: rotation 1s linear infinite;
+  }
 
-@keyframes animloader {
+  @keyframes rotation {
   0% {
-    transform: scale(0);
-    opacity: 1;
+      transform: rotate(0deg);
   }
   100% {
-    transform: scale(1);
-    opacity: 0;
+      transform: rotate(360deg);
   }
-}
+  } 

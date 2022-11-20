@@ -7,7 +7,7 @@ const useMonitor = () => {
 
   const createMonitor = async (monitor) => {
     setIsLoading(true);
-    await API.post("", monitor)
+    await API.post("/monitor", monitor)
       .then((res) => {
         setIsLoading(false);
         console.log("res", res);
@@ -21,4 +21,4 @@ const useMonitor = () => {
   return { createMonitor, isLoading, isError };
 };
 
-export default useMonitor
+export default useMonitor;

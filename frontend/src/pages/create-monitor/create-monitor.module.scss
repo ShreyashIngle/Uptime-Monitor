@@ -1,4 +1,5 @@
 @import "../../assets/sass/utils/variables.scss";
+@import "../../assets/sass/utils/mixins.scss";
 
 .wrapper {
   h1 {
@@ -6,65 +7,11 @@
     color: #fff;
     margin: 20px 0;
   }
-  &_grid {
-    display: grid;
-    grid-template-columns: 2fr 5fr;
-  }
-  .description {
-    padding-top: 10px;
-    h4 {
-      font-size: 2rem;
-      color: #fff;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 1.3rem;
-      color: #939db8;
-    }
-  }
-  .inputArea {
-    padding-left: 70px;
-    &_container {
-      border-radius: 12px;
-      padding: 30px 20px;
-      background: $secondary-blue;
-    }
-    .inputWrapper,
-    .selectWrapper {
-      margin-bottom: 20px;
-      display: flex;
-      flex-direction: column;
-      &:last-child{
-        margin-bottom: 0px;
-      }
-      label {
-        color: #fff;
-        font-size: 1.4rem;
-      }
-      input,
-      select {
-        margin-top: 5px;
-        border: none;
-        background-color: transparent;
-        border: 1px solid #4e576e;
-        border-radius: 8px;
-        padding: 10px 12px;
-        color: #fff;
-        &:focus {
-          outline: none;
-          border: 1px solid #798297;
-        }
-      }
-      select {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        width: 250px;
-        option {
-          background-color: #4e576e;
-          color: #fff;
-          padding:4px 0 ; 
-        }
-      }
+  .buttonWrapper {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      @include primaryButton;
     }
   }
 }

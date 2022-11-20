@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const Team = require("../models/teamModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
@@ -23,11 +24,17 @@ const register = asyncHandler(async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  await User.create({
+  const newUser = await User.create({
     firstName,
     lastName,
     email,
     password: hashedPassword,
+  });
+
+  console.log("newUser", newUser._id);
+
+  await Team.create({
+    admin: newUser._id,
   });
 
   res.status(201).json({ message: "registration successful" });

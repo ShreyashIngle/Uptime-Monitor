@@ -31,9 +31,9 @@ const deleteMonitor = asyncHandler(async (req, res) => {
 //@route  POST /api/v1/monitor
 //@access Private
 const addMonitor = asyncHandler(async (req, res) => {
-  const { url, userId } = req.body;
+  const { url, user, team } = req.body;
 
-  if ((!url, !userId)) {
+  if ((!url, !user, !team)) {
     return res.status(400).json({ message: "Provide all required fields" });
   }
 

@@ -22,7 +22,7 @@ const MonitorSchema = new mongoose.Schema(
       default: true,
     },
     alertsTriggeredOn: {
-      type: Number,
+      type: String,
       default: 1,
     },
   },

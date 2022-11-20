@@ -7,7 +7,12 @@ const MonitorSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    userId: {
+    team: {
+      type: Schema.Types.ObjectId,
+      ref: "Team",
+      required: true,
+    },
+    user: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
@@ -16,13 +21,9 @@ const MonitorSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    alerts: {
-      emails: {
-        type: Array,
-      },
-      telegram: {
-        type: Array,
-      },
+    alertsTriggeredOn: {
+      type: Number,
+      default: 1,
     },
   },
   {
@@ -31,3 +32,9 @@ const MonitorSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Monitor", MonitorSchema);
+/*
+Alert triggers
+1 = Becomes unavailable 
+2 = SSL Expires
+3 = Doesn't contain a keyword
+*/

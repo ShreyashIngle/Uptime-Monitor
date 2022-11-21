@@ -32,4 +32,15 @@
       }
     }
   }
+  .actions {
+    .dots {
+      padding: 0px 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #939bb8;
+    }
+  }
 }

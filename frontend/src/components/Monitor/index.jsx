@@ -3,7 +3,7 @@ import styles from "./Monitor.module.scss";
 import { AiOutlineEllipsis } from "react-icons/ai";
 
 const Monitor = () => {
-  const [showActions, setShowActions] = useState(false);
+  const [showActions, setShowActions] = useState(true);
 
   return (
     <div className={styles.monitor}>
@@ -16,12 +16,12 @@ const Monitor = () => {
           </p>
         </div>
       </div>
-      <div className={styles.monitor_action}>
+      <div className={styles.actions}>
         <div
-          className={styles.dots}
+          className={`${styles.dots} hoverEffect`}
           onClick={() => setShowActions((prevState) => !prevState)}
         >
-          <AiOutlineEllipsis />
+          <AiOutlineEllipsis size="25px" />
         </div>
       </div>
     </div>

@@ -33,7 +33,9 @@ const CreateMonitor = () => {
       console.log("invalid");
       return setInputValidationError("Invalid URL");
     }
+
     await createMonitor(monitorDetails);
+    isError && setInputValidationError("Something went wrong.Please try again");
   };
 
   return (
@@ -46,6 +48,7 @@ const CreateMonitor = () => {
             <AiOutlineExclamationCircle /> {inputValidationError}
           </div>
         )}
+        
         <form onSubmit={handleSubmit}>
           <section className="sectionWrapper">
             <div className="description">

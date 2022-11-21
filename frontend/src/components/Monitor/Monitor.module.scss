@@ -1,0 +1,25 @@
+@import "../../assets/sass/utils/variables.scss";
+
+.monitor {
+  background: $secondary-blue;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    &_dot {
+      width: 10px;
+      height: 10px;
+      background: green;
+      border-radius: 50%;
+    }
+    &_url{
+        color: #fff;
+    }
+  }
+}

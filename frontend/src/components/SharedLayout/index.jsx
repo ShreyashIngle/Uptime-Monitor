@@ -10,7 +10,9 @@ const SharedLayout = () => {
       <Sidebar />
       <div className={styles.content}>
         <Header />
-        <Outlet />
+        <div className={styles.content_wrapper}>
+          <Outlet />
+        </div>
       </div>
     </main>
   );

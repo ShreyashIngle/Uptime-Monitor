@@ -18,8 +18,18 @@
       background: green;
       border-radius: 50%;
     }
-    &_url{
-        color: #fff;
+    &_url {
+      color: #fff;
+      font-size: 1.4rem;
+      .url {
+        margin-bottom: 5px;
+      }
+      .status {
+        color: #939bb8;
+        &_text {
+          color: rgb(206, 39, 39);
+        }
+      }
     }
   }
 }

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styles from "./Monitor.module.scss";
 import { AiOutlineEllipsis } from "react-icons/ai";
+import MonitorActionsMenu from "components/MonitorActionsPanel";
 
 const Monitor = () => {
-  const [showActions, setShowActions] = useState(true);
+  const [showActions, setShowActions] = useState(false);
 
   return (
     <div className={styles.monitor}>
@@ -23,6 +24,7 @@ const Monitor = () => {
         >
           <AiOutlineEllipsis size="25px" />
         </div>
+        {showActions && <MonitorActionsMenu />}
       </div>
     </div>
   );

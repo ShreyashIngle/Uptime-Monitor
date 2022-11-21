@@ -10,6 +10,8 @@ const Monitors = () => {
         <button>Create monitor</button>
       </div>
       <Monitor />
+      <Monitor />
+      <Monitor />
     </div>
   );
 };

@@ -1,6 +1,11 @@
 import React from "react";
 import styles from "./MonitorActionsMenu.module.scss";
-import { AiOutlinePauseCircle, AiOutlineSetting } from "react-icons/ai";
+import {
+  AiOutlinePauseCircle,
+  AiOutlineSetting,
+  AiOutlineDelete,
+  AiOutlineWarning
+} from "react-icons/ai";
 
 const MonitorActionsMenu = () => {
   return (
@@ -9,7 +14,13 @@ const MonitorActionsMenu = () => {
         <AiOutlineSetting /> Settings
       </div>
       <div className={styles.menuItem}>
+        <AiOutlineWarning /> Incident
+      </div>
+      <div className={styles.menuItem}>
         <AiOutlinePauseCircle /> Pause
+      </div>
+      <div className={styles.menuItem}>
+        <AiOutlineDelete /> Remove
       </div>
     </div>
   );

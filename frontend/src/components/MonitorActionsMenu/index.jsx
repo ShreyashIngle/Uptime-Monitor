@@ -1,15 +1,15 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styles from "./MonitorActionsMenu.module.scss";
 import {
   AiOutlinePauseCircle,
   AiOutlineSetting,
   AiOutlineDelete,
-  AiOutlineWarning
+  AiOutlineWarning,
 } from "react-icons/ai";
 
-const MonitorActionsMenu = () => {
+const MonitorActionsMenu = forwardRef((props, ref) => {
   return (
-    <div className={styles.monitorActionsMenu}>
+    <div ref={ref} className={styles.monitorActionsMenu}>
       <div className={styles.menuItem}>
         <AiOutlineSetting /> Settings
       </div>
@@ -24,6 +24,6 @@ const MonitorActionsMenu = () => {
       </div>
     </div>
   );
-};
+});
 
 export default MonitorActionsMenu;

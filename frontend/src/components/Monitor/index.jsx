@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import styles from "./Monitor.module.scss";
 import { AiOutlineEllipsis } from "react-icons/ai";
-import MonitorActionsMenu from "components/MonitorActionsPanel";
+import MonitorActionsMenu from "components/MonitorActionsMenu";
+import useOutSideClick from "hooks/user-outSideClick";
 
 const Monitor = () => {
   const [showActions, setShowActions] = useState(false);
+  const ref = useOutSideClick(closeActionsMenu);
+
+  function closeActionsMenu() {
+    setShowActions(false);
+  }
+  function toggleActionsMenu(e) {
+    e.stopPropagation();
+    setShowActions((prevState) => !prevState);
+  }
 
   return (
     <div className={styles.monitor}>
@@ -20,11 +30,11 @@ const Monitor = () => {
       <div className={styles.actions}>
         <div
           className={`${styles.dots} hoverEffect`}
-          onClick={() => setShowActions((prevState) => !prevState)}
+          onClick={toggleActionsMenu}
         >
           <AiOutlineEllipsis size="25px" />
         </div>
-        {showActions && <MonitorActionsMenu />}
+        {showActions && <MonitorActionsMenu ref={ref} />}
       </div>
     </div>
   );

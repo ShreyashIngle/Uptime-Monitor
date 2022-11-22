@@ -20,3 +20,8 @@
     cursor: not-allowed;
   }
 }
+
+@mixin hoverEffect {
+  transition: all ease 0.2s;
+  background-color: #939db834;
+}

@@ -1,0 +1,17 @@
+@import "../../../../assets/sass/utils/variables.scss";
+
+.statsCard {
+  border-radius: 5px;
+  padding: 15px 20px;
+  background: $secondary-blue;
+  &_label {
+    margin-bottom: 10px;
+    color: $primary-text-color;
+    font-size: 1.4rem;
+  }
+  &_value {
+    color: #fff;
+    font-weight: 600;
+    font-size: 2.4rem;
+  }
+}

@@ -1,0 +1,63 @@
+@import "../../../../assets/sass/utils/variables.scss";
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .status {
+    position: relative;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin: 10px;
+
+    &.online,
+    &.online:before {
+      background: #72ff7d;
+    }
+
+    &.offline,
+    &.offline:before {
+      background: #ff4242;
+    }
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: -(10px / 2);
+      top: -(10px / 2);
+      width: 15px + 10px;
+      height: 15px + 10px;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite ease-in;
+    }
+  }
+
+  @keyframes pulse {
+    from {
+      transform: scale(0.5);
+      opacity: 1;
+    }
+
+    to {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  &_details {
+    &__url {
+      font-weight: 400;
+      margin-bottom: 3px;
+      font-size: 2.4rem;
+      color: #fff;
+    }
+    &__uptime {
+      font-size: 1.4rem;
+      color: $primary-text-color;
+    }
+  }
+}

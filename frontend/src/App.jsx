@@ -1,8 +1,9 @@
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+
 import SharedLayout from "components/SharedLayout";
 import CreateMonitor from "pages/create-monitor";
 import Monitors from "pages/monitors";
-import React from "react";
-import { Routes, Route } from "react-router-dom";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import MonitorDetails from "./pages/monitor-details";
@@ -10,8 +11,6 @@ import MonitorDetails from "./pages/monitor-details";
 const App = () => {
   return (
     <Routes>
-      {/* <Route path="/team" element={<SharedLayout />}>
-      </Route> */}
       <Route path="/team" element={<SharedLayout />}>
         <Route index element={<Monitors />} />
         <Route path="/team/create-monitor" element={<CreateMonitor />} />

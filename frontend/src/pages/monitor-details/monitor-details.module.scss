@@ -1,3 +1,50 @@
-.monitorDetails{
-            
+.monitorDetails {
+  .head {
+
+    $green: #72ff7d;
+    $red: #ff4242;
+
+    .status {
+      position: relative;
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      margin: 10px;
+
+      &.online,
+      &.online:before {
+        background: $green;
+      }
+
+      &.offline,
+      &.offline:before {
+        background: $red;
+      }
+
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: -(10px / 2);
+        top: -(10px / 2);
+        width: 15px + 10px;
+        height: 15px + 10px;
+        border-radius: 50%;
+        animation: pulse 1.5s infinite ease-in;
+      }
+    }
+
+    @keyframes pulse {
+      from {
+        transform: scale(0.5);
+        opacity: 1;
+      }
+
+      to {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+  }
 }

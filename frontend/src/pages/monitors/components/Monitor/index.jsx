@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Monitor.module.scss";
-import { AiOutlineEllipsis } from "react-icons/ai";
+import { AiOutlineEllipsis, AiOutlineBell } from "react-icons/ai";
 import MonitorActionsMenu from "pages/monitors/components/MonitorActionsMenu";
 import useOutSideClick from "hooks/user-outSideClick";
 
@@ -21,7 +21,7 @@ const Monitor = ({ monitor }) => {
       <div className={styles.info}>
         <div
           className={
-            monitor.monitored
+            monitor.active
               ? `${styles.info_dot} ${styles.active}`
               : `${styles.info_dot} ${styles.paused}`
           }
@@ -31,7 +31,7 @@ const Monitor = ({ monitor }) => {
           <p className={styles.status}>
             <span
               className={
-                monitor.monitored
+                monitor.active
                   ? `${styles.status_text} ${styles.up}`
                   : `${styles.status_text} ${styles.paused}`
               }
@@ -43,6 +43,16 @@ const Monitor = ({ monitor }) => {
         </div>
       </div>
       <div className={styles.actions}>
+        <div className={styles.purpose}>
+          <AiOutlineBell />
+          <p>
+            {monitor.alertsTriggeredOn === 1
+              ? "URL Monitoring"
+              : monitor.alertsTriggeredOn === 2
+              ? "SSL Monitoring"
+              : "Keyword Monitoring"}
+          </p>
+        </div>
         <div
           className={`${styles.dots} hoverEffect`}
           onClick={toggleActionsMenu}

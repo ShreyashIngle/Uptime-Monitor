@@ -43,6 +43,18 @@
   }
   .actions {
     position: relative;
+    display: flex;
+    gap: 10px;
+    .purpose {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      border: 1px solid #4e576e;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: #939db8;
+      font-size: 1.2rem;
+    }
     .dots {
       padding: 0px 2px;
       display: flex;

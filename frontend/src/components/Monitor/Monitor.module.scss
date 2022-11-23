@@ -4,7 +4,7 @@
   background: $secondary-blue;
   border-radius: 5px;
   margin-bottom: 10px;
-  padding: 12px 15px;
+  padding: 15px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,8 +15,13 @@
     &_dot {
       width: 10px;
       height: 10px;
-      background: green;
       border-radius: 50%;
+      &.active {
+        background-color: #10c97a;
+      }
+      &.paused {
+        background-color: #ffa361;
+      }
     }
     &_url {
       color: #fff;
@@ -26,8 +31,11 @@
       }
       .status {
         color: #939bb8;
-        &_text {
-          color: rgb(206, 39, 39);
+        &_text.paused {
+          color: #ffa361;
+        }
+        &_text.up {
+          color: #10c97a;
         }
       }
     }

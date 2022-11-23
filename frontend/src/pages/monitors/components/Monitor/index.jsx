@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Monitor.module.scss";
 import { AiOutlineEllipsis } from "react-icons/ai";
-import MonitorActionsMenu from "components/MonitorActionsMenu";
+import MonitorActionsMenu from "pages/monitors/components/MonitorActionsMenu";
 import useOutSideClick from "hooks/user-outSideClick";
 
 const Monitor = ({ monitor }) => {

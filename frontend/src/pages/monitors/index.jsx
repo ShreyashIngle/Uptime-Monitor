@@ -1,4 +1,4 @@
-import Monitor from "components/Monitor";
+import Monitor from "pages/monitors/components/Monitor";
 import useMonitor from "hooks/use-monitor";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ const Monitors = () => {
         </button>
       </div>
       {monitors.map((monitor) => {
-        return <Monitor monitor={monitor} />;
+        return <Monitor key={monitor._id} monitor={monitor} />;
       })}
     </div>
   );

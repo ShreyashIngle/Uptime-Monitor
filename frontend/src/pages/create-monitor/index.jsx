@@ -26,13 +26,6 @@ const CreateMonitor = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await createMonitor(monitorDetails);
-
-    setMonitorDetails({
-      url: "https://",
-      team: "",
-      user: "",
-      alertsTriggeredOn: null,
-    });
   };
 
   return (

@@ -31,15 +31,24 @@ const deleteMonitor = asyncHandler(async (req, res) => {
 //@route  POST /api/v1/monitor
 //@access Private
 const addMonitor = asyncHandler(async (req, res) => {
-  const { url, user, team } = req.body;
+  const { url, user, team, alertsTriggeredOn } = req.body;
 
   if ((!url, !user, !team)) {
     return res.status(400).json({ message: "Provide all required fields" });
   }
 
-  const existingMonitor = await Monitor.findOne({ url: url });
+  const existingMonitor = await Monitor.find({ url: url });
 
-  if (existingMonitor) {
+  /*
+   Checks if a monitor with the same URL is 
+   already created for the same purpose
+  */
+  if (
+    existingMonitor.length > 0 &&
+    existingMonitor.some(
+      (monitor) => monitor.alertsTriggeredOn === alertsTriggeredOn
+    )
+  ) {
     return res.status(409).json({ message: "Duplicate url" });
   }
 

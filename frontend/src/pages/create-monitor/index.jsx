@@ -4,7 +4,6 @@ import styles from "./create-monitor.module.scss";
 import useMonitor from "hooks/use-monitor";
 import Spinner from "components/Spinner";
 
-
 const CreateMonitor = () => {
   const { createMonitor, isLoading } = useMonitor();
   const [monitorDetails, setMonitorDetails] = useState({
@@ -27,6 +26,13 @@ const CreateMonitor = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await createMonitor(monitorDetails);
+
+    setMonitorDetails({
+      url: "https://",
+      team: "",
+      user: "",
+      alertsTriggeredOn: null,
+    });
   };
 
   return (

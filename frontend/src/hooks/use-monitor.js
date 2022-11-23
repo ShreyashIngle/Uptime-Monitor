@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 const { default: API } = require("api/axios");
 const { useState, useEffect } = require("react");
 
@@ -11,15 +12,25 @@ const useMonitor = () => {
   }, []);
 
   const createMonitor = async (monitor) => {
+    //Verifying the URL format
+    const urlFormat = monitor.url.trim().substring(0, 5);
+    if (urlFormat !== "https") {
+      return toast.error("Invalid URL");
+    }
+
+    //Make the post request
     setIsLoading(true);
-    await API.post("/monitor", monitor)
+    await API.post("/monitor", {
+      ...monitor,
+      alertsTriggeredOn: parseInt(monitor.alertsTriggeredOn),
+    })
       .then((res) => {
         setIsLoading(false);
-        console.log("res", res);
+        toast.success("Monitor Created Successfully");
       })
       .catch((error) => {
         setIsLoading(false);
-        setIsError(false);
+        toast.error(error.response.data.message);
       });
   };
 
@@ -37,8 +48,14 @@ const useMonitor = () => {
         console.log(error);
       });
   };
-  
-  return { getAllMonitors, monitors, createMonitor, isLoading, isError };
+
+  return {
+    getAllMonitors,
+    monitors,
+    createMonitor,
+    isLoading,
+    isError,
+  };
 };
 
 export default useMonitor;

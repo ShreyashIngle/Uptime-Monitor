@@ -3,12 +3,10 @@ import React, { useState } from "react";
 import styles from "./create-monitor.module.scss";
 import useMonitor from "hooks/use-monitor";
 import Spinner from "components/Spinner";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { toast } from "react-toastify";
+
 
 const CreateMonitor = () => {
-  const { createMonitor, isLoading, isError } = useMonitor();
-  const [inputValidationError, setInputValidationError] = useState("");
+  const { createMonitor, isLoading } = useMonitor();
   const [monitorDetails, setMonitorDetails] = useState({
     url: "https://chathuraperera.netlify.app/",
     team: "637a44d5d180dd5e7c3a62b9",
@@ -28,24 +26,7 @@ const CreateMonitor = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    //Verifying the correct URL format
-    const urlFormat = monitorDetails.url.trim().substring(0, 5);
-    if (urlFormat !== "https") {
-      console.log("invalid");
-      return setInputValidationError("Invalid URL");
-    }
-
-    //Creating the monitor
-    await createMonitor({
-      ...monitorDetails,
-      alertsTriggeredOn: parseInt(monitorDetails.alertsTriggeredOn),
-    });
-    toast.success("Monitor Created Successfully");
-
-    //Error handling
-    isError &&
-      setInputValidationError("Something went wrong. Please try again");
+    await createMonitor(monitorDetails);
   };
 
   return (
@@ -53,12 +34,6 @@ const CreateMonitor = () => {
       <BackButton />
       <div className={styles.wrapper}>
         <h1>Create Monitor</h1>
-        {inputValidationError && (
-          <div className={styles.errorMessage}>
-            <AiOutlineExclamationCircle /> {inputValidationError}
-          </div>
-        )}
-
         <form onSubmit={handleSubmit}>
           <section className="sectionWrapper">
             <div className="description">

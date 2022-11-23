@@ -14,6 +14,7 @@ const fetchUrl = async (monitor) => {
         statusCode: error.response.status,
       });
 
+      
       //Sending email alerts
       await sendEmail(monitor, error.response.status);
     }

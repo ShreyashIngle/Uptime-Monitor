@@ -4,15 +4,16 @@ import styles from "./create-monitor.module.scss";
 import useMonitor from "hooks/use-monitor";
 import Spinner from "components/Spinner";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { toast } from "react-toastify";
 
 const CreateMonitor = () => {
   const { createMonitor, isLoading, isError } = useMonitor();
   const [inputValidationError, setInputValidationError] = useState("");
   const [monitorDetails, setMonitorDetails] = useState({
-    url: "https://google.com",
+    url: "https://chathuraperera.netlify.app/",
     team: "637a44d5d180dd5e7c3a62b9",
     user: "637a44d5d180dd5e7c3a62b7",
-    alertsTriggeredOn: "1",
+    alertsTriggeredOn: 1,
   });
 
   const handleChange = (e) => {
@@ -27,6 +28,7 @@ const CreateMonitor = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     //Verifying the correct URL format
     const urlFormat = monitorDetails.url.trim().substring(0, 5);
     if (urlFormat !== "https") {
@@ -34,8 +36,16 @@ const CreateMonitor = () => {
       return setInputValidationError("Invalid URL");
     }
 
-    await createMonitor(monitorDetails);
-    isError && setInputValidationError("Something went wrong.Please try again");
+    //Creating the monitor
+    await createMonitor({
+      ...monitorDetails,
+      alertsTriggeredOn: parseInt(monitorDetails.alertsTriggeredOn),
+    });
+    toast.success("Monitor Created Successfully");
+
+    //Error handling
+    isError &&
+      setInputValidationError("Something went wrong. Please try again");
   };
 
   return (
@@ -48,7 +58,7 @@ const CreateMonitor = () => {
             <AiOutlineExclamationCircle /> {inputValidationError}
           </div>
         )}
-        
+
         <form onSubmit={handleSubmit}>
           <section className="sectionWrapper">
             <div className="description">

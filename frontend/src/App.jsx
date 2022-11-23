@@ -1,5 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import SharedLayout from "components/SharedLayout";
 import CreateMonitor from "pages/create-monitor";
@@ -10,18 +12,21 @@ import MonitorDetails from "./pages/monitor-details";
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/team" element={<SharedLayout />}>
-        <Route index element={<Monitors />} />
-        <Route path="/team/create-monitor" element={<CreateMonitor />} />
-        <Route
-          path="/team/:teamID/monitor/:monitorID"
-          element={<MonitorDetails />}
-        />
-      </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/team" element={<SharedLayout />}>
+          <Route index element={<Monitors />} />
+          <Route path="/team/create-monitor" element={<CreateMonitor />} />
+          <Route
+            path="/team/:teamID/monitor/:monitorID"
+            element={<MonitorDetails />}
+          />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+      <ToastContainer / >
+    </>
   );
 };
 

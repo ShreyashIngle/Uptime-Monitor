@@ -37,6 +37,12 @@ const addMonitor = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Provide all required fields" });
   }
 
+  const existingMonitor = await Monitor.find({ url: url });
+
+  if (existingMonitor) {
+    return res.status(409).json({ message: "Duplicate url" });
+  }
+
   await Monitor.create(req.body);
   res.status(201).json({ message: "Monitor created successfully" });
 });

@@ -17,7 +17,7 @@ const MonitorSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    monitored: {
+    active: {
       type: Boolean,
       default: true,
     },
@@ -26,7 +26,7 @@ const MonitorSchema = new mongoose.Schema(
       default: Date.now(),
     },
     alertsTriggeredOn: {
-      type: String,
+      type: Number,
       default: 1,
     },
   },

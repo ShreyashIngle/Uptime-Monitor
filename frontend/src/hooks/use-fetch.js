@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import axios from "axios";
 const { useEffect, useState } = require("react");
 
@@ -21,32 +22,28 @@ const useFetch = (url, method, body) => {
 
   const fetchData = async (url, token, isMounted) => {
     setIsLoading(true);
-
     try {
       const response = await axios({
-        method: method,
+        method: "get",
         url: url,
-        data: body,
         cancelToken: token,
       });
 
       console.log("response", response);
 
-      if (isMounted) {    
+      if (isMounted) {
         setData(response.data);
         setFetchError(null);
       }
-
     } catch (err) {
       if (isMounted) {
         setFetchError(err.message);
         setData([]);
       }
-
     } finally {
       isMounted && setIsLoading(false);
     }
-
+    
   };
 
   const refetch = () => {

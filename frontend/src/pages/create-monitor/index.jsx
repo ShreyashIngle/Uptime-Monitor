@@ -1,18 +1,20 @@
+import { toast } from "react-toastify";
 import BackButton from "components/BackButton";
 import React, { useState } from "react";
 import styles from "./create-monitor.module.scss";
-import useMonitor from "hooks/use-monitor";
 import Spinner from "components/Spinner";
+import API from "api/axios";
 
 const CreateMonitor = () => {
-  const { createMonitor, isLoading } = useMonitor();
   const [monitorDetails, setMonitorDetails] = useState({
-    url: "https://chathuraperera.netlify.app/",
+    url: "https://",
     team: "637a44d5d180dd5e7c3a62b9",
     user: "637a44d5d180dd5e7c3a62b7",
     alertsTriggeredOn: 1,
   });
+  const [isLoading, setIsLoading] = useState(false);
 
+  //Handle input Changes
   const handleChange = (e) => {
     const { value, name } = e.target;
     setMonitorDetails((prevDetails) => {
@@ -23,9 +25,33 @@ const CreateMonitor = () => {
     });
   };
 
+  //Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createMonitor(monitorDetails);
+    const urlFormat = monitorDetails.url.trim().substring(0, 5);
+    if (urlFormat !== "https") {
+      return toast.error("Invalid URL");
+    }
+
+    setIsLoading(true);
+    await API.post("/monitor", monitorDetails)
+      .then((res) => {
+        console.log(res);
+        setIsLoading(false);
+        toast.success(res.data.message);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        toast.success("Something went wrong");
+        console.log(error);
+      });
+
+    setMonitorDetails({
+      url: "",
+      team: "",
+      user: "",
+      alertsTriggeredOn: "",
+    });
   };
 
   return (

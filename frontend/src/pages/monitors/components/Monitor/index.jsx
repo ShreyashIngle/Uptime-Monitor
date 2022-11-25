@@ -6,11 +6,7 @@ import useOutSideClick from "hooks/user-outSideClick";
 
 const Monitor = ({ monitor }) => {
   const [showActions, setShowActions] = useState(false);
-  const ref = useOutSideClick(closeActionsMenu);
 
-  function closeActionsMenu() {
-    setShowActions(false);
-  }
   function toggleActionsMenu(e) {
     e.stopPropagation();
     setShowActions((prevState) => !prevState);
@@ -36,7 +32,7 @@ const Monitor = ({ monitor }) => {
                   : `${styles.status_text} ${styles.paused}`
               }
             >
-              {monitor.monitored ? "Active" : "Paused"}
+              {monitor.active ? "Active" : "Paused"}
             </span>
             : 15d 6h
           </p>
@@ -59,7 +55,7 @@ const Monitor = ({ monitor }) => {
         >
           <AiOutlineEllipsis size="25px" />
         </div>
-        {showActions && <MonitorActionsMenu ref={ref} />}
+        {showActions && <MonitorActionsMenu monitor={monitor} />}
       </div>
     </div>
   );

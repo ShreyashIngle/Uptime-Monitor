@@ -6,10 +6,23 @@ import {
   AiOutlineDelete,
   AiOutlineWarning,
 } from "react-icons/ai";
+import API from "api/axios";
+import { toast } from "react-toastify";
 
-const MonitorActionsMenu = forwardRef((props, ref) => {
+const MonitorActionsMenu = ({ _id: monitorID }) => {
+  const deleteMonitor = async (monitorID) => {
+    await API.delete(`/monitor/${monitorID}`)
+      .then((res) => {
+        console.log(res);
+        toast.success("Monitor removed successfully.");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.success("Something went wrong");
+      });
+  };
   return (
-    <div ref={ref} className={styles.monitorActionsMenu}>
+    <div className={styles.monitorActionsMenu}>
       <div className={styles.menuItem}>
         <AiOutlineSetting /> Settings
       </div>
@@ -19,11 +32,11 @@ const MonitorActionsMenu = forwardRef((props, ref) => {
       <div className={styles.menuItem}>
         <AiOutlinePauseCircle /> Pause
       </div>
-      <div className={styles.menuItem}>
+      <div className={styles.menuItem} onClick={() => deleteMonitor(monitorID)}>
         <AiOutlineDelete /> Remove
       </div>
     </div>
   );
-});
+};
 
 export default MonitorActionsMenu;

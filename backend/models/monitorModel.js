@@ -23,7 +23,7 @@ const MonitorSchema = new mongoose.Schema(
     },
     lastIncidentDate: {
       type: String,
-      default: Date.now(),
+      default: "No incident",
     },
     alertsTriggeredOn: {
       type: Number,

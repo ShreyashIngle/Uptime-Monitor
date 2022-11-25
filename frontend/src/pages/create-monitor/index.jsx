@@ -42,7 +42,7 @@ const CreateMonitor = () => {
       })
       .catch((error) => {
         setIsLoading(false);
-        toast.success("Something went wrong");
+        toast.error("Something went wrong");
         console.log(error);
       });
 

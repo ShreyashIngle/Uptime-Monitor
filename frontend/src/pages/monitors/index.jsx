@@ -1,12 +1,20 @@
 import Monitor from "pages/monitors/components/Monitor";
-import useMonitor from "hooks/use-monitor";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./monitors.module.scss";
+import useFetch from "hooks/use-fetch";
 
 const Monitors = () => {
-  const { monitors, isLoading, isError } = useMonitor();
+  // const { monitors, isLoading, isError } = useMonitor();
   const navigate = useNavigate();
+
+  const {
+    data: monitors,
+    isLoading,
+    fetchError,
+  } = useFetch("/monitor", "get", {});
+
+
   return (
     <div className={styles.monitors}>
       <div className={styles.monitors_head}>
@@ -15,7 +23,8 @@ const Monitors = () => {
           Create monitor
         </button>
       </div>
-      {monitors.map((monitor) => {
+      {isLoading && <h1>Loading</h1>}
+      {monitors?.map((monitor) => {
         return <Monitor key={monitor._id} monitor={monitor} />;
       })}
     </div>

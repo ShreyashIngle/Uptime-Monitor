@@ -9,7 +9,7 @@ const useMonitor = () => {
 
   useEffect(() => {
     getAllMonitors();
-  }, []);
+  }, []); 
 
   const createMonitor = async (monitor) => {
     //Verifying the URL format
@@ -40,7 +40,6 @@ const useMonitor = () => {
       .then((res) => {
         setIsLoading(false);
         setMonitors(res.data);
-        console.log("res", res);
       })
       .catch((error) => {
         setIsError(true);

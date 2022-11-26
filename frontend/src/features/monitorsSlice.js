@@ -1,16 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
-
 const monitorSlice = createSlice({
   name: "monitor",
-  initialState,
+  initialState: [],
   reducers: {
     setMonitors: (state, action) => {
-      state = action.payload;
+      console.log("action", action);
+      const data = action.payload;
+      for (let dataItem of data) {
+        state.push(dataItem);
+      }
     },
   },
 });
 
-export const setMonitors = monitorSlice.actions;
+export const { setMonitors } = monitorSlice.actions;
 export default monitorSlice.reducer;

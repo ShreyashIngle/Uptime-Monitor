@@ -1,9 +1,7 @@
-import { toast } from "react-toastify";
 import axios from "axios";
 const { useEffect, useState } = require("react");
 
-const useFetch = (url, method, body) => {
-  useEffect(() => {}, []);
+const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setFetchError] = useState(null);
@@ -18,14 +16,14 @@ const useFetch = (url, method, body) => {
       isMounted = false;
       source.cancel();
     };
-  }, [url, method]);
+  }, [url]);
 
   const fetchData = async (url, token, isMounted) => {
     setIsLoading(true);
     try {
       const response = await axios({
         method: "get",
-        url: url,
+        url: "http://localhost:5000/api/v1" + url,
         cancelToken: token,
       });
 
@@ -43,7 +41,6 @@ const useFetch = (url, method, body) => {
     } finally {
       isMounted && setIsLoading(false);
     }
-    
   };
 
   const refetch = () => {

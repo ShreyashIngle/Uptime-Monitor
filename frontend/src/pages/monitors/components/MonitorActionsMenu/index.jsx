@@ -9,12 +9,13 @@ import {
 import API from "api/axios";
 import { toast } from "react-toastify";
 
-const MonitorActionsMenu = ({ _id: monitorID }) => {
+const MonitorActionsMenu = ({ _id: monitorID , refetch}) => {
   const deleteMonitor = async (monitorID) => {
     await API.delete(`/monitor/${monitorID}`)
       .then((res) => {
         console.log(res);
         toast.success("Monitor removed successfully.");
+        refetch();
       })
       .catch((error) => {
         console.log(error);

@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import styles from "./create-monitor.module.scss";
 import Spinner from "components/Spinner";
 import API from "api/axios";
+import { createMonitor } from "features/monitors/monitorSlice";
+import { useDispatch } from "react-redux";
 
 const CreateMonitor = () => {
   const [monitorDetails, setMonitorDetails] = useState({
@@ -13,6 +15,7 @@ const CreateMonitor = () => {
     alertsTriggeredOn: 1,
   });
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   //Handle input Changes
   const handleChange = (e) => {
@@ -26,32 +29,38 @@ const CreateMonitor = () => {
   };
 
   //Handle form submit
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const urlFormat = monitorDetails.url.trim().substring(0, 5);
+  //   if (urlFormat !== "https") {
+  //     return toast.error("Invalid URL");
+  //   }
+
+  //   setIsLoading(true);
+  //   await API.post("/monitor", monitorDetails)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setIsLoading(false);
+  //       toast.success(res.data.message);
+  //     })
+  //     .catch((error) => {
+  //       setIsLoading(false);
+  //       toast.error("Something went wrong");
+  //       console.log(error);
+  //     });
+
+  //   setMonitorDetails({
+  //     url: "",
+  //     team: "",
+  //     user: "",
+  //     alertsTriggeredOn: "",
+  //   });
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const urlFormat = monitorDetails.url.trim().substring(0, 5);
-    if (urlFormat !== "https") {
-      return toast.error("Invalid URL");
-    }
-
-    setIsLoading(true);
-    await API.post("/monitor", monitorDetails)
-      .then((res) => {
-        console.log(res);
-        setIsLoading(false);
-        toast.success(res.data.message);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        toast.error("Something went wrong");
-        console.log(error);
-      });
-
-    setMonitorDetails({
-      url: "",
-      team: "",
-      user: "",
-      alertsTriggeredOn: "",
-    });
+    dispatch(createMonitor(monitorDetails, "98461649821jonbscao839bix082e9dq"));
+    console.log("dispatched");
   };
 
   return (

@@ -55,6 +55,7 @@ export const monitorSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      //Create Monitor
       .addCase(createMonitor.pending, (state) => {
         state.isLoading = true;
       })
@@ -69,6 +70,7 @@ export const monitorSlice = createSlice({
         state.message = action.payload;
       })
 
+      //Get all Monitors
       .addCase(getMonitors.pending, (state) => {
         state.isLoading = true;
       })

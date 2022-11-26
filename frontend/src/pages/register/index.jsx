@@ -31,11 +31,9 @@ const Login = () => {
     }
 
     dispatch(reset());
-    
   }, [user, isError, isSuccess, message, navigate, dispatch]);
-  
+
   const handleChange = (e) => {
-    setValidationError("");
     const { name, value } = e.target;
     setSignUpDetails((prevDetails) => {
       return {

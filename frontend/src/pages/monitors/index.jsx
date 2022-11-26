@@ -1,15 +1,14 @@
 import Monitor from "pages/monitors/components/Monitor";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./monitors.module.scss";
-import useFetch from "hooks/use-fetch";
-import useMonitors from "hooks/useMonitors";
 
 const Monitors = () => {
   // const { monitors, isLoading, isError } = useMonitor();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState([]);
 
-  const { data, isLoading, fetchError, refetch } = useMonitors();
   console.log("monitors from monitors page", data);
   return (
     <div className={styles.monitors}>
@@ -21,9 +20,7 @@ const Monitors = () => {
       </div>
       {isLoading && <h1>Loading</h1>}
       {data?.map((monitor) => {
-        return (
-          <Monitor key={monitor._id} monitor={monitor} refetch={refetch} />
-        );
+        return <Monitor key={monitor._id} monitor={monitor} />;
       })}
     </div>
   );

@@ -4,7 +4,7 @@ import { AiOutlineEllipsis, AiOutlineBell } from "react-icons/ai";
 import MonitorActionsMenu from "pages/monitors/components/MonitorActionsMenu";
 import useOutSideClick from "hooks/user-outSideClick";
 
-const Monitor = ({ monitor, refetch }) => {
+const Monitor = ({ monitor }) => {
   const [showActions, setShowActions] = useState(false);
 
   function toggleActionsMenu(e) {
@@ -55,9 +55,7 @@ const Monitor = ({ monitor, refetch }) => {
         >
           <AiOutlineEllipsis size="25px" />
         </div>
-        {showActions && (
-          <MonitorActionsMenu monitor={monitor} refetch={refetch} />
-        )}
+        {showActions && <MonitorActionsMenu monitor={monitor} />}
       </div>
     </div>
   );

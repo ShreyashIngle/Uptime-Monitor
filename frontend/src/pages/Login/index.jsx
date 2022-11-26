@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../register/register.module.scss";
 import Spinner from "../../components/Spinner";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { Link } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { reset, loginUser } from "features/auth/authSlice";
@@ -55,11 +53,6 @@ const Login = () => {
           <p className={styles.desc}>
             Enter your credentials to access your account
           </p>
-          {validationError && (
-            <p className={styles.validationError}>
-              {validationError} <AiOutlineExclamationCircle />
-            </p>
-          )}
           <form onSubmit={handleSubmit}>
             <div className={styles.inputControl}>
               <label>Email address</label>

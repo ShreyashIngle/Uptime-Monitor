@@ -47,6 +47,7 @@ export const getMonitors = createAsyncThunk(
   }
 );
 
+//Monitor Slice
 export const monitorSlice = createSlice({
   name: "monitor",
   initialState,

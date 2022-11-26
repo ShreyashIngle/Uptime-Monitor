@@ -3,14 +3,34 @@ import styles from "../register/register.module.scss";
 import Spinner from "../../components/Spinner";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import useAuth from "hooks/use-auth";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { reset, loginUser } from "features/auth/authSlice";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const { login, isLoading, validationError } = useAuth();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [loginDetails, setLoginDetails] = useState({
     email: "lalith@gmail.com",
     password: "lalith123456",
   });
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -22,10 +42,9 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await login(loginDetails);
-    console.log("login success");
+    dispatch(loginUser(loginDetails));
   };
 
   return (

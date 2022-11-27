@@ -14,7 +14,8 @@ export const createMonitor = createAsyncThunk(
   "monitors/create",
   async (monitorData, thunkAPI) => {
     try {
-      return await monitorService.createMonitor(monitorData);
+      const token = thunkAPI.getState().auth.user.token;
+      return await monitorService.createMonitor(monitorData , token);
     } catch (error) {
       const message =
         (error.response &&
@@ -33,7 +34,8 @@ export const getMonitors = createAsyncThunk(
   "monitors/getAll",
   async (_, thunkAPI) => {
     try {
-      return await monitorService.getMonitors();
+      const token = thunkAPI.getState().auth.user.token;
+      return await monitorService.getAllMonitors(token);
     } catch (error) {
       const message =
         (error.response &&

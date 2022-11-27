@@ -26,6 +26,7 @@ const logout = async () => {
 };
 
 const authService = {
+  login,
   register,
   logout,
 };

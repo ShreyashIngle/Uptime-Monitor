@@ -27,7 +27,7 @@ const Monitors = () => {
     dispatch(getMonitors());
 
     return () => dispatch(reset());
-  }, [user, navigate, isError, message, dispatch]);
+  }, []);
   return (
     <div className={styles.monitors}>
       <div className={styles.monitors_head}>

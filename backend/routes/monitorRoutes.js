@@ -8,11 +8,12 @@ const {
   updateMonitor,
   getMonitor,
 } = require("../controllers/monitorController");
+const { protect } = require("../middleware/authMiddleware");
 
-router.post("/", addMonitor);
-router.get("/", getAllMonitors);
-router.get("/:id", getMonitor);
-router.delete("/:id", deleteMonitor);
-router.patch("/:id", updateMonitor);
+router.post("/", protect, addMonitor);
+router.get("/", protect, getAllMonitors);
+router.get("/:id", protect, getMonitor);
+router.delete("/:id", protect, deleteMonitor);
+router.patch("/:id", protect, updateMonitor);
 
 module.exports = router;

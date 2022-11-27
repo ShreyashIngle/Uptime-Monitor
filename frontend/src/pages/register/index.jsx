@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const [singUpDetails, setSignUpDetails] = useState({
     email: "lalith@gmail.com",
     password: "lalith123456",

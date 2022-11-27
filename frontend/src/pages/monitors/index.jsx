@@ -6,7 +6,6 @@ import { getMonitors, reset } from "features/monitors/monitorSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Monitors = () => {
-  // const { monitors, isLoading, isError } = useMonitor();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

@@ -76,7 +76,7 @@ const login = asyncHandler(async (req, res) => {
     userId: existingUser._id,
   };
 
-  res.status(200).json({ user, token });
+  res.status(200).json({ ...user, token });
 });
 
 module.exports = {

@@ -13,8 +13,8 @@ const getMonitor = asyncHandler(async (req, res) => {
 //@desc   Get All Monitor
 //@route  GET /api/v1/monitor
 //@access Private
-const getAllMonitors = asyncHandler(async (req, res) => {
-  const allMonitors = await Monitor.find({});
+const getUserMonitors = asyncHandler(async (req, res) => {
+  const allMonitors = await Monitor.find({ _id: req.user._id });
   res.status(200).json(allMonitors);
 });
 
@@ -76,7 +76,7 @@ const updateMonitor = asyncHandler(async (req, res) => {
 
 module.exports = {
   getMonitor,
-  getAllMonitors,
+  getUserMonitors,
   deleteMonitor,
   addMonitor,
   updateMonitor,

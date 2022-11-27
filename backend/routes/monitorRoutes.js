@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {
   addMonitor,
-  getAllMonitors,
+  getUserMonitors,
   deleteMonitor,
   updateMonitor,
   getMonitor,
@@ -11,7 +11,7 @@ const {
 const { protect } = require("../middleware/authMiddleware");
 
 router.post("/", protect, addMonitor);
-router.get("/", protect, getAllMonitors);
+router.get("/", protect, getUserMonitors);
 router.get("/:id", protect, getMonitor);
 router.delete("/:id", protect, deleteMonitor);
 router.patch("/:id", protect, updateMonitor);

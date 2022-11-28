@@ -37,7 +37,18 @@ const register = asyncHandler(async (req, res) => {
     admin: userDetails._id,
   });
 
-  res.status(201).json({ message: "registration successful", ...userDetails });
+  //Generating the token
+  const token = jwt.sign(
+    {
+      id: userDetails._id,
+    },
+    jwtSecret,
+    { expiresIn: "1d" }
+  );
+
+  res
+    .status(201)
+    .json({ message: "registration successful", ...userDetails, token });
 });
 
 //@desc   Login

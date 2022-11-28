@@ -11,7 +11,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const [loginDetails, setLoginDetails] = useState({
     email: "lalith@gmail.com",
-    password: "123456",
+    password: "lalith123456",
   });
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(

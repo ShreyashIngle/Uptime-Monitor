@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./Header.module.scss";
 import { AiOutlineDown } from "react-icons/ai";
 import { useSelector } from "react-redux";
+import HeaderMenu from "components/HeaderMenu";
 
 const Header = () => {
   const [pp, setPp] = useState(false);
@@ -20,6 +21,7 @@ const Header = () => {
         </div>
         <p>{firstName + " " + lastName}</p>
         <AiOutlineDown />
+        <HeaderMenu />
       </div>
     </header>
   );

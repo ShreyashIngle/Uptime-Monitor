@@ -24,20 +24,20 @@ const register = asyncHandler(async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const newUser = await User.create({
+  const { _doc } = await User.create({
     firstName,
     lastName,
     email,
     password: hashedPassword,
   });
 
-  console.log("newUser", newUser._id);
+  const { password: pw, ...userDetails } = _doc;
 
   await Team.create({
-    admin: newUser._id,
+    admin: userDetails._id,
   });
 
-  res.status(201).json({ message: "registration successful" });
+  res.status(201).json({ message: "registration successful", ...userDetails });
 });
 
 //@desc   Login

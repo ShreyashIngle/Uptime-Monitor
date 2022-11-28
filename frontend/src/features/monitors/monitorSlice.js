@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import monitorService from "./monitorService";
 
 const initialState = {
@@ -15,7 +16,7 @@ export const createMonitor = createAsyncThunk(
   async (monitorData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await monitorService.createMonitor(monitorData , token);
+      return await monitorService.createMonitor(monitorData, token);
     } catch (error) {
       const message =
         (error.response &&

@@ -3,15 +3,15 @@ import BackButton from "components/BackButton";
 import React, { useState } from "react";
 import styles from "./create-monitor.module.scss";
 import Spinner from "components/Spinner";
-import API from "api/axios";
 import { createMonitor } from "features/monitors/monitorSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const CreateMonitor = () => {
+  const { user } = useSelector((state) => state.auth);
   const [monitorDetails, setMonitorDetails] = useState({
     url: "https://",
-    team: "637a44d5d180dd5e7c3a62b9",
-    user: "637a44d5d180dd5e7c3a62b7",
+    team: user?.teamID,
+    user: user?.userId,
     alertsTriggeredOn: 1,
   });
   const [isLoading, setIsLoading] = useState(false);

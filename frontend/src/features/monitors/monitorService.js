@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const API_URL = "/monitor";
 
@@ -9,8 +10,16 @@ const createMonitor = async (monitorData, token) => {
       Authorization: `Bearer ${token}`,
     },
   };
-
-  const response = await axios.post(API_URL, monitorData, config);
+  let response;
+  await axios
+    .post(API_URL, monitorData, config)
+    .then((res) => {
+      res = response;
+      toast.success("Monitor created successfully");
+    })
+    .catch((error) => {
+      toast.error("Something went wrong ");
+    });
 
   return response.data;
 };

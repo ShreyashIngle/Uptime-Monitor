@@ -14,6 +14,7 @@ const getMonitor = asyncHandler(async (req, res) => {
 //@route  GET /api/v1/monitor
 //@access Private
 const getUserMonitors = asyncHandler(async (req, res) => {
+  // console.log("req.user", req.user);
   const allMonitors = await Monitor.find({ _id: req.user._id });
   res.status(200).json(allMonitors);
 });

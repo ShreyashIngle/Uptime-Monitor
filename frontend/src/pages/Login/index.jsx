@@ -24,7 +24,7 @@ const Login = () => {
     }
 
     if (isSuccess || user) {
-      navigate("/team");
+      navigate("/");
     }
 
     dispatch(reset());

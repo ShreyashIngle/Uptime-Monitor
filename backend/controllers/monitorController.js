@@ -37,7 +37,7 @@ const addMonitor = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Provide all required fields" });
   }
 
-  const existingMonitor = await Monitor.find({ url: url });
+  const existingMonitor = await Monitor.find({ url: url, team: team });
 
   /*
    Checks if a monitor with the same URL is 

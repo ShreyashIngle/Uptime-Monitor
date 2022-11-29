@@ -37,7 +37,7 @@ const Monitors = () => {
           Create monitor
         </button>
       </div>
-      {isLoading && (
+      {!isLoading && (
         <>
           <MonitorSkeleton />
           <MonitorSkeleton />

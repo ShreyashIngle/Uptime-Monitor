@@ -37,9 +37,14 @@ const Monitors = () => {
           Create monitor
         </button>
       </div>
-      {/* {isLoading && <MonitorSkeleton />} */}
-      {monitors?.length === 0 && <MonitorSkeleton />}
-      {monitors?.length === 0 && <NoMonitors />}
+      {isLoading && (
+        <>
+          <MonitorSkeleton />
+          <MonitorSkeleton />
+          <MonitorSkeleton />
+        </>
+      )}
+      {monitors?.length === 0 && !isLoading && <NoMonitors />}
       {monitors?.map((monitor) => {
         return <Monitor key={monitor._id} monitor={monitor} />;
       })}

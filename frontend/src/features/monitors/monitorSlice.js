@@ -5,7 +5,7 @@ import monitorService from "./monitorService";
 const initialState = {
   monitors: [],
   isError: false,
-  isLoading: true,
+  isLoading: false,
   isSuccess: false,
   message: "",
 };

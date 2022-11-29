@@ -5,6 +5,7 @@ import styles from "./monitors.module.scss";
 import { getMonitors, reset } from "features/monitors/monitorSlice";
 import { useDispatch, useSelector } from "react-redux";
 import NoMonitors from "./components/NoMonitors";
+import MonitorSkeleton from "./components/MonitorSkeleton";
 
 const Monitors = () => {
   const navigate = useNavigate();
@@ -36,7 +37,8 @@ const Monitors = () => {
           Create monitor
         </button>
       </div>
-      {isLoading && <h1>Loading</h1>}
+      {/* {isLoading && <MonitorSkeleton />} */}
+      {monitors?.length === 0 && <MonitorSkeleton />}
       {monitors?.length === 0 && <NoMonitors />}
       {monitors?.map((monitor) => {
         return <Monitor key={monitor._id} monitor={monitor} />;

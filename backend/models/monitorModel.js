@@ -17,12 +17,16 @@ const MonitorSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    monitored: {
+    active: {
       type: Boolean,
       default: true,
     },
-    alertsTriggeredOn: {
+    lastIncidentDate: {
       type: String,
+      default: "No incident",
+    },
+    alertsTriggeredOn: {
+      type: Number,
       default: 1,
     },
   },

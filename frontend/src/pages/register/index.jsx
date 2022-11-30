@@ -1,12 +1,15 @@
-import React, {  useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./register.module.scss";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
 import Spinner from "../../components/Spinner";
-import { Link } from "react-router-dom";
-import useAuth from "hooks/use-auth";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { reset, registerUser } from "features/auth/authSlice";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const { register, isLoading, validationError ,setValidationError} = useAuth();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
   const [singUpDetails, setSignUpDetails] = useState({
     email: "lalith@gmail.com",
     password: "lalith123456",
@@ -15,8 +18,23 @@ const Login = () => {
     lastName: "perera",
   });
 
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
+
   const handleChange = (e) => {
-    setValidationError("");
     const { name, value } = e.target;
     setSignUpDetails((prevDetails) => {
       return {
@@ -28,22 +46,20 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await register(singUpDetails);
-    console.log('success')
+    if (singUpDetails.password !== singUpDetails.confirmedPassword) {
+      return toast.error("Passwords do not match!");
+    }
+    const { confirmedPassword, ...userData } = singUpDetails;
 
+    dispatch(registerUser(userData));
   };
-  
+
   return (
     <main className={styles.register}>
       <div className={styles.registerLeft}>
         <div className={styles.registerLeftWrapper}>
           <h4 className={styles.title}>Register</h4>
           <p className={styles.desc}>It takes just 30 seconds. Go ahead!</p>
-          {validationError && (
-            <p className={styles.validationError}>
-              {validationError} <AiOutlineExclamationCircle />
-            </p>
-          )}
           <form onSubmit={handleSubmit}>
             <div className={styles.towCol}>
               <div className={styles.inputControl}>

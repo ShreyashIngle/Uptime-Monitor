@@ -1,20 +1,23 @@
+import { toast } from "react-toastify";
 import BackButton from "components/BackButton";
 import React, { useState } from "react";
 import styles from "./create-monitor.module.scss";
-import useMonitor from "hooks/use-monitor";
 import Spinner from "components/Spinner";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { createMonitor } from "features/monitors/monitorSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const CreateMonitor = () => {
-  const { createMonitor, isLoading, isError } = useMonitor();
-  const [inputValidationError, setInputValidationError] = useState("");
+  const { user } = useSelector((state) => state.auth);
   const [monitorDetails, setMonitorDetails] = useState({
-    url: "https://google.com",
-    team: "637a44d5d180dd5e7c3a62b9",
-    user: "637a44d5d180dd5e7c3a62b7",
-    alertsTriggeredOn: "1",
+    url: "https://",
+    team: user?.teamID,
+    user: user?.userId,
+    alertsTriggeredOn: 1,
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
+  //Handle input Changes
   const handleChange = (e) => {
     const { value, name } = e.target;
     setMonitorDetails((prevDetails) => {
@@ -25,15 +28,39 @@ const CreateMonitor = () => {
     });
   };
 
+  //Handle form submit
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const urlFormat = monitorDetails.url.trim().substring(0, 5);
+  //   if (urlFormat !== "https") {
+  //     return toast.error("Invalid URL");
+  //   }
+
+  //   setIsLoading(true);
+  //   await API.post("/monitor", monitorDetails)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setIsLoading(false);
+  //       toast.success(res.data.message);
+  //     })
+  //     .catch((error) => {
+  //       setIsLoading(false);
+  //       toast.error("Something went wrong");
+  //       console.log(error);
+  //     });
+
+  //   setMonitorDetails({
+  //     url: "",
+  //     team: "",
+  //     user: "",
+  //     alertsTriggeredOn: "",
+  //   });
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //Verifying the correct URL format
-    const urlFormat = monitorDetails.url.trim().substring(0, 5);
-    if (urlFormat !== "https") {
-      console.log("invalid");
-      return setInputValidationError("Invalid URL");
-    }
-    await createMonitor(monitorDetails);
+    dispatch(createMonitor(monitorDetails, "98461649821jonbscao839bix082e9dq"));
+    console.log("dispatched");
   };
 
   return (
@@ -41,11 +68,6 @@ const CreateMonitor = () => {
       <BackButton />
       <div className={styles.wrapper}>
         <h1>Create Monitor</h1>
-        {inputValidationError && (
-          <div className={styles.errorMessage}>
-            <AiOutlineExclamationCircle /> {inputValidationError}
-          </div>
-        )}
         <form onSubmit={handleSubmit}>
           <section className="sectionWrapper">
             <div className="description">

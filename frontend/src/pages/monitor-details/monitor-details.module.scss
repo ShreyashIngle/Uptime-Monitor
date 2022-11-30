@@ -1,0 +1,8 @@
+.monitorDetails {
+  &_stats {
+    padding: 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+}

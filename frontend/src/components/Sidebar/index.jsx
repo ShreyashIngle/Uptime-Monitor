@@ -16,16 +16,16 @@ const Sidebar = () => {
         <img src={logo} alt="logo" />
       </div>
       <SidebarLink text="Monitors">
-        <AiOutlineSecurityScan />
+        <AiOutlineSecurityScan size="20px" />
       </SidebarLink>
       <SidebarLink text="Incidents">
-        <AiOutlineWarning />
+        <AiOutlineWarning size="20px" />
       </SidebarLink>
       <SidebarLink text="Team Members">
-        <AiOutlineUsergroupAdd />
+        <AiOutlineUsergroupAdd size="20px" />
       </SidebarLink>
       <SidebarLink text="Integrations">
-        <AiOutlineApi />
+        <AiOutlineApi size="20px" />
       </SidebarLink>
     </aside>
   );

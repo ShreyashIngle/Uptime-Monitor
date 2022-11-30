@@ -1,0 +1,68 @@
+@import "../../../../assets/sass/utils/variables.scss";
+
+.monitor {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  background: $secondary-blue;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    &_dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      &.active {
+        background-color: #10c97a;
+      }
+      &.paused {
+        background-color: #ffa361;
+      }
+    }
+    &_url {
+      color: #fff;
+      font-size: 1.4rem;
+      .url {
+        margin-bottom: 5px;
+      }
+      .status {
+        color: #939bb8;
+        &_text.paused {
+          color: #ffa361;
+        }
+        &_text.up {
+          color: #10c97a;
+        }
+      }
+    }
+  }
+  .actions {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    .purpose {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      border: 1px solid #4e576e;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: #939db8;
+      font-size: 1.2rem;
+    }
+    .dots {
+      padding: 0px 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #939bb8;
+    }
+  }
+}

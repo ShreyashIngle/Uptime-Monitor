@@ -13,8 +13,9 @@ const getMonitor = asyncHandler(async (req, res) => {
 //@desc   Get All Monitor
 //@route  GET /api/v1/monitor
 //@access Private
-const getAllMonitors = asyncHandler(async (req, res) => {
-  const allMonitors = await Monitor.find({});
+const getUserMonitors = asyncHandler(async (req, res) => {
+  // console.log("req.user", req.user);
+  const allMonitors = await Monitor.find({ _id: req.user._id });
   res.status(200).json(allMonitors);
 });
 
@@ -31,10 +32,25 @@ const deleteMonitor = asyncHandler(async (req, res) => {
 //@route  POST /api/v1/monitor
 //@access Private
 const addMonitor = asyncHandler(async (req, res) => {
-  const { url, user, team } = req.body;
+  const { url, user, team, alertsTriggeredOn } = req.body;
 
   if ((!url, !user, !team)) {
     return res.status(400).json({ message: "Provide all required fields" });
+  }
+
+  const existingMonitor = await Monitor.find({ url: url, team: team });
+
+  /*
+   Checks if a monitor with the same URL is 
+   already created for the same purpose
+  */
+  if (
+    existingMonitor.length > 0 &&
+    existingMonitor.some(
+      (monitor) => monitor.alertsTriggeredOn === alertsTriggeredOn
+    )
+  ) {
+    return res.status(409).json({ message: "Duplicate url" });
   }
 
   await Monitor.create(req.body);
@@ -61,7 +77,7 @@ const updateMonitor = asyncHandler(async (req, res) => {
 
 module.exports = {
   getMonitor,
-  getAllMonitors,
+  getUserMonitors,
   deleteMonitor,
   addMonitor,
   updateMonitor,

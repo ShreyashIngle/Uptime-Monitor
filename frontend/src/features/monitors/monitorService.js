@@ -10,6 +10,7 @@ const createMonitor = async (monitorData, token) => {
       Authorization: `Bearer ${token}`,
     },
   };
+  console.log("monitorData in monitorService", monitorData);
   let response;
   await axios
     .post(API_URL, monitorData, config)

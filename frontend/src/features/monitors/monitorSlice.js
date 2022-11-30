@@ -17,13 +17,14 @@ export const createMonitor = createAsyncThunk(
     try {
       const token = thunkAPI.getState().auth.user.token;
       return await monitorService.createMonitor(monitorData, token);
+      
     } catch (error) {
       const message =
         (error.response &&
           error.response.data &&
           error.response.data.message) ||
-        error.message ||
-        error.toString();
+          error.message ||
+          error.toString();
 
       return thunkAPI.rejectWithValue(message);
     }

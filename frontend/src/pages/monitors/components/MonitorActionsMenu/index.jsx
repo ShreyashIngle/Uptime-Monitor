@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import styles from "./MonitorActionsMenu.module.scss";
 import {
   AiOutlinePauseCircle,
@@ -22,6 +22,7 @@ const MonitorActionsMenu = ({ _id: monitorID , refetch}) => {
         toast.success("Something went wrong");
       });
   };
+
   return (
     <div className={styles.monitorActionsMenu}>
       <div className={styles.menuItem}>

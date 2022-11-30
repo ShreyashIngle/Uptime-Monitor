@@ -7,9 +7,14 @@ import HeaderMenu from "components/HeaderMenu";
 const Header = () => {
   const [pp, setPp] = useState(false);
   const { firstName, lastName } = useSelector((state) => state.auth.user);
+  const [showMenu, setShowMenu] = useState(false);
+
   return (
     <header className={styles.header}>
-      <div className={`${styles.header_details} hoverEffect`}>
+      <div
+        onClick={() => setShowMenu((prevState) => !prevState)}
+        className={`${styles.header_details} hoverEffect`}
+      >
         <div className={styles.header_pp}>
           {!pp ? (
             <div className={styles.letters}>
@@ -21,7 +26,7 @@ const Header = () => {
         </div>
         <p>{firstName + " " + lastName}</p>
         <AiOutlineDown />
-        <HeaderMenu />
+        {showMenu && <HeaderMenu />}
       </div>
     </header>
   );

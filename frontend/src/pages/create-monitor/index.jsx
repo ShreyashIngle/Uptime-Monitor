@@ -8,13 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 const CreateMonitor = () => {
   const { user } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.monitor);
   const [monitorDetails, setMonitorDetails] = useState({
     url: "https://",
     team: user?.teamID,
-    user: user?.userId,
+    user: user?._id,
     alertsTriggeredOn: 1,
   });
-  const [isLoading, setIsLoading] = useState(false);
+
   const dispatch = useDispatch();
 
   //Handle input Changes
@@ -59,7 +60,7 @@ const CreateMonitor = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createMonitor(monitorDetails, "98461649821jonbscao839bix082e9dq"));
+    dispatch(createMonitor(monitorDetails));
     console.log("dispatched");
   };
 

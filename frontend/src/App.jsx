@@ -1,13 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import SharedLayout from "components/SharedLayout";
 import CreateMonitor from "pages/create-monitor";
 import Monitors from "pages/monitors";
-import React from "react";
-import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/register";
 import MonitorDetails from "./pages/monitor-details";

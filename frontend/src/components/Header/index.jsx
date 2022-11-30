@@ -26,8 +26,8 @@ const Header = () => {
         </div>
         <p>{firstName + " " + lastName}</p>
         <AiOutlineDown />
-        {showMenu && <HeaderMenu />}
       </div>
+        {showMenu && <HeaderMenu />}
     </header>
   );
 };

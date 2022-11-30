@@ -1,9 +1,10 @@
-import Monitor from "pages/monitors/components/Monitor";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./monitors.module.scss";
 import { getMonitors, reset } from "features/monitors/monitorSlice";
-import { useDispatch, useSelector } from "react-redux";
+
+import Monitor from "pages/monitors/components/Monitor";
 import NoMonitors from "./components/NoMonitors";
 import MonitorSkeleton from "./components/MonitorSkeleton";
 
@@ -12,7 +13,7 @@ const Monitors = () => {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
-  const { monitors, isLoading, isError, message } = useSelector(
+  const { monitors, isLoading, isError, message, isSuccess } = useSelector(
     (state) => state.monitor
   );
 
@@ -44,7 +45,7 @@ const Monitors = () => {
           <MonitorSkeleton />
         </>
       )}
-      {monitors?.length === 0 && !isLoading && <NoMonitors />}
+      {monitors?.length === 0 && isSuccess && <NoMonitors />}
       {monitors?.map((monitor) => {
         return <Monitor key={monitor._id} monitor={monitor} />;
       })}

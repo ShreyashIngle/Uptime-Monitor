@@ -15,7 +15,7 @@ const getMonitor = asyncHandler(async (req, res) => {
 //@access Private
 const getUserMonitors = asyncHandler(async (req, res) => {
   // console.log("req.user", req.user);
-  const allMonitors = await Monitor.find({ _id: req.user._id });
+  const allMonitors = await Monitor.find({ user: req.user._id });
   res.status(200).json(allMonitors);
 });
 

@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import BackButton from "components/BackButton";
 import React, { useState } from "react";
 import styles from "./create-monitor.module.scss";

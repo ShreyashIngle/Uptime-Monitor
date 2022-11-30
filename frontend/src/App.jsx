@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SharedLayout from "components/SharedLayout";
 import CreateMonitor from "pages/create-monitor";
 import Monitors from "pages/monitors";
-import Login from "./pages/Login";
+import Login from "./pages/login";
 import Register from "./pages/register";
 import MonitorDetails from "./pages/monitor-details";
 
@@ -25,7 +25,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-      <ToastContainer style={{ fontSize: "16px" }} />
+      <ToastContainer style={{ fontSize: "15px" }} />
     </>
   );
 };

@@ -2,7 +2,7 @@ import axios from "axios";
 
 //Register user
 const register = async (userData) => {
-  const response = await axios.post("/register", userData);
+  const response = await axios.post("api/v1/register", userData);
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
@@ -12,7 +12,7 @@ const register = async (userData) => {
 
 //Login user
 const login = async (userData) => {
-  const response = await axios.post("/login", userData);
+  const response = await axios.post("api/v1/login", userData);
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));

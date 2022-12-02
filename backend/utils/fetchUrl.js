@@ -1,6 +1,6 @@
 const Incident = require("../models/incidentModel");
 const axios = require("axios");
-const sendEmail = require("./sendEmailAlerts");
+const sendEmail = require("./sendEmail");
 
 const fetchUrl = async (monitor) => {
   await axios.get(monitor.url).catch(async (error) => {
@@ -14,9 +14,19 @@ const fetchUrl = async (monitor) => {
         statusCode: error.response.status,
       });
 
+      const currentDate = new Date().toJSON().slice(0, 10);
+
+      const dynamicData = {
+        monitorID: monitor?._id,
+        monitorURL: monitor?.url,
+        statusCode: error.response.status,
+        createdAt: currentDate,
+      };
       
       //Sending email alerts
-      await sendEmail(monitor, error.response.status);
+      for (const email of alerts.emails) {
+        await sendEmail(email, dynamicData);
+      }
     }
     console.log("history log created");
   });

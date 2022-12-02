@@ -1,9 +1,11 @@
 const User = require("../models/userModel");
 const Team = require("../models/teamModel");
+const Token = require("../models/tokenModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
-
+const sendEmail = require("../utils/sendEmail");
+const crypto = require("crypto");
 const jwtSecret = process.env.JWT_SECRET;
 
 //@desc   Register
@@ -42,7 +44,15 @@ const register = asyncHandler(async (req, res) => {
     admin: userDetails._id,
   });
 
-  console.log("teamID", teamID);
+  //Sending email verification
+  let verificationLinkToken = await Token({
+    userId: userDetails._id,
+    token: crypto.randomBytes(32).toString("hex"),
+  }).save();
+
+  const verificationURL = `${process.env.BASE_URL}/user/verify/${userDetails._id}/${verificationLinkToken}`;
+
+  sendEmail(email, { verificationURL });
 
   //Generating the token
   const token = jwt.sign(
@@ -99,6 +109,17 @@ const login = asyncHandler(async (req, res) => {
 
   res.status(200).json({ ...user, teamID: team._id, token });
 });
+
+//@desc   User Verification
+//@route  get /api/v1/user/verify/:userId/:token
+//@access Private
+const userVerification = asyncHandler(async(req,res) => {
+  const {userId,token} = req.params;
+
+  
+
+})
+
 
 module.exports = {
   register,

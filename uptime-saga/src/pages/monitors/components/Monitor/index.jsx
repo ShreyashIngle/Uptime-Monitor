@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./Monitor.module.scss";
 import { AiOutlineEllipsis, AiOutlineBell } from "react-icons/ai";
-import MonitorActionsMenu from "pages/monitors/components/MonitorActionsMenu";
-import useOutSideClick from "hooks/user-outSideClick";
+import MonitorActionsMenu from "@/pages/monitors/components/MonitorActionsMenu";
+import useOutSideClick from "@/hooks/user-outSideClick";
 
 const Monitor = ({ monitor }) => {
   const [showActions, setShowActions] = useState(false);

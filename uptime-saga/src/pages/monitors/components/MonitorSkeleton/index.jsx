@@ -1,4 +1,4 @@
-import LoadingSkeletonText from "components/LoadingSkeletonText";
+import LoadingSkeletonText from "@/components/LoadingSkeletonText";
 import React from "react";
 import styles from "./MonitorSkeleton.module.scss";
 

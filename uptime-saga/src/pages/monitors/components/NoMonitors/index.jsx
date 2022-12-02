@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./NoMonitors.module.scss";
-import noMonitorsImage from "assets/images/NoSite.png";
+import noMonitorsImage from "@/assets/images/NoSite.png";
 const NoMonitors = () => {
   return (
     <div className={styles.noMonitors}>

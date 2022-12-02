@@ -1,10 +1,11 @@
-import BackButton from "components/BackButton";
-import React, { useState } from "react";
-import styles from "./create-monitor.module.scss";
-import Spinner from "components/Spinner";
-import { createMonitor } from "features/monitors/monitorSlice";
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import React, { useState } from "react";
+
+import styles from "./create-monitor.module.scss";
+import BackButton from "@/components/BackButton";
+import Spinner from "@/components/Spinner";
+import { createMonitor } from "@/features/monitors/monitorSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const CreateMonitor = () => {
   const { user } = useSelector((state) => state.auth);

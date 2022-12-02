@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "assets/sass/utils/global.module.scss";
+import styles from "@/assets/sass/utils/global.module.scss";
 
 const LoadingSkeletonText = ({ width, height }) => {
   return (

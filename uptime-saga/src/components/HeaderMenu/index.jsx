@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./HeaderMenu.module.scss";
 import { AiOutlineLogout, AiOutlineUser } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { reset, logout } from "features/auth/authSlice";
+import { reset, logout } from "@/features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const HeaderMenu = () => {

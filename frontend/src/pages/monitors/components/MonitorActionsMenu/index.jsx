@@ -10,9 +10,9 @@ import {
   AiOutlineWarning,
 } from "react-icons/ai";
 
-import API from "api/axios";
-import { deleteMonitor } from "features/monitors/monitorSlice";
-import Spinner from "components/Spinner";
+import API from "@/api/axios";
+import { deleteMonitor } from "@/features/monitors/monitorSlice";
+import Spinner from "@/components/Spinner";
 
 
 const MonitorActionsMenu = ({ _id: monitorID, refetch }) => {

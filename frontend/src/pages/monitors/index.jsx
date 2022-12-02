@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./monitors.module.scss";
-import { getMonitors, reset } from "features/monitors/monitorSlice";
+import { getMonitors, reset } from "@/features/monitors/monitorSlice";
 
-import Monitor from "pages/monitors/components/Monitor";
+import Monitor from "@/pages/monitors/components/Monitor";
 import NoMonitors from "./components/NoMonitors";
 import MonitorSkeleton from "./components/MonitorSkeleton";
 

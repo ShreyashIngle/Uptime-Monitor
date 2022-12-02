@@ -1,5 +1,4 @@
-const { useRef, useEffect } = require("react");
-
+import { useRef , useEffect} from "react";
 const useOutSideClick = (callback) => {
   const ref = useRef();
 

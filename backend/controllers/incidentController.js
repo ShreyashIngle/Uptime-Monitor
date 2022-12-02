@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Monitor = require("../models/monitorModel");
-const fetchUrl = require("../services/fetchUrl");
+const fetchUrl = require("../utils/fetchUrl");
 
 const availabilityCheck = asyncHandler(async (req, res) => {
   const monitors = await Monitor.find({ monitored: true })

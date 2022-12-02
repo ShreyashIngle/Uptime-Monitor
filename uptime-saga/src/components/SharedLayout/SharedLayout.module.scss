@@ -1,0 +1,16 @@
+@import "../../assets/sass/utils/variables.scss";
+
+.layout {
+  min-height: 100vh;
+  border: 1px solid;
+  display: grid;
+  background-color: $primary-blue;
+  grid-template-columns: 2fr 9fr;
+  .content {
+    padding: 10px 50px;
+    &_wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
+}

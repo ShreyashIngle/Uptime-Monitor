@@ -1,0 +1,15 @@
+.aside {
+  background-color: #27293be5;
+  padding: 0 10px;
+  max-width: 350px;
+  border-right: 2px solid #3b4254;
+  &_logo {
+    width: 180px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    img {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@import "../../../../assets/sass/utils/variables.scss";
+.noMonitors {
+  max-width: 600px;
+  margin: 0 auto;
+  color: rgb(160, 160, 160);
+  font-size: 2rem;
+  text-align: center;
+  padding-top: 50px;
+  h4 {
+    font-weight: 400;
+    font-family: $montserrat;
+  }
+  img {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}

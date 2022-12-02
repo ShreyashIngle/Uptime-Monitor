@@ -1,0 +1,33 @@
+@import "../../assets/sass/utils/variables.scss";
+
+.headerMenu {
+  border: 1px solid #3b4254;
+  border-radius: 5px;
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  top: 100%;
+  width: 200px;
+  height: max-content;
+  right: 0;
+  background-color: $secondary-blue;
+
+  .menuItem {
+    margin: 3px;
+    cursor: pointer;
+    background-color: $secondary-blue;
+    padding: 10px 15px;
+    color: #fff;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.3rem;
+    &:last-child {
+      border-top: 1px solid #3b4254;
+    }
+    &:hover {
+      background-color: #3b4254;
+    }
+  }
+}

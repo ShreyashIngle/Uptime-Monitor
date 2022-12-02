@@ -24,8 +24,9 @@ const getUserMonitors = asyncHandler(async (req, res) => {
 //@access Private
 const deleteMonitor = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  await Monitor.findOneAndDelete({ id });
-  res.status(200).json({ message: "Monitor deleted successfully" });
+  const { _id } = await Monitor.findOneAndDelete({ id });
+  
+  res.status(200).json({ message: "Monitor deleted successfully", id: _id });
 });
 
 //@desc   Add Monitor

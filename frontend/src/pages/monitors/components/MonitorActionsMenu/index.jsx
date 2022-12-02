@@ -1,4 +1,7 @@
 import React from "react";
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+
 import styles from "./MonitorActionsMenu.module.scss";
 import {
   AiOutlinePauseCircle,
@@ -6,21 +9,29 @@ import {
   AiOutlineDelete,
   AiOutlineWarning,
 } from "react-icons/ai";
-import API from "api/axios";
-import { toast } from "react-toastify";
 
-const MonitorActionsMenu = ({ _id: monitorID , refetch}) => {
-  const deleteMonitor = async (monitorID) => {
-    await API.delete(`/monitor/${monitorID}`)
-      .then((res) => {
-        console.log(res);
-        toast.success("Monitor removed successfully.");
-        refetch();
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.success("Something went wrong");
-      });
+import API from "api/axios";
+import { deleteMonitor } from "features/monitors/monitorSlice";
+import Spinner from "components/Spinner";
+
+
+const MonitorActionsMenu = ({ _id: monitorID, refetch }) => {
+  const dispatch = useDispatch();
+  const { isLoading, isSuccess } = useSelector((state) => state.monitor);
+
+  const handleDelete =  (monitorID) => {
+    dispatch(deleteMonitor(monitorID));
+    console.log('this')
+    // await API.delete(`/monitor/${monitorID}`)
+    //   .then((res) => {
+    //     console.log(res);
+    //     toast.success("Monitor removed successfully.");
+    //     refetch();
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     toast.success("Something went wrong");
+    //   });
   };
 
   return (
@@ -34,8 +45,8 @@ const MonitorActionsMenu = ({ _id: monitorID , refetch}) => {
       <div className={styles.menuItem}>
         <AiOutlinePauseCircle /> Pause
       </div>
-      <div className={styles.menuItem} onClick={() => deleteMonitor(monitorID)}>
-        <AiOutlineDelete /> Remove
+      <div className={styles.menuItem} onClick={() =>handleDelete(monitorID)}>
+        {!isLoading ? <AiOutlineDelete /> : <Spinner />} Remove 
       </div>
     </div>
   );

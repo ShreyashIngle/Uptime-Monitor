@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const API_URL = "api/v1/monitor";
+const API_URL = "http://localhost:5000/api/v1/monitor";
 
 //Create new monitor
 const createMonitor = async (monitorData, token) => {
@@ -39,16 +39,19 @@ const getAllMonitors = async (token) => {
 };
 
 //Delete monitor
-const deleteMonitor = async (token) => {
+const deleteMonitor = async (monitorID, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
 
-  const response  = await axios.delete()
+  const response = await axios.delete(`${API_URL}/${monitorID}`, config); 
+
+  return response.data;
 };
 const monitorService = {
+  deleteMonitor,
   createMonitor,
   getAllMonitors,
 };

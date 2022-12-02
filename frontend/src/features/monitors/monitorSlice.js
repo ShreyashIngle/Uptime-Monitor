@@ -19,11 +19,7 @@ export const createMonitor = createAsyncThunk(
       return await monitorService.createMonitor(monitorData, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        error.response?.data?.message || error.message || error.toString();
 
       return thunkAPI.rejectWithValue(message);
     }
@@ -110,18 +106,13 @@ export const monitorSlice = createSlice({
       })
 
       //Delete Monitor
-      .addCase(deleteMonitor.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(deleteMonitor.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.isSuccess = true;
         state.monitors = state.monitors.filter(
           (monitor) => monitor._id !== action.payload.id
         );
       })
       .addCase(deleteMonitor.rejected, (state, action) => {
-        state.isLoading = false;
         state.isError = true;
         state.message = action.payload.message;
       });

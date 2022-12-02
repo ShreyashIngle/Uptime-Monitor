@@ -19,7 +19,8 @@ const createMonitor = async (monitorData, token) => {
       toast.success("Monitor created successfully");
     })
     .catch((error) => {
-      toast.error("Something went wrong ");
+      console.log("error", error);
+      toast.error(error.response.data.message);
     });
 
   return response.data;
@@ -46,7 +47,7 @@ const deleteMonitor = async (monitorID, token) => {
     },
   };
 
-  const response = await axios.delete(`${API_URL}/${monitorID}`, config); 
+  const response = await axios.delete(`${API_URL}/${monitorID}`, config);
 
   return response.data;
 };

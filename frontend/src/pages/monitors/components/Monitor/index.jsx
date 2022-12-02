@@ -55,7 +55,12 @@ const Monitor = ({ monitor }) => {
         >
           <AiOutlineEllipsis size="25px" />
         </div>
-        {showActions && <MonitorActionsMenu monitor={monitor} />}
+        {showActions && (
+          <MonitorActionsMenu
+          setShowActions={setShowActions}
+            monitor={monitor}
+          />
+        )}
       </div>
     </div>
   );

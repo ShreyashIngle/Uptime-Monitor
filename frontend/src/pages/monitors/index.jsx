@@ -30,6 +30,7 @@ const Monitors = () => {
 
     return () => dispatch(reset());
   }, []);
+  
   return (
     <div className={styles.monitors}>
       <div className={styles.monitors_head}>

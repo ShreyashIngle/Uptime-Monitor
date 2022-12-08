@@ -25,7 +25,7 @@ const fetchUrl = async (monitor) => {
       
       //Sending email alerts
       for (const email of alerts.emails) {
-        await sendEmail(email, dynamicData);
+        await sendEmail(email, dynamicData , process.env.SENDGRID_MONITOR_ALERT_TEMPLATE);
       }
     }
     console.log("history log created");

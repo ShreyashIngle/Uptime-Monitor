@@ -1,11 +1,13 @@
 const User = require("../models/userModel");
 const Team = require("../models/teamModel");
 const Token = require("../models/tokenModel");
+
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
+
 const jwtSecret = process.env.JWT_SECRET;
 
 //@desc   Register
@@ -52,7 +54,7 @@ const register = asyncHandler(async (req, res) => {
 
   const verificationURL = `${process.env.BASE_URL}/user/verify/${userDetails._id}/${verificationLinkToken}`;
 
-  sendEmail(email, { verificationURL });
+  sendEmail(email, { verificationURL } , process.env.SENDGRID_EMAIL_VERIFICATION_TEMPLATE);
 
   //Generating the token
   const token = jwt.sign(
@@ -113,15 +115,23 @@ const login = asyncHandler(async (req, res) => {
 //@desc   User Verification
 //@route  get /api/v1/user/verify/:userId/:token
 //@access Private
-const userVerification = asyncHandler(async(req,res) => {
-  const {userId,token} = req.params;
+const userVerification = asyncHandler(async (req, res) => {
+  const { userId, token } = req.params;
 
-  
+  const user = await User.findOne({ _id: userId });
+  if (!user) return res.status(401).json({ message: "Invalid link" });
 
-})
+  const existingToken = await Token.findOne({ userId, token });
+  if (!existingToken) return res.status(401).json({ message: "Invalid link" });
 
+  await User.findOneAndUpdate({ _id: userId }, { verified: true });
+  await Token.findByIdAndRemove(existingToken._id);
+
+  res.send("Email verified successfully");
+});
 
 module.exports = {
   register,
   login,
+  userVerification,
 };

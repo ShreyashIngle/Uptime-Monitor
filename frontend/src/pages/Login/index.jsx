@@ -10,8 +10,8 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loginDetails, setLoginDetails] = useState({
-    email: "ranjith@gmail.com",
-    password: "ranjith123456",
+    email: "jonny@gmail.com",
+    password: "123456789",
   });
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(

@@ -14,7 +14,7 @@ const getMonitor = asyncHandler(async (req, res) => {
 //@route  GET /api/v1/monitor
 //@access Private
 const getUserMonitors = asyncHandler(async (req, res) => {
-  // console.log("req.user", req.user);
+  console.log("getUserMonitors controller req.user", req.user);
   const allMonitors = await Monitor.find({ user: req.user._id });
   res.status(200).json(allMonitors);
 });
@@ -25,7 +25,7 @@ const getUserMonitors = asyncHandler(async (req, res) => {
 const deleteMonitor = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const { _id } = await Monitor.findOneAndDelete({ id });
-  
+
   res.status(200).json({ message: "Monitor deleted successfully", id: _id });
 });
 

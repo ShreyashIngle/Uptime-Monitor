@@ -4,7 +4,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const sendEmail = async (
   recipient,
   dynamicData,
-  verificationURL
+  templateId,
 ) => {
 
 
@@ -18,7 +18,7 @@ const sendEmail = async (
         name: "Uptime Monitor",
       },
       subject: "Monitor down",
-      templateId: templateID,
+      templateId,
       dynamicTemplateData: dynamicData,
     })
     .then(() => {

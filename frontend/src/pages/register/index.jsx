@@ -11,11 +11,11 @@ const Login = () => {
   const dispatch = useDispatch();
   
   const [singUpDetails, setSignUpDetails] = useState({
-    email: "lalith@gmail.com",
-    password: "lalith123456",
-    confirmedPassword: "lalith123456",
-    firstName: "lalith",
-    lastName: "perera",
+    email: "johndoe@gmail.com",
+    password: "john123456",
+    confirmedPassword: "john123456",
+    firstName: "john",
+    lastName: "alex",
   });
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(

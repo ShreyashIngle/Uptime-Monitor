@@ -47,14 +47,20 @@ const register = asyncHandler(async (req, res) => {
   });
 
   //Sending email verification
-  let verificationLinkToken = await Token({
+  let verificationLinkToken = crypto.randomBytes(32).toString("hex");
+  
+  await Token({
     userId: userDetails._id,
-    token: crypto.randomBytes(32).toString("hex"),
+    token: verificationLinkToken,
   }).save();
 
   const verificationURL = `${process.env.BASE_URL}/user/verify/${userDetails._id}/${verificationLinkToken}`;
 
-  sendEmail(email, { verificationURL } , process.env.SENDGRID_EMAIL_VERIFICATION_TEMPLATE);
+  sendEmail(
+    email,
+    { verificationURL },
+    process.env.SENDGRID_EMAIL_VERIFICATION_TEMPLATE
+  );
 
   //Generating the token
   const token = jwt.sign(
@@ -119,7 +125,10 @@ const userVerification = asyncHandler(async (req, res) => {
   const { userId, token } = req.params;
 
   const user = await User.findOne({ _id: userId });
-  if (!user) return res.status(401).json({ message: "Invalid link" });
+  if (!user)
+    return res
+      .status(401)
+      .json({ message: "Invalid link. User doesn't exists" });
 
   const existingToken = await Token.findOne({ userId, token });
   if (!existingToken) return res.status(401).json({ message: "Invalid link" });

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./incidents.module.scss";
+
 import { AiFillWarning } from "react-icons/ai";
 
 const Incidents = () => {
@@ -18,7 +19,7 @@ const Incidents = () => {
             <tr>
               <td className={styles.monitor}>
                 <div className={styles.iconWrapper}>
-                  <AiFillWarning  color="#ff4242"/>
+                  <AiFillWarning color="#ff4242" />
                 </div>
                 <div>
                   <p className={styles.url}>chathuraperera.netlify.app</p>
@@ -26,7 +27,22 @@ const Incidents = () => {
                 </div>
               </td>
               <td>6 Nov at 03:45pm +0530</td>
-              <td>
+              <td className={styles.currentStatus}>
+                <span>Ongoing</span>
+              </td>
+            </tr>
+            <tr>
+              <td className={styles.monitor}>
+                <div className={styles.iconWrapper}>
+                  <AiFillWarning color="#ff4242" />
+                </div>
+                <div>
+                  <p className={styles.url}>chathuraperera.netlify.app</p>
+                  <p className={styles.cause}>Status 404</p>
+                </div>
+              </td>
+              <td>6 Nov at 03:45pm +0530</td>
+              <td className={styles.currentStatus}>
                 <span>Ongoing</span>
               </td>
             </tr>

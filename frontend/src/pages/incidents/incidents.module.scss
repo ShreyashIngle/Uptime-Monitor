@@ -26,7 +26,7 @@
       }
       tbody {
         tr td {
-          padding: 6px 10px;
+          padding: 5px;
           font-size: 1.2rem;
         }
         .monitor {
@@ -40,6 +40,22 @@
         .cause {
           font-size: 1.1rem;
           color: $primary-text-color;
+        }
+        .currentStatus {
+          padding-left: 20px;
+          span {
+            position: relative;
+          }
+          span::before {
+            position: absolute;
+            left: -12px;
+            top: 4px;
+            content: "";
+            width: 7px;
+            height: 7px;
+            background: #ff4242;
+            border-radius: 50%;
+          }
         }
         .iconWrapper {
           border-radius: 3px;

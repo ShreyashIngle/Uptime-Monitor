@@ -11,6 +11,7 @@ const SharedLayout = () => {
   if (!user) {
     return <Navigate to="/login" replace />;
   }
+  
 
   return (
     <main className={styles.layout}>

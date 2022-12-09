@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const [singUpDetails, setSignUpDetails] = useState({
     email: "johndoe@gmail.com",
     password: "john123456",
@@ -51,7 +51,8 @@ const Login = () => {
     }
     const { confirmedPassword, ...userData } = singUpDetails;
 
-    dispatch(registerUser(userData));
+    await dispatch(registerUser(userData));
+    navigate("/email-verification");
   };
 
   return (

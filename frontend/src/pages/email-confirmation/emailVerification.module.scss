@@ -1,0 +1,22 @@
+.emailVerification {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  .wrapper {
+    text-align: center;
+    img {
+      width: 42px;
+    }
+    h3 {
+      font-size: 2.8rem;
+    }
+    p {
+      color: rgba(255, 255, 255, 0.664);
+      margin-top: 10px;
+      max-width: 400px;
+      font-size: 1.5rem;
+    }
+  }
+}

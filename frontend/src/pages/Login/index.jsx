@@ -3,15 +3,15 @@ import styles from "../register/register.module.scss";
 import Spinner from "../../components/Spinner";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { reset, loginUser } from "features/auth/authSlice";
+import { reset, loginUser } from "@/features/auth/authSlice";
 import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loginDetails, setLoginDetails] = useState({
-    email: "ranjith@gmail.com",
-    password: "ranjith123456",
+    email: "jonny@gmail.com",
+    password: "123456789",
   });
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(

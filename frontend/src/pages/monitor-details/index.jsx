@@ -1,4 +1,4 @@
-import BackButton from "components/BackButton";
+import BackButton from "@/components/BackButton";
 import React from "react";
 import Actions from "./components/Actions";
 import Head from "./components/Head";

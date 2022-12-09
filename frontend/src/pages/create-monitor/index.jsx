@@ -1,17 +1,19 @@
-import BackButton from "components/BackButton";
+import { toast } from "react-toastify";
 import React, { useState } from "react";
+
 import styles from "./create-monitor.module.scss";
-import Spinner from "components/Spinner";
-import { createMonitor } from "features/monitors/monitorSlice";
+import BackButton from "@/components/BackButton";
+import Spinner from "@/components/Spinner";
+import { createMonitor } from "@/features/monitors/monitorSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const CreateMonitor = () => {
   const { user } = useSelector((state) => state.auth);
-  const { isLoading } = useSelector((state) => state.monitor);
+  const { isLoading, isSuccess } = useSelector((state) => state.monitor);
   const [monitorDetails, setMonitorDetails] = useState({
     url: "https://",
     team: user?.teamID,
-    user: user?._id,
+    user: user?.userId,
     alertsTriggeredOn: 1,
   });
 
@@ -57,10 +59,18 @@ const CreateMonitor = () => {
   //   });
   // };
 
+  const resetInputs = () => {
+    setMonitorDetails({
+      url: "https://",
+      team: user?.teamID,
+      user: user?.userId,
+      alertsTriggeredOn: 1,
+    });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(createMonitor(monitorDetails));
-    console.log("dispatched");
+    isSuccess && resetInputs();
   };
 
   return (

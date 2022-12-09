@@ -3,12 +3,13 @@ import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import SharedLayout from "components/SharedLayout";
-import CreateMonitor from "pages/create-monitor";
-import Monitors from "pages/monitors";
-import Login from "./pages/login";
-import Register from "./pages/register";
-import MonitorDetails from "./pages/monitor-details";
+import SharedLayout from "@/components/SharedLayout";
+import CreateMonitor from "@/pages/create-monitor";
+import Monitors from "@/pages/monitors";
+import Login from "@/pages/login";
+import Register from "@/pages/register";
+import MonitorDetails from "@/pages/monitor-details";
+import EmailConfirmation from "@/pages/email-confirmation";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/email-verification" element={<EmailConfirmation />} />
       </Routes>
       <ToastContainer style={{ fontSize: "15px" }} />
     </>

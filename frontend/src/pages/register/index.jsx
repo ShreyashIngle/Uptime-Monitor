@@ -3,19 +3,19 @@ import styles from "./register.module.scss";
 import Spinner from "../../components/Spinner";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { reset, registerUser } from "features/auth/authSlice";
+import { reset, registerUser } from "@/features/auth/authSlice";
 import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const [singUpDetails, setSignUpDetails] = useState({
-    email: "lalith@gmail.com",
-    password: "lalith123456",
-    confirmedPassword: "lalith123456",
-    firstName: "lalith",
-    lastName: "perera",
+    email: "johndoe@gmail.com",
+    password: "john123456",
+    confirmedPassword: "john123456",
+    firstName: "john",
+    lastName: "alex",
   });
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
@@ -51,7 +51,8 @@ const Login = () => {
     }
     const { confirmedPassword, ...userData } = singUpDetails;
 
-    dispatch(registerUser(userData));
+    await dispatch(registerUser(userData));
+    navigate("/email-verification");
   };
 
   return (

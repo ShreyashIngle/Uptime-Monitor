@@ -2,8 +2,17 @@ import React from "react";
 import styles from "./incidents.module.scss";
 
 import { AiFillWarning, AiOutlineMore } from "react-icons/ai";
+import IncidentActionMenu from "./components/IncidentActionMenu";
+import { useState } from "react";
 
 const Incidents = () => {
+  const [showMenu, setShowMenu] = useState(false);
+
+  function toggleActionsMenu(e) {
+    e.stopPropagation();
+    setShowMenu((prevState) => !prevState);
+  }
+
   return (
     <div className={styles.incidents}>
       <h2 className={styles.title}>Incidents</h2>
@@ -31,8 +40,12 @@ const Incidents = () => {
               <td className={styles.currentStatus}>
                 <span>Ongoing</span>
               </td>
-              <td>
-                <AiOutlineMore  size="20px"/>
+              <td
+                className={styles.actionMenuDots}
+                onClick={(e) => toggleActionsMenu(e)}
+              >
+                <AiOutlineMore size="20px" />
+                {showMenu && <IncidentActionMenu />}
               </td>
             </tr>
           </tbody>

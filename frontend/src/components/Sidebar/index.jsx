@@ -15,16 +15,16 @@ const Sidebar = () => {
       <div className={styles.aside_logo}>
         <img src={logo} alt="logo" />
       </div>
-      <SidebarLink text="Monitors">
+      <SidebarLink to="/" text="Monitors">
         <AiOutlineSecurityScan size="20px" />
       </SidebarLink>
-      <SidebarLink text="Incidents">
+      <SidebarLink to="/team/incidents" text="Incidents">
         <AiOutlineWarning size="20px" />
       </SidebarLink>
-      <SidebarLink text="Team Members">
+      <SidebarLink to="/team/members" text="Team Members">
         <AiOutlineUsergroupAdd size="20px" />
       </SidebarLink>
-      <SidebarLink text="Integrations">
+      <SidebarLink to="/team/integrations" text="Integrations">
         <AiOutlineApi size="20px" />
       </SidebarLink>
     </aside>

@@ -10,8 +10,10 @@
   &__table {
     width: 100%;
     table {
+      border: .8px solid rgba(210, 212, 210, 0.089);
+      border-bottom: none;
       width: 100%;
-      border-radius: 5px;
+      border-radius: 8px;
       thead {
         text-align: left;
         background-color: #27293be5;
@@ -26,7 +28,9 @@
       }
       tbody {
         tr td {
-          padding: 5px;
+          border-bottom: .8px solid rgba(210, 212, 210, 0.089);
+          padding: 10px;
+          color: #c3cad4;
           font-size: 1.2rem;
         }
         .monitor {
@@ -35,7 +39,9 @@
           gap: 10px;
         }
         .url {
-          font-size: 1.2rem;
+          font-weight: 600;
+          font-family: $montserrat;
+          font-size: 1.3rem;
         }
         .cause {
           font-size: 1.1rem;

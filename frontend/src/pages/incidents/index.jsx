@@ -19,10 +19,12 @@ const Incidents = () => {
       <div className={styles.incidents__table}>
         <table>
           <thead>
-            <th>Monitor</th>
-            <th>Started At</th>
-            <th>Status</th>
-            <th></th>
+            <tr>
+              <th>Monitor</th>
+              <th>Started At</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
           </thead>
 
           <tbody>

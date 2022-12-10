@@ -133,7 +133,7 @@ const Login = () => {
               {isLoading ? <Spinner /> : "Sign up"}
             </button>
             <p className={styles.redirect}>
-              Already have an account? <Link href="/login">Login</Link>{" "}
+              Already have an account? <Link to="/login">Login</Link>{" "}
             </p>
           </form>
         </div>

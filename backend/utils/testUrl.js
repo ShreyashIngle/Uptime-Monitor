@@ -2,7 +2,7 @@ const Incident = require("../models/incidentModel");
 const axios = require("axios");
 const sendEmail = require("./sendEmail");
 
-const fetchUrl = async (monitor) => {
+const testUrl = async (monitor) => {
   await axios.get(monitor.url).catch(async (error) => {
     //Checks if an incident is already created
     const existingIncident = await Incident.findOne({ monitorId: monitor._id });
@@ -14,6 +14,7 @@ const fetchUrl = async (monitor) => {
         statusCode: error.response.status,
       });
 
+      console.log("Incident created");
       const currentDate = new Date().toJSON().slice(0, 10);
 
       const dynamicData = {
@@ -24,7 +25,8 @@ const fetchUrl = async (monitor) => {
       };
 
       //Sending email alerts
-      for (const email of alerts.emails) {
+      console.log('monitor' , monitor);
+      for (const email of monitor.alerts.emails) {
         await sendEmail(
           email,
           dynamicData,
@@ -35,4 +37,4 @@ const fetchUrl = async (monitor) => {
   });
 };
 
-module.exports = fetchUrl;
+module.exports = testUrl;

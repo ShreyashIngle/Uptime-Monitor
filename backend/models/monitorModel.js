@@ -21,6 +21,9 @@ const MonitorSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    alertEmails: {
+      type: Array,
+    },
     lastIncidentDate: {
       type: String,
       default: "No incident",

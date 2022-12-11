@@ -1,5 +1,6 @@
 const Monitor = require("../models/monitorModel");
 const asyncHandler = require("express-async-handler");
+const testUrl = require("../utils/testUrl");
 
 function isValidURL(str) {
   var pattern = new RegExp(
@@ -47,7 +48,7 @@ const deleteMonitor = asyncHandler(async (req, res) => {
 const addMonitor = asyncHandler(async (req, res) => {
   const { url, user, team, alertsTriggeredOn } = req.body;
 
-  if ((!url, !user, !team)) {
+  if (!url || !user || !team) {
     return res.status(400).json({ message: "Provide all required fields" });
   }
 
@@ -55,7 +56,7 @@ const addMonitor = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Invalid URL" });
   }
 
-  const existingMonitor = await Monitor.find({ url: url, team: team });
+  const existingMonitor = await Monitor.find({ url, user });
 
   /*
    Checks if a monitor with the same URL is 
@@ -70,7 +71,10 @@ const addMonitor = asyncHandler(async (req, res) => {
     return res.status(409).json({ message: "Duplicate url" });
   }
 
-  await Monitor.create(req.body);
+  const createdMonitor = await Monitor.create(req.body);
+
+  if (createdMonitor.alertsTriggeredOn === 1) await testUrl(createdMonitor);
+
   res.status(201).json({ message: "Monitor created successfully" });
 });
 

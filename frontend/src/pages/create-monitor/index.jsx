@@ -14,6 +14,7 @@ const CreateMonitor = () => {
     url: "https://",
     team: user?.teamID,
     user: user?.userId,
+    alertEmails: [user?.email],
     alertsTriggeredOn: 1,
   });
 
@@ -30,35 +31,6 @@ const CreateMonitor = () => {
     });
   };
 
-  //Handle form submit
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const urlFormat = monitorDetails.url.trim().substring(0, 5);
-  //   if (urlFormat !== "https") {
-  //     return toast.error("Invalid URL");
-  //   }
-
-  //   setIsLoading(true);
-  //   await API.post("/monitor", monitorDetails)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setIsLoading(false);
-  //       toast.success(res.data.message);
-  //     })
-  //     .catch((error) => {
-  //       setIsLoading(false);
-  //       toast.error("Something went wrong");
-  //       console.log(error);
-  //     });
-
-  //   setMonitorDetails({
-  //     url: "",
-  //     team: "",
-  //     user: "",
-  //     alertsTriggeredOn: "",
-  //   });
-  // };
-
   const resetInputs = () => {
     setMonitorDetails({
       url: "https://",
@@ -67,6 +39,7 @@ const CreateMonitor = () => {
       alertsTriggeredOn: 1,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(createMonitor(monitorDetails));

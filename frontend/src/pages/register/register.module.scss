@@ -55,6 +55,13 @@
         font-weight: 500;
         color: #242323;
       }
+      .revealIcon{
+        position: absolute;
+        right: 5px;
+        top:25px;
+        cursor: pointer;
+        width: max-content;
+      }
       input {
         border: 1px solid #e6e6e6;
         border-radius: 5px;

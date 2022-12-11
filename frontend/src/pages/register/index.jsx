@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./register.module.scss";
 import Spinner from "../../components/Spinner";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { reset, registerUser } from "@/features/auth/authSlice";
@@ -17,6 +18,8 @@ const Login = () => {
     firstName: "john",
     lastName: "alex",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
@@ -103,23 +106,45 @@ const Login = () => {
               <input
                 onChange={handleChange}
                 autoComplete="off"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 value={singUpDetails.password}
                 required
                 placeholder="password"
                 name="password"
               />
+              <div
+                className={styles.revealIcon}
+                onClick={() => setShowPassword((prevState) => !prevState)}
+              >
+                {showPassword ? (
+                  <AiOutlineEyeInvisible size="18px" color="#383838c6" />
+                ) : (
+                  <AiOutlineEye size="18px" color="#383838c6" />
+                )}
+              </div>
             </div>
             <div className={styles.inputControl}>
               <label>Confirm Password</label>
               <input
                 onChange={handleChange}
-                type="password"
+                type={showConfirmedPassword ? "text" : "password"}
                 required
                 value={singUpDetails.confirmedPassword}
                 placeholder="password"
                 name="confirmedPassword"
               />
+              <div
+                className={styles.revealIcon}
+                onClick={() =>
+                  setShowConfirmedPassword((prevState) => !prevState)
+                }
+              >
+                {showConfirmedPassword ? (
+                  <AiOutlineEyeInvisible size="18px" color="#383838c6" />
+                ) : (
+                  <AiOutlineEye size="18px" color="#383838c6" />
+                )}
+              </div>
             </div>
 
             <label

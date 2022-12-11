@@ -11,6 +11,14 @@ const incidentSchema = new Schema(
     statusCode: {
       type: Number,
     },
+    //How long incident had been activated
+    length: {
+      type: String,
+    },
+    acknowledged: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

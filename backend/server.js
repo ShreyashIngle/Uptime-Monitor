@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 const PORT = process.env.PORT || 5000;
 
 // Routes
-app.use("/api/v1/monitor", monitorRoutes);
 app.use("/api/v1", authRoutes);
+app.use("/api/v1/monitor", monitorRoutes);
 app.use("/uptime-check", incidentRoutes);
 
 app.get("/", (req, res) => {

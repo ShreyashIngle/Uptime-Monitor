@@ -1,9 +1,11 @@
 const asyncHandler = require("express-async-handler");
 const Monitor = require("../models/monitorModel");
+const Incident = require("../models/incidentModel");
 const fetchUrl = require("../utils/fetchUrl");
 
 const availabilityCheck = asyncHandler(async (req, res) => {
-  const monitors = await Monitor.find({ monitored: true })
+  //Querying
+  const monitors = await Monitor.find({ active: true })
     .select("url alerts userId")
     .populate({ path: "userId", select: "firstName" });
 
@@ -14,4 +16,10 @@ const availabilityCheck = asyncHandler(async (req, res) => {
   res.send("<div>availabilityCheck test</div>");
 });
 
-module.exports = { availabilityCheck };
+const getAllIncidents = asyncHandler(async (req, res) => {
+  const allIncidents = await Incident.find({});
+
+  res.status(200).json(allIncidents);
+});
+
+module.exports = { availabilityCheck, getAllIncidents };

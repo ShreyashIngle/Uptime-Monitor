@@ -7,7 +7,7 @@ const fetchUrl = async (monitor) => {
     //Checks if an incident is already created
     const existingIncident = await Incident.findOne({ monitorId: monitor._id });
 
-    //Create an incident
+    //Creates an incident
     if (!existingIncident) {
       await Incident.create({
         monitorId: monitor._id,
@@ -22,13 +22,16 @@ const fetchUrl = async (monitor) => {
         statusCode: error.response.status,
         createdAt: currentDate,
       };
-      
+
       //Sending email alerts
       for (const email of alerts.emails) {
-        await sendEmail(email, dynamicData , process.env.SENDGRID_MONITOR_ALERT_TEMPLATE);
+        await sendEmail(
+          email,
+          dynamicData,
+          process.env.SENDGRID_MONITOR_ALERT_TEMPLATE
+        );
       }
     }
-    console.log("history log created");
   });
 };
 

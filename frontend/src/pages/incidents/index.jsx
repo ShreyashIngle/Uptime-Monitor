@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState ,useEffect } from "react";
 import styles from "./incidents.module.scss";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import { AiFillWarning, AiOutlineMore } from "react-icons/ai";
 import IncidentActionMenu from "./components/IncidentActionMenu";
-import { useState } from "react";
+
+import { getIncidents , reset } from "../../features/incidents/incidentSlice";
+
 
 const Incidents = () => {
   const [showMenu, setShowMenu] = useState(false);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { isLoading, isError, message, isSuccess } = useSelector(
+    (state) => state.incident
+  );
+  useEffect(() => {
+    dispatch(getIncidents());
+
+    return () => dispatch(reset());
+  }, []);
 
   function toggleActionsMenu(e) {
     e.stopPropagation();

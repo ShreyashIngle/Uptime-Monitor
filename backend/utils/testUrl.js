@@ -25,8 +25,8 @@ const testUrl = async (monitor) => {
       };
 
       //Sending email alerts
-      console.log('monitor' , monitor);
-      for (const email of monitor.alerts.emails) {
+      console.log("monitor", monitor);
+      for (const email of monitor.alertEmails) {
         await sendEmail(
           email,
           dynamicData,

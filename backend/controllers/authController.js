@@ -106,7 +106,6 @@ const login = asyncHandler(async (req, res) => {
   );
 
   const team = await Team.findOne({ admin: existingUser._id });
-  console.log("team", team);
 
   const user = {
     email: existingUser.email,

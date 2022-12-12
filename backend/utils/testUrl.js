@@ -9,32 +9,47 @@ const testUrl = async (monitor) => {
 
     //Creates an incident
     if (!existingIncident) {
-      await Incident.create({
-        monitorId: monitor._id,
-        statusCode: error.response.status,
-      });
-
-      console.log("Incident created");
-      const currentDate = new Date().toJSON().slice(0, 10);
-
-      const dynamicData = {
-        monitorID: monitor?._id,
-        monitorURL: monitor?.url,
-        statusCode: error.response.status,
-        createdAt: currentDate,
-      };
-
-      //Sending email alerts
-      console.log("monitor", monitor);
-      for (const email of monitor.alertEmails) {
-        await sendEmail(
-          email,
-          dynamicData,
-          process.env.SENDGRID_MONITOR_ALERT_TEMPLATE
-        );
-      }
+      await createAnIncident(monitor._id, monitor.user, error.response.status);
+      await sendIncidentAlert(
+        monitor._id,
+        monitor?.url,
+        error.response.status,
+        monitor.alertEmails
+      );
     }
   });
+};
+
+//Creates an incident
+const createAnIncident = async (monitorId, userId, statusCode) => {
+  await Incident.create({
+    monitorId: monitorId,
+    user: userId,
+    statusCode: statusCode,
+  });
+  console.log("Incident created");
+};
+
+//Send email alerts for given assignees
+const sendIncidentAlert = async (
+  monitorID,
+  monitorURL,
+  statusCode,
+  alertEmails
+) => {
+  const currentDate = new Date().toJSON().slice(0, 10);
+
+  const dynamicData = { monitorID, monitorURL, statusCode,createdAt: currentDate};
+
+  for (const email of alertEmails) {
+    await sendEmail(
+      email,
+      dynamicData,
+      process.env.SENDGRID_MONITOR_ALERT_TEMPLATE
+    );
+  }
+
+  console.log("Emails sent");
 };
 
 module.exports = testUrl;

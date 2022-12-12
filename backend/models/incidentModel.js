@@ -8,6 +8,11 @@ const incidentSchema = new Schema(
       ref: "Monitor",
       required: true,
     },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     statusCode: {
       type: Number,
     },

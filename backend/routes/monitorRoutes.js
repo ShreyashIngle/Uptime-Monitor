@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+//Controllers
 const {
   addMonitor,
   getUserMonitors,
@@ -8,6 +9,8 @@ const {
   updateMonitor,
   getMonitor,
 } = require("../controllers/monitorController");
+
+//Middleware
 const { protect } = require("../middleware/authMiddleware");
 
 router.post("/", protect, addMonitor);

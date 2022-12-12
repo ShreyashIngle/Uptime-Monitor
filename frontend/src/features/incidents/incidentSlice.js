@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import incidentsService from "./incidentsService";
 
 const initialState = {
-  monitors: [],
+  incidents: [],
   isError: false,
   isLoading: false,
   isSuccess: false,
@@ -36,7 +36,21 @@ export const incidentSlice = createSlice({
     reset:(state) => initialState;
   },
   extraReducers:(builder) => {
-    builder.addCase
+    builder
+    //Get all incidents
+    .addCase(getIncidents.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(getIncidents.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.incidents = action.payload;
+    })
+    .addCase(getIncidents.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.message = action.payload;
+    })
   }
 })
 

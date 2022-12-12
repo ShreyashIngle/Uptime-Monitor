@@ -51,6 +51,7 @@ const deleteMonitor = async (monitorID, token) => {
 
   return response.data;
 };
+
 const monitorService = {
   deleteMonitor,
   createMonitor,

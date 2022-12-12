@@ -17,6 +17,7 @@ const availabilityCheck = asyncHandler(async (req, res) => {
 });
 
 const getAllIncidents = asyncHandler(async (req, res) => {
+  
   const allIncidents = await Incident.find({});
 
   res.status(200).json(allIncidents);

@@ -4,13 +4,14 @@ const mongoose = require("mongoose");
 const app = express();
 const connectDB = require("./config/db");
 connectDB(process.env.MONGO_URI);
-const cors = require('cors');
-app.use(cors())
+const cors = require("cors");
+app.use(cors());
 
 //Imported routes
 const monitorRoutes = require("./routes/monitorRoutes");
 const authRoutes = require("./routes/authRoutes");
 const incidentRoutes = require("./routes/incidentRoutes");
+const checkRoutes = require("./routes/checkRoutes");
 
 //Middleware
 app.use(express.json());
@@ -21,7 +22,8 @@ const PORT = process.env.PORT || 5000;
 // Routes
 app.use("/api/v1", authRoutes);
 app.use("/api/v1/monitor", monitorRoutes);
-app.use("/uptime-check", incidentRoutes);
+app.use("/api/v1/incident", incidentRoutes);
+app.use("/api/v1/check", checkRoutes);
 
 app.get("/", (req, res) => {
   res.send("<div>Hello world</div>");

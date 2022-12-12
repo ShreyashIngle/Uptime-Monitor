@@ -1,3 +1,5 @@
+const asyncHandler = require('express-async-handler');
+const Monitor = require('../models/monitorModel');
 const testUrl = require("../utils/testUrl");
 
 const availabilityCheck = asyncHandler(async (req, res) => {
@@ -10,7 +12,7 @@ const availabilityCheck = asyncHandler(async (req, res) => {
     await testUrl(monitor);
   }
 
-  res.send("<div>availabilityCheck test</div>");
+  res.status(200).json({ message: "success" });
 });
 
 module.exports = { availabilityCheck };

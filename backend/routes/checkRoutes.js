@@ -1,6 +1,9 @@
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = express.Router();
 
-const {} = require('../controllers/checkControllers')
+//Controllers
+const { availabilityCheck } = require("../controllers/checkControllers");
 
-router.get('availability')
+router.get("/availability", availabilityCheck);
+
+module.exports = router;

@@ -2,15 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 //Controllers
-const {
-  availabilityCheck,
-  getAllIncidents,
-} = require("../controllers/incidentController");
+const { getAllIncidents } = require("../controllers/incidentController");
 
 //Middleware
 const { protect } = require("../middleware/authMiddleware");
 
-router.get("/", protect, availabilityCheck);
-router.get("/all", protect, getAllIncidents);
+
+//Get all the incidents of a user
+router.get("/all/:userId", protect, getAllIncidents);
 
 module.exports = router;

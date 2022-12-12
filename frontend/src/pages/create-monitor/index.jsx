@@ -8,13 +8,13 @@ import { createMonitor } from "@/features/monitors/monitorSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const CreateMonitor = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { userId, teamID, email } = useSelector((state) => state.auth.user);
   const { isLoading, isSuccess } = useSelector((state) => state.monitor);
   const [monitorDetails, setMonitorDetails] = useState({
     url: "https://",
-    team: user?.teamID,
-    user: user?.userId,
-    alertEmails: [user?.email],
+    team: teamID,
+    user: userId,
+    alertEmails: [email],
     alertsTriggeredOn: 1,
   });
 
@@ -34,8 +34,8 @@ const CreateMonitor = () => {
   const resetInputs = () => {
     setMonitorDetails({
       url: "https://",
-      team: user?.teamID,
-      user: user?.userId,
+      team: teamID,
+      user: userId,
       alertsTriggeredOn: 1,
     });
   };

@@ -12,7 +12,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const [singUpDetails, setSignUpDetails] = useState({
-    email: "johndoe@gmail.com",
+    email: "h@gmail.com",
     password: "john123456",
     confirmedPassword: "john123456",
     firstName: "john",

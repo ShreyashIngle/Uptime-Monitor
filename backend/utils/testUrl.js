@@ -39,6 +39,7 @@ const sendIncidentAlert = async (
 ) => {
   const currentDate = new Date().toJSON().slice(0, 10);
 
+  //Setting up data for the email template
   const dynamicData = { monitorID, monitorURL, statusCode,createdAt: currentDate};
 
   for (const email of alertEmails) {

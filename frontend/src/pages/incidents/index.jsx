@@ -31,7 +31,6 @@ const Incidents = () => {
     setShowMenu((prevState) => !prevState);
   }
 
-
   const incidentsTableRows = incidents?.map((incident) => {
     return (
       <tr key={incident._id}>
@@ -48,12 +47,13 @@ const Incidents = () => {
         <td className={styles.currentStatus}>
           <span>{incident.acknowledged ? "Acknowledged" : "Ongoing"}</span>
         </td>
-        <td
-          className={styles.actionMenuDots}
-          onClick={(e) => toggleActionsMenu(e)}
-        >
-          <AiOutlineMore size="20px" />
-          {showMenu && <IncidentActionMenu />}
+        <td onClick={(e) => toggleActionsMenu(e)}>
+          <div className={styles.actionMenuDots}>
+            <AiOutlineMore size="20px" />
+            {showMenu && (
+              <IncidentActionMenu acknowledged={incident.acknowledged} />
+            )}
+          </div>
         </td>
       </tr>
     );

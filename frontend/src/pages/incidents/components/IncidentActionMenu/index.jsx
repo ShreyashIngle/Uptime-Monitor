@@ -5,14 +5,22 @@ import {
   AiOutlineEye,
   AiOutlineDelete,
   AiOutlineFileSearch,
+  AiOutlineIssuesClose,
 } from "react-icons/ai";
 
-const IncidentActionMenu = () => {
+const IncidentActionMenu = ({ acknowledged }) => {
   return (
     <div className={styles.incidentActionMenu}>
-      <div className={styles.menuItem}>
-        <AiOutlineEye size="15px" /> Acknowledge
-      </div>
+      {acknowledged && (
+        <div className={styles.menuItem}>
+          <AiOutlineIssuesClose size="15px" /> Resolve
+        </div>
+      )}
+      {!acknowledged && (
+        <div className={styles.menuItem}>
+          <AiOutlineEye size="15px" /> Acknowledge
+        </div>
+      )}
       <div className={styles.menuItem}>
         <AiOutlineFileSearch size="15px" /> View
       </div>

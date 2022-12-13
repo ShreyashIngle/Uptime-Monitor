@@ -26,4 +26,9 @@ const getAllIncidents = asyncHandler(async (req, res) => {
   res.status(200).json(allIncidents);
 });
 
-module.exports = { availabilityCheck, getAllIncidents };
+const resolveIncident = asyncHandler(async (req, res) => {
+  const { incidentId } = req.params;
+  res.status(200).json({ message: "success" });
+});
+
+module.exports = { resolveIncident, availabilityCheck, getAllIncidents };

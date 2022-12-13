@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./IncidentActionMenu.module.scss";
+import { resolveIncident } from "@features/incidents/incidentSlice";
+import { useDispatch } from "react-redux";
 
 import {
   AiOutlineEye,
@@ -8,11 +10,16 @@ import {
   AiOutlineIssuesClose,
 } from "react-icons/ai";
 
-const IncidentActionMenu = ({ acknowledged }) => {
+const IncidentActionMenu = ({ incidentId, acknowledged }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.incidentActionMenu}>
       {acknowledged && (
-        <div className={styles.menuItem}>
+        <div
+          className={styles.menuItem}
+          onClick={() => dispatch(resolveIncident(incidentId))}
+        >
           <AiOutlineIssuesClose size="15px" /> Resolve
         </div>
       )}

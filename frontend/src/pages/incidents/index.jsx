@@ -8,7 +8,7 @@ import { AiFillWarning, AiOutlineEllipsis } from "react-icons/ai";
 import IncidentActionMenu from "./components/IncidentActionMenu";
 import LoadingSkeletonText from "@/components/LoadingSkeletonText";
 
-import { getIncidents, reset } from "../../features/incidents/incidentSlice";
+import { getIncidents, reset } from "@features/incidents/incidentSlice";
 
 const Incidents = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -48,11 +48,17 @@ const Incidents = () => {
         <td className={styles.currentStatus}>
           <span>{incident.acknowledged ? "Acknowledged" : "Ongoing"}</span>
         </td>
-        <td onClick={(e) => toggleActionsMenu(e)} className={styles.actionMenuDotsTD}>
+        <td
+          onClick={(e) => toggleActionsMenu(e)}
+          className={styles.actionMenuDotsTD}
+        >
           <div className={styles.actionMenuDots}>
             <AiOutlineEllipsis size="20px" />
             {showMenu && (
-              <IncidentActionMenu acknowledged={incident.acknowledged} />
+              <IncidentActionMenu
+                incidentId={incident._id}
+                acknowledged={incident.acknowledged}
+              />
             )}
           </div>
         </td>

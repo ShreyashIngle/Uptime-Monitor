@@ -16,8 +16,21 @@ const getAllIncidents = async (token, userId) => {
   return response.data;
 };
 
+const resolveIncident = async (token, incidentId) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.patch(`${API_URL}/${incidentId}`, config);
+
+  return response.data;
+};
+
 const incidentService = {
   getAllIncidents,
+  resolveIncident
 };
 
 export default incidentService;

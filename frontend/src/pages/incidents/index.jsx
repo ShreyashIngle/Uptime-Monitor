@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AiFillWarning, AiOutlineMore } from "react-icons/ai";
+import { AiFillWarning, AiOutlineEllipsis } from "react-icons/ai";
 import IncidentActionMenu from "./components/IncidentActionMenu";
 import LoadingSkeletonText from "@/components/LoadingSkeletonText";
 
@@ -31,6 +31,7 @@ const Incidents = () => {
     setShowMenu((prevState) => !prevState);
   }
 
+  //Incident table rows
   const incidentsTableRows = incidents?.map((incident) => {
     return (
       <tr key={incident._id}>
@@ -47,9 +48,9 @@ const Incidents = () => {
         <td className={styles.currentStatus}>
           <span>{incident.acknowledged ? "Acknowledged" : "Ongoing"}</span>
         </td>
-        <td onClick={(e) => toggleActionsMenu(e)}>
+        <td onClick={(e) => toggleActionsMenu(e)} className={styles.actionMenuDotsTD}>
           <div className={styles.actionMenuDots}>
-            <AiOutlineMore size="20px" />
+            <AiOutlineEllipsis size="20px" />
             {showMenu && (
               <IncidentActionMenu acknowledged={incident.acknowledged} />
             )}

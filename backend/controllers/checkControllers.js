@@ -12,7 +12,7 @@ const availabilityCheck = asyncHandler(async (req, res) => {
     await testUrl(monitor);
   }
 
-  res.status(200).json({ message: "success" });
+  res.send(<div>hello</div>);
 });
 
 module.exports = { availabilityCheck };

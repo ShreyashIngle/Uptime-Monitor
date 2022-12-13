@@ -13,8 +13,8 @@ const incidentSchema = new Schema(
       ref: "User",
       required: true,
     },
-    statusCode: {
-      type: Number,
+    cause: {
+      type: String,
     },
     //How long incident had been activated
     length: {

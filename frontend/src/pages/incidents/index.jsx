@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./incidents.module.scss";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AiFillWarning, AiOutlineMore } from "react-icons/ai";
@@ -30,29 +31,32 @@ const Incidents = () => {
     setShowMenu((prevState) => !prevState);
   }
 
+
   const incidentsTableRows = incidents?.map((incident) => {
-    <tr key={incident._id}>
-      <td className={styles.monitor}>
-        <div className={styles.iconWrapper}>
-          <AiFillWarning color="#ff4242" />
-        </div>
-        <div>
-          <p className={styles.url}>chathuraperera.netlify.app</p>
-          <p className={styles.cause}>Status 404</p>
-        </div>
-      </td>
-      <td>6 Nov at 03:45pm +0530</td>
-      <td className={styles.currentStatus}>
-        <span>Ongoing</span>
-      </td>
-      <td
-        className={styles.actionMenuDots}
-        onClick={(e) => toggleActionsMenu(e)}
-      >
-        <AiOutlineMore size="20px" />
-        {showMenu && <IncidentActionMenu />}
-      </td>
-    </tr>;
+    return (
+      <tr key={incident._id}>
+        <td className={styles.monitor}>
+          <div className={styles.iconWrapper}>
+            {!incident.resolved && <AiFillWarning color="#ff4242" />}
+          </div>
+          <div>
+            <p className={styles.url}>{incident.monitor.url}</p>
+            <p className={styles.cause}>{incident.cause}</p>
+          </div>
+        </td>
+        <td>{moment(incident.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</td>
+        <td className={styles.currentStatus}>
+          <span>{incident.acknowledged ? "Acknowledged" : "Ongoing"}</span>
+        </td>
+        <td
+          className={styles.actionMenuDots}
+          onClick={(e) => toggleActionsMenu(e)}
+        >
+          <AiOutlineMore size="20px" />
+          {showMenu && <IncidentActionMenu />}
+        </td>
+      </tr>
+    );
   });
 
   return (
@@ -96,34 +100,7 @@ const Incidents = () => {
                 </tr>
               </>
             )}
-            {!isLoading &&
-              incidents.length > 0 &&
-              incidents.map((incident) => {
-                return (
-                  <tr key={incident._id}>
-                    <td className={styles.monitor}>
-                      <div className={styles.iconWrapper}>
-                        <AiFillWarning color="#ff4242" />
-                      </div>
-                      <div>
-                        <p className={styles.url}>chathuraperera.netlify.app</p>
-                        <p className={styles.cause}>Status 404</p>
-                      </div>
-                    </td>
-                    <td>6 Nov at 03:45pm +0530</td>
-                    <td className={styles.currentStatus}>
-                      <span>Ongoing</span>
-                    </td>
-                    <td
-                      className={styles.actionMenuDots}
-                      onClick={(e) => toggleActionsMenu(e)}
-                    >
-                      <AiOutlineMore size="20px" />
-                      {showMenu && <IncidentActionMenu />}
-                    </td>
-                  </tr>
-                );
-              })}
+            {!isLoading && incidentsTableRows}
           </tbody>
         </table>
       </div>

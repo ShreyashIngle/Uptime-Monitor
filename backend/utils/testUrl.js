@@ -25,7 +25,7 @@ const createAnIncident = async (monitorId, userId, statusCode) => {
   await Incident.create({
     monitor: monitorId,
     user: userId,
-    statusCode: statusCode,
+    cause: `Status ${statusCode}`,
   });
   console.log("Incident created");
 };

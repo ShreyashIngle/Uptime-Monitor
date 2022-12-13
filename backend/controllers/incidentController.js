@@ -19,7 +19,7 @@ const availabilityCheck = asyncHandler(async (req, res) => {
 const getAllIncidents = asyncHandler(async (req, res) => {
   const { userId } = req.params;
   const allIncidents = await Incident.find({ user: userId }).populate({
-    path: "monitorId",
+    path: "monitor",
     select: "url",
   });
 

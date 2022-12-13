@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./IncidentActionMenu.module.scss";
-import { resolveIncident } from "@features/incidents/incidentSlice";
+import { resolveIncident } from "@/features/incidents/incidentSlice";
 import { useDispatch } from "react-redux";
 
 import {

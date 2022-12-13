@@ -8,7 +8,7 @@ import { AiFillWarning, AiOutlineEllipsis } from "react-icons/ai";
 import IncidentActionMenu from "./components/IncidentActionMenu";
 import LoadingSkeletonText from "@/components/LoadingSkeletonText";
 
-import { getIncidents, reset } from "@features/incidents/incidentSlice";
+import { getIncidents, reset } from "@/features/incidents/incidentSlice";
 
 const Incidents = () => {
   const [showMenu, setShowMenu] = useState(false);

@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const incidentSchema = new Schema(
   {
-    monitorId: {
+    monitor: {
       type: Schema.Types.ObjectId,
       ref: "Monitor",
       required: true,

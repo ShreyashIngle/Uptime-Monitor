@@ -17,8 +17,11 @@ const availabilityCheck = asyncHandler(async (req, res) => {
 });
 
 const getAllIncidents = asyncHandler(async (req, res) => {
-  
-  const allIncidents = await Incident.find({});
+  const { userId } = req.params;
+  const allIncidents = await Incident.find({ user: userId }).populate({
+    path: "monitorId",
+    select: "url",
+  });
 
   res.status(200).json(allIncidents);
 });

@@ -7,7 +7,6 @@ const testUrl = async (monitor) => {
     //Checks if an incident is already created
     const existingIncident = await Incident.findOne({ monitorId: monitor._id });
 
-    console.log("monitor", monitor);
     //Creates an incident
     if (!existingIncident) {
       await createAnIncident(monitor._id, monitor.user, error.response.status);
@@ -24,7 +23,7 @@ const testUrl = async (monitor) => {
 //Creates an incident
 const createAnIncident = async (monitorId, userId, statusCode) => {
   await Incident.create({
-    monitorId: monitorId,
+    monitor: monitorId,
     user: userId,
     statusCode: statusCode,
   });
@@ -55,8 +54,6 @@ const sendIncidentAlert = async (
       process.env.SENDGRID_MONITOR_ALERT_TEMPLATE
     );
   }
-
-  console.log("Emails sent");
 };
 
 module.exports = testUrl;

@@ -14,8 +14,8 @@ export const getIncidents = createAsyncThunk(
   "incidents/getAll",
   async (_, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await incidentsService.getAllIncidents(token);
+      const { token, userId } = thunkAPI.getState().auth.user;
+      return await incidentsService.getAllIncidents(token, userId);
     } catch (error) {
       const message =
         (error.response &&

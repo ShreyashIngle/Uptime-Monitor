@@ -7,6 +7,7 @@ const testUrl = async (monitor) => {
     //Checks if an incident is already created
     const existingIncident = await Incident.findOne({ monitorId: monitor._id });
 
+    console.log("monitor", monitor);
     //Creates an incident
     if (!existingIncident) {
       await createAnIncident(monitor._id, monitor.user, error.response.status);
@@ -40,7 +41,12 @@ const sendIncidentAlert = async (
   const currentDate = new Date().toJSON().slice(0, 10);
 
   //Setting up data for the email template
-  const dynamicData = { monitorID, monitorURL, statusCode,createdAt: currentDate};
+  const dynamicData = {
+    monitorID,
+    monitorURL,
+    statusCode,
+    createdAt: currentDate,
+  };
 
   for (const email of alertEmails) {
     await sendEmail(

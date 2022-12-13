@@ -24,6 +24,10 @@ const incidentSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    resolved: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

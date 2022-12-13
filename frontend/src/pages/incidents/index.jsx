@@ -30,6 +30,31 @@ const Incidents = () => {
     setShowMenu((prevState) => !prevState);
   }
 
+  const incidentsTableRows = incidents?.map((incident) => {
+    <tr key={incident._id}>
+      <td className={styles.monitor}>
+        <div className={styles.iconWrapper}>
+          <AiFillWarning color="#ff4242" />
+        </div>
+        <div>
+          <p className={styles.url}>chathuraperera.netlify.app</p>
+          <p className={styles.cause}>Status 404</p>
+        </div>
+      </td>
+      <td>6 Nov at 03:45pm +0530</td>
+      <td className={styles.currentStatus}>
+        <span>Ongoing</span>
+      </td>
+      <td
+        className={styles.actionMenuDots}
+        onClick={(e) => toggleActionsMenu(e)}
+      >
+        <AiOutlineMore size="20px" />
+        {showMenu && <IncidentActionMenu />}
+      </td>
+    </tr>;
+  });
+
   return (
     <div className={styles.incidents}>
       <h2 className={styles.title}>Incidents</h2>

@@ -108,9 +108,12 @@ export const monitorSlice = createSlice({
       //Delete Monitor
       .addCase(deleteMonitor.fulfilled, (state, action) => {
         state.isSuccess = true;
-        state.monitors = state.monitors.filter(
-          (monitor) => monitor._id !== action.payload.id
-        );
+        console.log("state.monitors", state.monitors);
+        console.log("action.payload", action.payload);
+        state.monitors = state.monitors.filter((monitor) => {
+          console.log("monitor", monitor);
+          return monitor._id !== action.payload.id;
+        });
       })
       .addCase(deleteMonitor.rejected, (state, action) => {
         state.isError = true;

@@ -57,8 +57,8 @@ const Monitor = ({ monitor }) => {
         </div>
         {showActions && (
           <MonitorActionsMenu
-          setShowActions={setShowActions}
-            monitor={monitor}
+            setShowActions={setShowActions}
+            monitorId={monitor._id}
           />
         )}
       </div>

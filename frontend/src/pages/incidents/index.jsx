@@ -32,21 +32,21 @@ const Incidents = () => {
   }
 
   //Incident table rows
-  const incidentsTableRows = incidents?.map((incident) => {
+  const incidentsTableRows = incidents?.map((incident, index) => {
     return (
-      <tr key={incident._id}>
+      <tr key={index}>
         <td className={styles.monitor}>
           <div className={styles.iconWrapper}>
-            {!incident.resolved && <AiFillWarning color="#ff4242" />}
+            {!incident?.resolved && <AiFillWarning color="#ff4242" />}
           </div>
           <div>
-            <p className={styles.url}>{incident.monitor.url}</p>
-            <p className={styles.cause}>{incident.cause}</p>
+            <p className={styles.url}>{incident?.monitor.url}</p>
+            <p className={styles.cause}>{incident?.cause}</p>
           </div>
         </td>
-        <td>{moment(incident.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</td>
+        <td>{moment(incident?.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</td>
         <td className={styles.currentStatus}>
-          <span>{incident.acknowledged ? "Acknowledged" : "Ongoing"}</span>
+          <span>{incident?.acknowledged ? "Acknowledged" : "Ongoing"}</span>
         </td>
         <td
           onClick={(e) => toggleActionsMenu(e)}
@@ -56,8 +56,8 @@ const Incidents = () => {
             <AiOutlineEllipsis size="20px" />
             {showMenu && (
               <IncidentActionMenu
-                incidentId={incident._id}
-                acknowledged={incident.acknowledged}
+                incidentId={incident?._id}
+                acknowledged={incident?.acknowledged}
               />
             )}
           </div>

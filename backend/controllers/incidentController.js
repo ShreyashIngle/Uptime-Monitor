@@ -28,8 +28,12 @@ const getAllIncidents = asyncHandler(async (req, res) => {
 
 const resolveIncident = asyncHandler(async (req, res) => {
   const { incidentId } = req.params;
-  await Incident.findOneAndUpdate({ _id: incidentId }, { resolved: true });
-  res.status(200).json({ message: "success" });
+  const updatedIncident = await Incident.findOneAndUpdate(
+    { _id: incidentId },
+    { resolved: false },
+    { new: true }
+  );
+  res.status(200).json(updatedIncident);
 });
 
 module.exports = { resolveIncident, availabilityCheck, getAllIncidents };

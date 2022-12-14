@@ -36,7 +36,7 @@ export const resolveIncident = createAsyncThunk(
   async (incidentId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await incidentService.resolveIncident(token , incidentId);
+      return await incidentService.resolveIncident(token, incidentId);
     } catch (error) {
       const message =
         (error.response &&
@@ -49,7 +49,6 @@ export const resolveIncident = createAsyncThunk(
     }
   }
 );
-
 
 export const incidentSlice = createSlice({
   name: "incident",
@@ -81,6 +80,17 @@ export const incidentSlice = createSlice({
       .addCase(resolveIncident.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+
+        const incidentsArray = [...state.incidents];
+        console.log('state',state);
+        
+        state.incidents = state.incidents.map((incident) => {
+          console.log("incident", incident);
+          console.log("action.payload", action.payload);
+          incident._id === action.payload._id
+            ? (incident.resolved = false)
+            : incident;
+        });
       })
       .addCase(resolveIncident.rejected, (state, action) => {
         state.isLoading = false;

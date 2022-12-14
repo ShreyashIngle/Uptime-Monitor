@@ -46,7 +46,7 @@ const deleteMonitor = async (monitorID, token) => {
       Authorization: `Bearer ${token}`,
     },
   };
-
+  console.log("monitorID", monitorID);
   const response = await axios.delete(`${API_URL}/${monitorID}`, config);
 
   return response.data;

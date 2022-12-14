@@ -10,7 +10,7 @@ import Login from "@/pages/login";
 import Register from "@/pages/register";
 import MonitorDetails from "@/pages/monitor-details";
 import EmailConfirmation from "@/pages/email-confirmation";
-import Incidents from "./pages/incidents";
+import Incidents from "@/pages/incidents";
 
 const App = () => {
   return (

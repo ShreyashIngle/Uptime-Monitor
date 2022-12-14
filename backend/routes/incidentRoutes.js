@@ -4,7 +4,7 @@ const router = express.Router();
 //Controllers
 const {
   getAllIncidents,
-  resolveIncident,
+  resolveIncident
 } = require("../controllers/incidentController");
 
 //Middleware

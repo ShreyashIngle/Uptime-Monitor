@@ -23,14 +23,14 @@ const resolveIncident = async (token, incidentId) => {
     },
   };
 
-  const response = await axios.patch(`${API_URL}/${incidentId}`, config);
+  const response = await axios.patch(`${API_URL}/${incidentId}`, {}, config);
 
   return response.data;
 };
 
 const incidentService = {
   getAllIncidents,
-  resolveIncident
+  resolveIncident,
 };
 
 export default incidentService;

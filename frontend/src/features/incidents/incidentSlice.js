@@ -36,7 +36,7 @@ export const resolveIncident = createAsyncThunk(
   async (incidentId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await incidentService.resolveIncident(incidentId, token);
+      return await incidentService.resolveIncident(token , incidentId);
     } catch (error) {
       const message =
         (error.response &&

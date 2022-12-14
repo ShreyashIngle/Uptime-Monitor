@@ -15,7 +15,7 @@ const IncidentActionMenu = ({ incidentId, acknowledged }) => {
 
   return (
     <div className={styles.incidentActionMenu}>
-      {acknowledged && (
+      {!acknowledged && (
         <div
           className={styles.menuItem}
           onClick={() => dispatch(resolveIncident(incidentId))}

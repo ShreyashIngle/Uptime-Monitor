@@ -42,6 +42,8 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    loginDetails.email.trim();
+    loginDetails.password.trim();
     dispatch(loginUser(loginDetails));
   };
 

@@ -9,6 +9,7 @@ const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 
 const jwtSecret = process.env.JWT_SECRET;
+const jwtRefreshSecret = process.env.JWT_REFRESH_SECRET;
 
 //@desc   Register
 //@route  POST /api/v1/register
@@ -78,6 +79,13 @@ const register = asyncHandler(async (req, res) => {
   });
 });
 
+//@desc   Refresh
+//@route  Get /api/v1/refresh
+//@access Public
+const refresh = asyncHandler(async(req,res) => {
+
+})
+
 //@desc   Login
 //@route  POST /api/v1/login
 //@access Public
@@ -96,15 +104,25 @@ const login = asyncHandler(async (req, res) => {
     return res.status(401).json({ message: "Invalid credentials" });
   }
 
-  //Generating the token
+  //Generating access token
   const token = jwt.sign(
     {
       id: existingUser._id,
     },
     jwtSecret,
+    { expiresIn: "30m" }
+  );
+
+  //Generating refresh token
+  const refreshToken = jwt.sign(
+    {
+      id: existingUser._id,
+    },
+    jwtRefreshSecret,
     { expiresIn: "1d" }
   );
 
+  //Getting the user's team
   const team = await Team.findOne({ admin: existingUser._id });
 
   const user = {
@@ -114,7 +132,7 @@ const login = asyncHandler(async (req, res) => {
     userId: existingUser._id,
   };
 
-  res.status(200).json({ ...user, teamID: team._id, token });
+  res.status(200).json({ ...user, teamID: team._id, token , refreshToken });
 });
 
 //@desc   User Verification
@@ -141,5 +159,6 @@ const userVerification = asyncHandler(async (req, res) => {
 module.exports = {
   register,
   login,
+  refresh,
   userVerification,
 };

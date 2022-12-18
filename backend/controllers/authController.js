@@ -80,11 +80,6 @@ const register = asyncHandler(async (req, res) => {
   });
 });
 
-//@desc   Refresh
-//@route  Get /api/v1/refresh
-//@access Public
-const refresh = asyncHandler(async (req, res) => {});
-
 //@desc   Login
 //@route  POST /api/v1/login
 //@access Public
@@ -121,11 +116,46 @@ const login = asyncHandler(async (req, res) => {
     sameSite: "none",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
-  
+
   res
     .status(200)
     .json({ ...user, teamID: team._id, token: accessToken, refreshToken });
 });
+
+//@desc   Refresh
+//@route  Get /api/v1/refresh
+//@access Public
+const refresh = asyncHandler(async (req, res) => {
+  const cookies = req.cookies;
+
+  if (!cookies?.jwt) return res.status(401).json({ message: "Unauthorized" });
+
+  const refreshToken = cookies.jwt;
+
+  jwt.verify(
+    refreshToken,
+    process.env.JWT_REFRESH_SECRET,
+    asyncHandler(async (err, decoded) => {
+      if (err) return res.status(403).json({ message: "Forbidden" });
+
+      const foundUser = await User.findOne({ _id: decoded.id });
+
+      if (!foundUser) return res.status(401).json({ message: "Unauthorized" });
+
+      const accessToken = jwt.sign(
+        {
+          id: foundUser._id,
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: "30m" }
+      );
+
+      res.json({ accessToken });
+    })
+  );
+});
+
+
 
 //@desc   User Verification
 //@route  get /api/v1/user/verify/:userId/:token

@@ -4,7 +4,7 @@ const generateTokens = async (userId) => {
   try {
     const accessToken = jwt.sign(
       {
-        id: existingUser._id,
+        id: userId,
       },
       process.env.JWT_SECRET,
       { expiresIn: "30m" }
@@ -12,7 +12,7 @@ const generateTokens = async (userId) => {
 
     const refreshToken = jwt.sign(
       {
-        id: existingUser._id,
+        id: userId,
       },
       process.env.JWT_REFRESH_SECRET,
       { expiresIn: "1d" }

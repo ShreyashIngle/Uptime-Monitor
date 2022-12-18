@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
+const { default: generateTokens } = require("../utils/generateTokens");
 
 const jwtSecret = process.env.JWT_SECRET;
 const jwtRefreshSecret = process.env.JWT_REFRESH_SECRET;
@@ -49,7 +50,7 @@ const register = asyncHandler(async (req, res) => {
 
   //Sending email verification
   let verificationLinkToken = crypto.randomBytes(32).toString("hex");
-  
+
   await Token({
     userId: userDetails._id,
     token: verificationLinkToken,
@@ -82,9 +83,7 @@ const register = asyncHandler(async (req, res) => {
 //@desc   Refresh
 //@route  Get /api/v1/refresh
 //@access Public
-const refresh = asyncHandler(async(req,res) => {
-
-})
+const refresh = asyncHandler(async (req, res) => {});
 
 //@desc   Login
 //@route  POST /api/v1/login
@@ -104,23 +103,7 @@ const login = asyncHandler(async (req, res) => {
     return res.status(401).json({ message: "Invalid credentials" });
   }
 
-  //Generating access token
-  const token = jwt.sign(
-    {
-      id: existingUser._id,
-    },
-    jwtSecret,
-    { expiresIn: "30m" }
-  );
-
-  //Generating refresh token
-  const refreshToken = jwt.sign(
-    {
-      id: existingUser._id,
-    },
-    jwtRefreshSecret,
-    { expiresIn: "1d" }
-  );
+  const { accessToken, refreshToken } = await generateTokens();
 
   //Getting the user's team
   const team = await Team.findOne({ admin: existingUser._id });
@@ -132,7 +115,16 @@ const login = asyncHandler(async (req, res) => {
     userId: existingUser._id,
   };
 
-  res.status(200).json({ ...user, teamID: team._id, token , refreshToken });
+  res.cookie("jwt", refreshToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
+  
+  res
+    .status(200)
+    .json({ ...user, teamID: team._id, token: accessToken, refreshToken });
 });
 
 //@desc   User Verification

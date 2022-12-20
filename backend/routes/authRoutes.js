@@ -2,6 +2,7 @@ const express = require("express");
 const {
   register,
   login,
+  logout,
   refresh,
   userVerification,
 } = require("../controllers/authController");
@@ -12,6 +13,9 @@ router.post("/register", register);
 
 //User Login
 router.post("/login", login);
+
+//User Logout
+router.post("/logout", logout);
 
 //Refresh token
 router.post("/refresh", refresh);

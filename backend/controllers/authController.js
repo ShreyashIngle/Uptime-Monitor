@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
-const { default: generateTokens } = require("../utils/generateTokens");
+const generateTokens = require("../utils/generateTokens");
 
 const jwtSecret = process.env.JWT_SECRET;
 const jwtRefreshSecret = process.env.JWT_REFRESH_SECRET;
@@ -110,16 +110,25 @@ const login = asyncHandler(async (req, res) => {
     userId: existingUser._id,
   };
 
+  //Creates a secure cookie with refresh token
   res.cookie("jwt", refreshToken, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "none",
-    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true, //accessible only by a web server
+    secure: true, //https
+    sameSite: "none", //cross-site cookie
+    maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry
   });
 
-  res
-    .status(200)
-    .json({ ...user, teamID: team._id, token: accessToken, refreshToken });
+  res.status(200).json({ ...user, teamID: team._id, token: accessToken });
+});
+
+//@desc   Logout user
+//@route  Get /api/v1/logout
+//@access Public
+const logout = asyncHandler(async (req, res) => {
+  const cookies = req.cookies;
+  if (!cookies?.jwt) return res.sendStatus(204);
+  res.clearCookie("jwt", { httpOnly: true, sameSite: "none", secure: true });
+  res.json({ message: "Cookie cleared" });
 });
 
 //@desc   Refresh
@@ -132,15 +141,20 @@ const refresh = asyncHandler(async (req, res) => {
 
   const refreshToken = cookies.jwt;
 
+  //verifying the refresh token
   jwt.verify(
     refreshToken,
     process.env.JWT_REFRESH_SECRET,
     asyncHandler(async (err, decoded) => {
-      if (err) return res.status(403).json({ message: "Forbidden" });
+      if (err) {
+        return res.status(403).json({ message: "Forbidden" });
+      } 
 
       const foundUser = await User.findOne({ _id: decoded.id });
 
-      if (!foundUser) return res.status(401).json({ message: "Unauthorized" });
+      if (!foundUser){
+        return res.status(401).json({ message: "Unauthorized" });
+      } 
 
       const accessToken = jwt.sign(
         {
@@ -155,9 +169,7 @@ const refresh = asyncHandler(async (req, res) => {
   );
 });
 
-
-
-//@desc   User Verification
+//@desc   User's Email verification
 //@route  get /api/v1/user/verify/:userId/:token
 //@access Private
 const userVerification = asyncHandler(async (req, res) => {
@@ -181,6 +193,7 @@ const userVerification = asyncHandler(async (req, res) => {
 module.exports = {
   register,
   login,
+  logout,
   refresh,
   userVerification,
 };

@@ -87,27 +87,27 @@ const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   //Verifying the account existence
-  const existingUser = await User.findOne({ email });
-  if (!existingUser) {
+  const foundUser = await User.findOne({ email });
+  if (!foundUser) {
     return res.status(400).json({ message: "User doesn't exists" });
   }
 
   //Verifying the password
-  const isMatch = await bcrypt.compare(password, existingUser.password);
+  const isMatch = await bcrypt.compare(password, foundUser.password);
   if (!isMatch) {
     return res.status(401).json({ message: "Invalid credentials" });
   }
 
-  const { accessToken, refreshToken } = await generateTokens();
+  const { accessToken, refreshToken } = await generateTokens(foundUser._id);
 
   //Getting the user's team
-  const team = await Team.findOne({ admin: existingUser._id });
+  const team = await Team.findOne({ admin: foundUser._id });
 
   const user = {
-    email: existingUser.email,
-    firstName: existingUser.firstName,
-    lastName: existingUser.lastName,
-    userId: existingUser._id,
+    email: foundUser.email,
+    firstName: foundUser.firstName,
+    lastName: foundUser.lastName,
+    userId: foundUser._id,
   };
 
   //Creates a secure cookie with refresh token

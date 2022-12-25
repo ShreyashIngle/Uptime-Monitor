@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const API_URL = "http://localhost:5000/api/v1/monitor";
 
@@ -28,13 +29,14 @@ const createMonitor = async (monitorData, token) => {
 
 //Get all monitors
 const getAllMonitors = async (token) => {
+  const axiosPrivate = useAxiosPrivate();
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-
-  const response = await axios.get(API_URL, config);
+  
+  const response = await axiosPrivate.get("/monitor");
 
   return response.data;
 };

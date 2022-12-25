@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useDispatch } from "react-redux";
+import axios from "../api/axios";
 import { updateToken } from "../features/auth/authSlice";
 import useAuth from "./useAuth";
 

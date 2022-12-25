@@ -112,10 +112,9 @@ const login = asyncHandler(async (req, res) => {
 
   //Creates a secure cookie with refresh token
   res.cookie("jwt", refreshToken, {
-    httpOnly: true, //accessible only by a web server
-    secure: true, //https
-    sameSite: "none", //cross-site cookie
-    maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
   });
 
   res.status(200).json({ ...user, teamID: team._id, token: accessToken });
@@ -136,7 +135,9 @@ const logout = asyncHandler(async (req, res) => {
 //@access Public
 const refresh = asyncHandler(async (req, res) => {
   const cookies = req.cookies;
-
+  const signedCookie = req.signedCookie;
+  console.log("req.cookies", req.cookies);
+  console.log("req.signedCookie", signedCookie);
   if (!cookies?.jwt) return res.status(401).json({ message: "Unauthorized" });
 
   const refreshToken = cookies.jwt;
@@ -148,13 +149,13 @@ const refresh = asyncHandler(async (req, res) => {
     asyncHandler(async (err, decoded) => {
       if (err) {
         return res.status(403).json({ message: "Forbidden" });
-      } 
+      }
 
       const foundUser = await User.findOne({ _id: decoded.id });
 
-      if (!foundUser){
+      if (!foundUser) {
         return res.status(401).json({ message: "Unauthorized" });
-      } 
+      }
 
       const accessToken = jwt.sign(
         {

@@ -64,6 +64,12 @@ export const authSlice = createSlice({
       state.isSuccess = false;
       state.message = "";
     },
+    updateToken: (state, action) => {
+      return {
+        ...state,
+        token: action.payload,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -81,7 +87,7 @@ export const authSlice = createSlice({
         state.message = action.payload;
         state.user = null;
       })
-      
+
       //Logout
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
@@ -105,5 +111,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const { reset } = authSlice.actions;
+export const { reset, updateToken } = authSlice.actions;
 export default authSlice.reducer;

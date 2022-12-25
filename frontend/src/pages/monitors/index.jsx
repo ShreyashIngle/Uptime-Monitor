@@ -7,10 +7,12 @@ import { getMonitors, reset } from "@/features/monitors/monitorSlice";
 import Monitor from "@/pages/monitors/components/Monitor";
 import NoMonitors from "./components/NoMonitors";
 import MonitorSkeleton from "./components/MonitorSkeleton";
+import useRefreshToken from "../../hooks/useRefreshToken";
 
 const Monitors = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const refresh = useRefreshToken();
 
   const { user } = useSelector((state) => state.auth);
   const { monitors, isLoading, isError, message, isSuccess } = useSelector(
@@ -30,7 +32,7 @@ const Monitors = () => {
 
     return () => dispatch(reset());
   }, []);
-  
+
   return (
     <div className={styles.monitors}>
       <div className={styles.monitors_head}>
@@ -39,6 +41,7 @@ const Monitors = () => {
           Create monitor
         </button>
       </div>
+      <button onClick={() => refresh()}>Click me</button>
       {isLoading && (
         <>
           <MonitorSkeleton />

@@ -1,12 +1,11 @@
 const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
 const app = express();
 const connectDB = require("./config/db");
 connectDB(process.env.MONGO_URI);
 const cors = require("cors");
-app.use(cors());
 
 //Imported routes
 const monitorRoutes = require("./routes/monitorRoutes");
@@ -20,6 +19,13 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 const PORT = process.env.PORT || 5000;
+
+//Cors Configurations
+const corsConfig = {
+  origin: ["http://127.0.0.1:5173"],
+  credentials: true,
+};
+app.use(cors(corsConfig));
 
 // Routes
 app.use("/api/v1", authRoutes);

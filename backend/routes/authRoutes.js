@@ -18,7 +18,7 @@ router.post("/login", login);
 router.post("/logout", logout);
 
 //Refresh token
-router.post("/refresh", refresh);
+router.get("/refresh", refresh);
 
 //Email verification
 router.get("/user/verify/:userId/:token", userVerification);

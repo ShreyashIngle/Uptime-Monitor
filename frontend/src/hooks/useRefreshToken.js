@@ -1,11 +1,22 @@
-import axios from '@api/axios';
-import useAuth from './useAuth';
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { updateToken } from "../features/auth/authSlice";
+import useAuth from "./useAuth";
 
 const useRefreshToken = () => {
-  const 
-    return (
-   
-  )
-}
+  const { user } = useAuth();
+  const dispatch = useDispatch();
 
-export default useRefreshToken
+  const refresh = async () => {
+    const response = await axios.get("/refresh", {
+      withCredentials: true,
+    });
+
+    dispatch(updateToken(response.data.accessToken));
+    return response.data.accessToken;
+  };
+
+  return refresh;
+};
+
+export default useRefreshToken;

@@ -113,7 +113,7 @@ const login = asyncHandler(async (req, res) => {
   //Creates a secure cookie with refresh token
   res.cookie("jwt", refreshToken, {
     httpOnly: true,
-    secure: false,
+    secure: true,
     sameSite: "none",
   });
 
@@ -135,9 +135,7 @@ const logout = asyncHandler(async (req, res) => {
 //@access Public
 const refresh = asyncHandler(async (req, res) => {
   const cookies = req.cookies;
-  const signedCookie = req.signedCookie;
   console.log("req.cookies", req.cookies);
-  console.log("req.signedCookie", signedCookie);
   if (!cookies?.jwt) return res.status(401).json({ message: "Unauthorized" });
 
   const refreshToken = cookies.jwt;

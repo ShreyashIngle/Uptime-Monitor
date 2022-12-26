@@ -8,10 +8,12 @@ const useAxiosPrivate = () => {
   const user = useAuth();
 
   useEffect(() => {
-    const requestIntercept = axiosPrivate.interceptors.response.use(
+    console.log('user from useAxiosPriv',user);
+    console.log('token from useAxiosPriv',user.user.token);
+    const requestIntercept = axiosPrivate.interceptors.request.use(
       (config) => {
         if (!config.headers["Authorization"]) {
-          config.headers["Authorization"] = `Bearer ${user?.token}`;
+          config.headers["Authorization"] = `Bearer ${user?.user?.token}`;
         }
         return config;
       },

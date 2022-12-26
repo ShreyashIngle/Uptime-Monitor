@@ -8,9 +8,11 @@ import Monitor from "@/pages/monitors/components/Monitor";
 import NoMonitors from "./components/NoMonitors";
 import MonitorSkeleton from "./components/MonitorSkeleton";
 import useRefreshToken from "../../hooks/useRefreshToken";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const Monitors = () => {
   const navigate = useNavigate();
+  const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
   const refresh = useRefreshToken();
 
@@ -23,10 +25,14 @@ const Monitors = () => {
     if (!user) {
       return navigate("/login");
     }
-
     if (isError) {
       console.log(message);
     }
+
+    const response = axiosPrivate.get("/monitor").then((res) => {
+      console.log("res", res);
+    });
+    console.log("response", response);
 
     dispatch(getMonitors());
 

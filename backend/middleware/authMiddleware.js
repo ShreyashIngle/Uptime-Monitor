@@ -18,17 +18,19 @@ const protect = asyncHandler(async (req, res, next) => {
       }
 
       //Verify the token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+        if (err) res.status(403).json({ message: "Forbidden" });
+        const foundUser = await User.findById(decoded.id).select("-password");
+        req.user = foundUser;
+        next();
+      });
 
-      //Get user token from the token
-      const foundUser = await User.findById(decoded.id).select("-password");
-      req.user = foundUser;
-      
-      next();
     } catch (error) {
       console.log(error);
       res.status(401).json({ message: "Unauthorized" });
     }
+  } else {
+    res.status(401).json({ message: "Unauthorized" });
   }
 });
 

@@ -3,7 +3,7 @@
   background-color: #fff;
   min-height: 100vh;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 2fr 3fr;
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
   }
@@ -128,10 +128,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
   background-color: #f2f2f2;
+  // background-image: url('../../assets/images/homepageImage.png');
+  // background-position: 0% 10% ;
   img {
-    width: 100%;
-    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    object-fit: contain;
+    position: absolute;
+    width: 150%;
+    top: 100px;
+    left: 20%;
+    // max-width: 500px;
     margin: 0 auto;
     text-align: center;
   }

@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { reset, registerUser } from "@/features/auth/authSlice";
 import { toast } from "react-toastify";
+import bannerImage from "@/assets/images/homepageImage.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -164,10 +165,7 @@ const Login = () => {
         </div>
       </div>
       <div className={styles.loginRight}>
-        <img
-          src="https://images.unsplash.com/photo-1522556189639-b150ed9c4330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-          alt="texting"
-        />
+      <img src={bannerImage} alt="dashboard preview" />
       </div>
     </main>
   );

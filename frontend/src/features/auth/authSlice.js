@@ -65,10 +65,11 @@ export const authSlice = createSlice({
       state.message = "";
     },
     updateToken: (state, action) => {
-      return {
-        ...state,
-        token: action.payload,
-      };
+      console.log('updateToken dispatched')
+      console.log('b4',state.user.token)
+    
+      state.user.token = action.payload;
+      console.log('After',state.user.token)
     },
   },
   extraReducers: (builder) => {

@@ -32,7 +32,7 @@ const Monitors = () => {
     const response = axiosPrivate.get("/monitor");
     console.log("response", response);
 
-    dispatch(getMonitors());
+    // dispatch(getMonitors());
 
     return () => dispatch(reset());
   }, []);

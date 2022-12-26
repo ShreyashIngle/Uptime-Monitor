@@ -135,7 +135,7 @@ const logout = asyncHandler(async (req, res) => {
 //@access Public
 const refresh = asyncHandler(async (req, res) => {
   const cookies = req.cookies;
-  console.log("req.cookies", req.cookies);
+
   if (!cookies?.jwt) return res.status(401).json({ message: "Unauthorized" });
 
   const refreshToken = cookies.jwt;
@@ -155,13 +155,7 @@ const refresh = asyncHandler(async (req, res) => {
         return res.status(401).json({ message: "Unauthorized" });
       }
 
-      const accessToken = jwt.sign(
-        {
-          id: foundUser._id,
-        },
-        process.env.JWT_SECRET,
-        { expiresIn: "30m" }
-      );
+      const { accessToken } = await generateTokens(foundUser._id);
 
       res.json({ accessToken });
     })

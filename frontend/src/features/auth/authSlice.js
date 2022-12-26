@@ -54,6 +54,11 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   await authService.logout();
 });
 
+//Refresh token
+export const refreshToken = createAsyncThunk("auth/refresh", async () => {
+  await authService.refresh();
+});
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -65,11 +70,9 @@ export const authSlice = createSlice({
       state.message = "";
     },
     updateToken: (state, action) => {
-      console.log('updateToken dispatched')
-      console.log('b4',state.user.token)
-    
+      console.log("b4", state.user.token);
       state.user.token = action.payload;
-      console.log('After',state.user.token)
+      console.log("After", state.user.token);
     },
   },
   extraReducers: (builder) => {
@@ -108,6 +111,11 @@ export const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         state.user = null;
+      })
+
+      // Refresh
+      .addCase(refreshToken.fulfilled, (state, action) => {
+        state.user.token = action.payload;
       });
   },
 });

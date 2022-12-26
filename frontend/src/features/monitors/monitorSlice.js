@@ -31,6 +31,7 @@ export const getMonitors = createAsyncThunk(
   "monitors/getAll",
   async (_, thunkAPI) => {
     try {
+      console.log('dispatched')
       const token = thunkAPI.getState().auth.user.token;
       return await monitorService.getAllMonitors(token);
     } catch (error) {

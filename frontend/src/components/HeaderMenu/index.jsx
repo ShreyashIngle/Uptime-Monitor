@@ -12,6 +12,7 @@ const HeaderMenu = () => {
   const handleLogout = () => {
     dispatch(reset());
     dispatch(logout());
+    localStorage.removeItem("token");
     navigate("/");
   };
   return (

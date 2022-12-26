@@ -33,7 +33,6 @@ axiosPrivate.interceptors.response.use(
     if (error?.response?.status === 403 && !prevRequest?.sent) {
       prevRequest.sent = true;
       const newAccessToken = await refreshToken();
-       console.log('newAccessToken from axiosPrivate instace',newAccessToken)
       prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
       return axiosPrivate(prevRequest);
     }

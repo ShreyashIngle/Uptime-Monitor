@@ -15,8 +15,7 @@ export const createMonitor = createAsyncThunk(
   "monitors/create",
   async (monitorData, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await monitorService.createMonitor(monitorData, token);
+      return await monitorService.createMonitor(monitorData);
     } catch (error) {
       const message =
         error.response?.data?.message || error.message || error.toString();
@@ -31,9 +30,7 @@ export const getMonitors = createAsyncThunk(
   "monitors/getAll",
   async (_, thunkAPI) => {
     try {
-      console.log('dispatched')
-      const token = thunkAPI.getState().auth.user.token;
-      return await monitorService.getAllMonitors(token);
+      return await monitorService.getAllMonitors();
     } catch (error) {
       const message =
         (error.response &&
@@ -52,8 +49,7 @@ export const deleteMonitor = createAsyncThunk(
   "monitors/delete",
   async (monitorID, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await monitorService.deleteMonitor(monitorID, token);
+      return await monitorService.deleteMonitor(monitorID);
     } catch (error) {
       const message =
         (error.response &&
@@ -109,10 +105,7 @@ export const monitorSlice = createSlice({
       //Delete Monitor
       .addCase(deleteMonitor.fulfilled, (state, action) => {
         state.isSuccess = true;
-        console.log("state.monitors", state.monitors);
-        console.log("action.payload", action.payload);
         state.monitors = state.monitors.filter((monitor) => {
-          console.log("monitor", monitor);
           return monitor._id !== action.payload.id;
         });
       })

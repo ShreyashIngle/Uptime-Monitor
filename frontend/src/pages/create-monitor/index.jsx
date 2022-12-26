@@ -40,9 +40,10 @@ const CreateMonitor = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createMonitor(monitorDetails));
+    console.log('isSuccess',isSuccess);
     isSuccess && resetInputs();
   };
 

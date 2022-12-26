@@ -8,8 +8,7 @@ const useAxiosPrivate = () => {
   const user = useAuth();
 
   useEffect(() => {
-    console.log('user from useAxiosPriv',user);
-    console.log('token from useAxiosPriv',user.user.token);
+    
     const requestIntercept = axiosPrivate.interceptors.request.use(
       (config) => {
         if (!config.headers["Authorization"]) {

@@ -15,7 +15,7 @@ const generateTokens = async (userId) => {
         id: userId,
       },
       process.env.JWT_REFRESH_SECRET,
-      { expiresIn: "1m" }
+      { expiresIn: "5m" }
     );
 
     return Promise.resolve({ accessToken, refreshToken });

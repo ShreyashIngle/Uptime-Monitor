@@ -29,9 +29,7 @@ const Monitors = () => {
       console.log(message);
     }
 
-    const response = axiosPrivate.get("/monitor").then((res) => {
-      console.log("res", res);
-    });
+    const response = axiosPrivate.get("/monitor");
     console.log("response", response);
 
     dispatch(getMonitors());

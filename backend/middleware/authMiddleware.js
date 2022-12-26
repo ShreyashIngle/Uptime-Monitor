@@ -19,7 +19,7 @@ const protect = asyncHandler(async (req, res, next) => {
 
       //Verify the token
       jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
-        if (err) res.status(403).json({ message: "Forbidden" });
+        if (err) return res.status(403).json({ message: "Forbidden" });
         const foundUser = await User.findById(decoded.id).select("-password");
         req.user = foundUser;
         next();

@@ -30,10 +30,24 @@ const resolveIncident = asyncHandler(async (req, res) => {
   const { incidentId } = req.params;
   const updatedIncident = await Incident.findOneAndUpdate(
     { _id: incidentId },
-    { resolved: false },
+    { resolved: true },
     { new: true }
   );
   res.status(200).json(updatedIncident);
 });
 
-module.exports = { resolveIncident, availabilityCheck, getAllIncidents };
+const acknowledgeIncident = asyncHandler(async (req, res) => {
+  const { incidentId } = req.params;
+  const updatedIncident = await Incident.findOneAndUpdate(
+    { _id: incidentId },
+    { acknowledged: true },
+    { new: true }
+  );
+  res.status(200).json(updatedIncident);
+});
+module.exports = {
+  resolveIncident,
+  acknowledgeIncident,
+  availabilityCheck,
+  getAllIncidents,
+};

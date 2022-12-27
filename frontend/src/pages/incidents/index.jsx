@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AiFillWarning, AiOutlineEllipsis } from "react-icons/ai";
+import {
+  AiFillWarning,
+  AiOutlineEllipsis,
+  AiOutlineSafety,
+} from "react-icons/ai";
 import IncidentActionMenu from "./components/IncidentActionMenu";
 import LoadingSkeletonText from "@/components/LoadingSkeletonText";
 
@@ -37,7 +41,11 @@ const Incidents = () => {
       <tr key={index}>
         <td className={styles.monitor}>
           <div className={styles.iconWrapper}>
-            {!incident?.resolved && <AiFillWarning color="#ff4242" />}
+            {!incident?.resolved ? (
+              <AiFillWarning color="#ff4242" />
+            ) : (
+              <AiOutlineSafety color="#16b846" />
+            )}
           </div>
           <div>
             <p className={styles.url}>{incident?.monitor?.url}</p>
@@ -46,7 +54,13 @@ const Incidents = () => {
         </td>
         <td>{moment(incident?.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</td>
         <td className={styles.currentStatus}>
-          <span>{incident?.acknowledged ? "Acknowledged" : "Ongoing"}</span>
+          <span>
+            {incident?.resolved
+              ? "Resolved"
+              : incident?.acknowledged
+              ? "Acknowledged"
+              : "Ongoing"}
+          </span>
         </td>
         <td
           onClick={(e) => toggleActionsMenu(e)}
@@ -58,6 +72,7 @@ const Incidents = () => {
               <IncidentActionMenu
                 incidentId={incident?._id}
                 acknowledged={incident?.acknowledged}
+                resolved={incident?.resolved}
               />
             )}
           </div>

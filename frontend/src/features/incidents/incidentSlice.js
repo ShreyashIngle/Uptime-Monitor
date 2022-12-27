@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import incidentService from "./incidentsService";
-import incidentsService from "./incidentsService";
 
 const initialState = {
   incidents: [],
@@ -16,7 +15,7 @@ export const getIncidents = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { userId } = thunkAPI.getState().auth.user;
-      return await incidentsService.getAllIncidents(userId);
+      return await incidentService.getAllIncidents(userId);
     } catch (error) {
       const message =
         (error.response &&
@@ -36,6 +35,26 @@ export const resolveIncident = createAsyncThunk(
   async (incidentId, thunkAPI) => {
     try {
       return await incidentService.resolveIncident(incidentId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+//Acknowledge Incident
+export const acknowledgeIncident = createAsyncThunk(
+  "incident/acknowledge",
+  async (incidentId, thunkAPI) => {
+    try {
+      console.log('acknowledgeIncident called')
+      return await incidentService.acknowledgeIncident(incidentId);
     } catch (error) {
       const message =
         (error.response &&
@@ -79,6 +98,17 @@ export const incidentSlice = createSlice({
         resolvedIncident.resolved = true;
       })
       .addCase(resolveIncident.rejected, (state, action) => {
+        state.isError = true;
+        state.message = action.payload.message;
+      })
+
+      //Acknowledge an incident      
+      .addCase(acknowledgeIncident.fulfilled, (state, action) => {
+        state.isSuccess = true;
+        const resolvedIncident =  state.incidents.find(incident => incident._id === action.payload._id);
+        resolvedIncident.acknowledged = true;
+      })
+      .addCase(acknowledgeIncident.rejected, (state, action) => {
         state.isError = true;
         state.message = action.payload.message;
       });

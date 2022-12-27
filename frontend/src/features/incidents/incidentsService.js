@@ -9,12 +9,19 @@ const getAllIncidents = async (userId) => {
 };
 
 const resolveIncident = async (incidentId) => {
-  const response = await axiosPrivate.patch(`/incident/${incidentId}`, {});
+  const response = await axiosPrivate.patch(`/incident/resolve/${incidentId}`, {});
+  return response.data;
+};
+
+const acknowledgeIncident = async (incidentId) => {
+  console.log('acknowledgeIncident called on incidentService')
+  const response = await axiosPrivate.patch(`/incident/acknowledge/${incidentId}`, {});
   return response.data;
 };
 
 const incidentService = {
   getAllIncidents,
+  acknowledgeIncident,
   resolveIncident,
 };
 

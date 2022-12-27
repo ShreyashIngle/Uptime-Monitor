@@ -4,8 +4,9 @@ const router = express.Router();
 //Controllers
 const {
   getAllIncidents,
+  deleteIncident,
   resolveIncident,
-  acknowledgeIncident
+  acknowledgeIncident,
 } = require("../controllers/incidentController");
 
 //Middleware
@@ -15,5 +16,6 @@ const { protect } = require("../middleware/authMiddleware");
 router.get("/all/:userId", protect, getAllIncidents);
 router.patch("/resolve/:incidentId", protect, resolveIncident);
 router.patch("/acknowledge/:incidentId", protect, acknowledgeIncident);
+router.delete("/:incidentId", protect, deleteIncident);
 
 module.exports = router;

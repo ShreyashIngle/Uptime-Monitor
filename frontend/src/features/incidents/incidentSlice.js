@@ -68,6 +68,26 @@ export const acknowledgeIncident = createAsyncThunk(
   }
 );
 
+//Remove Incident
+export const deleteIncident = createAsyncThunk(
+  "incident/delete",
+  async (incidentId, thunkAPI) => {
+    try {
+      console.log('acknowledgeIncident called')
+      return await incidentService.deleteIncident(incidentId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const incidentSlice = createSlice({
   name: "incident",
   initialState,
@@ -109,6 +129,16 @@ export const incidentSlice = createSlice({
         resolvedIncident.acknowledged = true;
       })
       .addCase(acknowledgeIncident.rejected, (state, action) => {
+        state.isError = true;
+        state.message = action.payload.message;
+      })
+
+      //Delete an incident      
+      .addCase(deleteIncident.fulfilled, (state, action) => {
+        state.isSuccess = true;
+        state.incidents =  state.incidents.filter(incident => incident._id !== action.payload._id);
+      })
+      .addCase(deleteIncident.rejected, (state, action) => {
         state.isError = true;
         state.message = action.payload.message;
       });

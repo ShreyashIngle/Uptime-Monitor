@@ -14,8 +14,12 @@ const resolveIncident = async (incidentId) => {
 };
 
 const acknowledgeIncident = async (incidentId) => {
-  console.log('acknowledgeIncident called on incidentService')
   const response = await axiosPrivate.patch(`/incident/acknowledge/${incidentId}`, {});
+  return response.data;
+};
+
+const deleteIncident = async (incidentId) => {
+  const response = await axiosPrivate.delete(`/incident/${incidentId}`);
   return response.data;
 };
 
@@ -23,6 +27,7 @@ const incidentService = {
   getAllIncidents,
   acknowledgeIncident,
   resolveIncident,
+  deleteIncident
 };
 
 export default incidentService;

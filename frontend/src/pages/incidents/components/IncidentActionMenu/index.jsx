@@ -4,6 +4,7 @@ import styles from "./IncidentActionMenu.module.scss";
 import { useDispatch } from "react-redux";
 import {
   resolveIncident,
+  deleteIncident,
   acknowledgeIncident,
 } from "@/features/incidents/incidentSlice";
 
@@ -39,7 +40,10 @@ const IncidentActionMenu = ({ incidentId, acknowledged, resolved }) => {
       <div className={styles.menuItem}>
         <AiOutlineFileSearch size="15px" /> View
       </div>
-      <div className={styles.menuItem}>
+      <div
+        className={styles.menuItem}
+        onClick={() => dispatch(deleteIncident(incidentId))}
+      >
         <AiOutlineDelete size="15px" /> Remove
       </div>
     </div>

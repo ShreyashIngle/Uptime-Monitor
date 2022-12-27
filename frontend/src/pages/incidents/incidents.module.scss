@@ -27,6 +27,7 @@
         }
       }
       tbody {
+        position: relative;
         tr td {
           border-bottom: 0.8px solid rgba(210, 212, 210, 0.089);
           padding: 10px;
@@ -82,6 +83,16 @@
           place-items: center;
           background: #e0373731;
           font-size: 1.5rem;
+        }
+        .emptyTable {
+          color: #c3cad4c7;
+          text-align: center;
+          position: absolute;
+          top: 10px;
+          font-size: 2rem;
+          left: 50%;
+          -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
         }
       }
     }

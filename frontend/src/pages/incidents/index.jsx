@@ -10,14 +10,13 @@ import {
   AiOutlineSafety,
 } from "react-icons/ai";
 import IncidentActionMenu from "./components/IncidentActionMenu";
-import LoadingSkeletonText from "@/components/LoadingSkeletonText";
+import TableRowSkeletonLoaders from "./components/TableRowSkeletonLoaders";
 
 import { getIncidents, reset } from "@/features/incidents/incidentSlice";
 
 const Incidents = () => {
   const [showMenu, setShowMenu] = useState(false);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { isLoading, isError, message, isSuccess, incidents } = useSelector(
@@ -96,33 +95,10 @@ const Incidents = () => {
           </thead>
 
           <tbody>
-            {isLoading && (
-              <>
-                <tr>
-                  <td>
-                    <LoadingSkeletonText height="12" width="200" />
-                  </td>
-                  <td>
-                    <LoadingSkeletonText height="12" width="100" />
-                  </td>
-                  <td>
-                    <LoadingSkeletonText height="12" width="200" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <LoadingSkeletonText height="12" width="200" />
-                  </td>
-                  <td>
-                    <LoadingSkeletonText height="12" width="100" />
-                  </td>
-                  <td>
-                    <LoadingSkeletonText height="12" width="200" />
-                  </td>
-                </tr>
-              </>
+            {isLoading ? <TableRowSkeletonLoaders /> : incidentsTableRows}
+            {isSuccess && !incidents?.length && (
+              <p className={styles.emptyTable}>No incidents reported</p>
             )}
-            {!isLoading && incidentsTableRows}
           </tbody>
         </table>
       </div>

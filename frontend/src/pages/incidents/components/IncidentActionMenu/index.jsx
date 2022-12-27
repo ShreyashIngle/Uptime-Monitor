@@ -15,15 +15,14 @@ const IncidentActionMenu = ({ incidentId, acknowledged }) => {
 
   return (
     <div className={styles.incidentActionMenu}>
-      {!acknowledged && (
+      {acknowledged ? (
         <div
           className={styles.menuItem}
           onClick={() => dispatch(resolveIncident(incidentId))}
         >
           <AiOutlineIssuesClose size="15px" /> Resolve
         </div>
-      )}
-      {!acknowledged && (
+      ) : (
         <div className={styles.menuItem}>
           <AiOutlineEye size="15px" /> Acknowledge
         </div>

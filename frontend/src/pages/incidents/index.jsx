@@ -40,7 +40,7 @@ const Incidents = () => {
             {!incident?.resolved && <AiFillWarning color="#ff4242" />}
           </div>
           <div>
-            <p className={styles.url}>{incident?.monitor.url}</p>
+            <p className={styles.url}>{incident?.monitor?.url}</p>
             <p className={styles.cause}>{incident?.cause}</p>
           </div>
         </td>

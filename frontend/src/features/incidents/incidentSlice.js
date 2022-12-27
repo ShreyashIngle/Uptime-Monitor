@@ -15,8 +15,8 @@ export const getIncidents = createAsyncThunk(
   "incidents/getAll",
   async (_, thunkAPI) => {
     try {
-      const { token, userId } = thunkAPI.getState().auth.user;
-      return await incidentsService.getAllIncidents(token, userId);
+      const { userId } = thunkAPI.getState().auth.user;
+      return await incidentsService.getAllIncidents(userId);
     } catch (error) {
       const message =
         (error.response &&
@@ -35,8 +35,7 @@ export const resolveIncident = createAsyncThunk(
   "incident/resolve",
   async (incidentId, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await incidentService.resolveIncident(token, incidentId);
+      return await incidentService.resolveIncident(incidentId);
     } catch (error) {
       const message =
         (error.response &&
@@ -73,27 +72,13 @@ export const incidentSlice = createSlice({
         state.message = action.payload;
       })
 
-      //resolve an incident
-      .addCase(resolveIncident.pending, (state) => {
-        state.isLoading = true;
-      })
+      //resolve an incident      
       .addCase(resolveIncident.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.isSuccess = true;
-
-        const incidentsArray = [...state.incidents];
-        console.log('state',state);
-        
-        state.incidents = state.incidents.map((incident) => {
-          console.log("incident", incident);
-          console.log("action.payload", action.payload);
-          incident._id === action.payload._id
-            ? (incident.resolved = false)
-            : incident;
-        });
+        const resolvedIncident =  state.incidents.find(incident => incident._id === action.payload._id);
+        resolvedIncident.resolved = true;
       })
       .addCase(resolveIncident.rejected, (state, action) => {
-        state.isLoading = false;
         state.isError = true;
         state.message = action.payload.message;
       });

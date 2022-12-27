@@ -97,7 +97,7 @@ const Incidents = () => {
           <tbody>
             {isLoading ? <TableRowSkeletonLoaders /> : incidentsTableRows}
             {isSuccess && !incidents?.length && (
-              <p className={styles.emptyTable}>No incidents reported</p>
+              <tr className={styles.emptyTable}><td>No incidents reported</td></tr>
             )}
           </tbody>
         </table>

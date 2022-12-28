@@ -12,6 +12,7 @@ import MonitorDetails from "@/pages/monitor-details";
 import EmailConfirmation from "@/pages/email-confirmation";
 import Incidents from "@/pages/incidents";
 import Members from "./pages/members";
+import InviteMembers from "./pages/invite-members";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/team/create-monitor" element={<CreateMonitor />} />
           <Route path="/team/incidents" element={<Incidents />} />
           <Route path="/team/members" element={<Members />} />
+          <Route path="/team/members/add" element={<InviteMembers />} />
           <Route
             path="/team/:teamID/monitor/:monitorID"
             element={<MonitorDetails />}

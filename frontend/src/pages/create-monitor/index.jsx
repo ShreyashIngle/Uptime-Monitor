@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import React, { useState } from "react";
 
 import styles from "./create-monitor.module.scss";
@@ -43,7 +42,7 @@ const CreateMonitor = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createMonitor(monitorDetails));
-    console.log('isSuccess',isSuccess);
+    console.log("isSuccess", isSuccess);
     isSuccess && resetInputs();
   };
 
@@ -87,18 +86,6 @@ const CreateMonitor = () => {
             </button>
           </div>
         </form>
-
-        {/* SSL Verification section*/}
-        {/* <section className="sectionWrapper">
-          <div className="description">
-            <h4>SSL verification</h4>
-          </div>
-          <div className="inputArea">
-            <div className="">
-              <div className="inputArea_container"></div>
-            </div>
-          </div>
-        </section> */}
       </div>
     </main>
   );

@@ -1,0 +1,28 @@
+@import "@/assets/sass/utils/variables.scss";
+@import "@/assets/sass/utils/mixins.scss";
+
+.wrapper {
+  h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin: 20px 0;
+  }
+  .errorMessage {
+    padding: 10px 20px;
+    font-weight: 600;
+    font-family: $montserrat;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: rgb(255, 103, 79);
+  }
+  .buttonWrapper {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      @include primaryButton;
+    }
+  }
+}

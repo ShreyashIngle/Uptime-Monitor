@@ -1,6 +1,4 @@
-import axios from "axios";
-import { toast } from "react-toastify";
-import { axiosPrivate } from "../../api/axios";
+import { axiosPrivate } from "@/api/axios";
 
 //Get all monitors
 const getAllIncidents = async (userId) => {

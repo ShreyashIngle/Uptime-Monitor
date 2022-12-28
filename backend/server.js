@@ -12,6 +12,7 @@ const monitorRoutes = require("./routes/monitorRoutes");
 const authRoutes = require("./routes/authRoutes");
 const incidentRoutes = require("./routes/incidentRoutes");
 const checkRoutes = require("./routes/checkRoutes");
+const memberRoutes = require("./routes/memberRoutes");
 
 //Middleware
 app.use(express.json());
@@ -29,6 +30,7 @@ app.use("/api/v1", authRoutes);
 app.use("/api/v1/monitor", monitorRoutes);
 app.use("/api/v1/incident", incidentRoutes);
 app.use("/api/v1/check", checkRoutes);
+app.use("/api/v1/member", memberRoutes);
 
 app.get("/", (req, res) => {
   res.send("<div>Hello world</div>");

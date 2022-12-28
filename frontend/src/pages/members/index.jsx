@@ -10,6 +10,48 @@ const Members = () => {
         navigateTo="/team/add-members"
         buttonText="Invite Members"
       />
+      <div className={styles.members__grid}>
+        <div className={styles.members__card}>
+          <button>Remove</button>
+          <div className={styles.members__image}>CP</div>
+          <div className={styles.members__details}>
+            <p>Chathura Perera <small>admin</small></p>
+            <p>chathuraperera007@gmail.com</p>
+          </div>
+        </div>
+        <div className={styles.members__card}>
+          <button>Remove</button>
+          <div className={styles.members__image}>CP</div>
+          <div className={styles.members__details}>
+            <p>Chathura Perera <small>admin</small></p>
+            <p>chathuraperera007@gmail.com</p>
+          </div>
+        </div>
+        <div className={styles.members__card}>
+          <button>Remove</button>
+          <div className={styles.members__image}>CP</div>
+          <div className={styles.members__details}>
+            <p>Chathura Perera <small>admin</small></p>
+            <p>chathuraperera007@gmail.com</p>
+          </div>
+        </div>
+        <div className={styles.members__card}>
+          <button>Remove</button>
+          <div className={styles.members__image}>CP</div>
+          <div className={styles.members__details}>
+            <p>Chathura Perera <small>admin</small></p>
+            <p>chathuraperera007@gmail.com</p>
+          </div>
+        </div>
+        <div className={styles.members__card}>
+          <button>Remove</button>
+          <div className={styles.members__image}>CP</div>
+          <div className={styles.members__details}>
+            <p>Chathura Perera <small>admin</small></p>
+            <p>chathuraperera007@gmail.com</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

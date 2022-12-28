@@ -1,4 +1,69 @@
-@import '@/assets/sass/utils/variables';
-.members{
-color: $primary-text-color;
+@import "@/assets/sass/utils/variables";
+.members {
+  color: $primary-text-color;
+  &__grid {
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap: 15px;
+  }
+  &__card {
+    padding: 1.4rem 1rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #27293be5;
+    box-shadow: 0, 0, #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000,
+      0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    position: relative;
+    button {
+      position: absolute;
+      right: 1px;
+      top: 1px;
+      font-size: 0.9rem;
+      background-color: transparent;
+      border: none;
+      padding: 5px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      color: rgb(212, 26, 26);
+    }
+  }
+  &__image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgb(114, 114, 27);
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: grid;
+    place-items: center;
+    text-transform: uppercase;
+  }
+  &__details {
+    p:nth-child(1) {
+      font-size: 1.2rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      //   justify-content: space-between;
+      small {
+        line-height: 0px;
+        display: inline-block;
+        background: $primary-blue;
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.596);
+        padding: 8px;
+        border-radius: 10px;
+      }
+    }
+  }
+  &__details {
+    p:nth-child(2) {
+      font-size: 1.1rem;
+      // color: #fff;
+    }
+  }
 }

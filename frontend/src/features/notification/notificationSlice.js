@@ -9,11 +9,11 @@ const initialState = {
   message: "",
 };
 
-export const createNotification = createAsyncThunk(
+export const getAllNotifications = createAsyncThunk(
   "notifications/create",
-  async (notificationDetails, thunkAPI) => {
+  async (userId, thunkAPI) => {
     try {
-      return await notificationSerivce.createNotification(notificationDetails);
+      return await notificationSerivce.getAllNotifications(userId);
     } catch (error) {
       const message =
         error.response?.data?.message || error.message || error.toString();
@@ -32,14 +32,14 @@ export const notificationSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-      .addCase(createNotification.pending, (state) => {
+      .addCase(getAllNotifications.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createNotification.fulfilled, (state) => {
+      .addCase(getAllNotifications.fulfilled, (state) => {
         state.isLoading = false;
         state.isSuccess = true;
       })
-      .addCase(createNotification.rejected, (state) => {
+      .addCase(getAllNotifications.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       });

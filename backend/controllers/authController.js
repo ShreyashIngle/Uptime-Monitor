@@ -44,7 +44,7 @@ const register = asyncHandler(async (req, res) => {
   const { password: pw, ...userDetails } = _doc;
 
   //Creating a team
-  const { _id: teamID } = await Team.create({
+  const { _id: teamId } = await Team.create({
     admin: userDetails._id,
   });
 
@@ -75,7 +75,7 @@ const register = asyncHandler(async (req, res) => {
 
   res.status(201).json({
     ...userDetails,
-    teamID,
+    teamId,
     token,
   });
 });
@@ -108,6 +108,8 @@ const login = asyncHandler(async (req, res) => {
     firstName: foundUser.firstName,
     lastName: foundUser.lastName,
     userId: foundUser._id,
+    teamId: team._id,
+    teamName: team.name,
   };
 
   //Creates a secure cookie with refresh token
@@ -117,7 +119,7 @@ const login = asyncHandler(async (req, res) => {
     sameSite: "none",
   });
 
-  res.status(200).json({ ...user, teamID: team._id, token: accessToken });
+  res.status(200).json({ ...user, token: accessToken });
 });
 
 //@desc   Logout user

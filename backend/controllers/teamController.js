@@ -4,7 +4,7 @@ const Notification = require("../models/notificationModel");
 const asyncHandler = require("express-async-handler");
 
 const addMembers = asyncHandler(async (req, res) => {
-  const { teamId, senderId, memberEmail, senderName } = req.body;
+  const { teamId, senderId, memberEmail, senderName, teamName } = req.body;
   const foundUser = await User.findOne({ email: memberEmail });
   if (!foundUser) {
     return res.status(400).json({ message: "User does not exist" });

@@ -1,12 +1,12 @@
 import { axiosPrivate } from "@/api/axios";
 
-const createNotification = async (notificationDetails) => {
-  const response = await axiosPrivate.post("/", notificationDetails);
+const getAllNotifications = async (userId) => {
+  const response = await axiosPrivate.get(`/notification/${userId}`);
   return response.data;
 };
 
 const notificationService = {
-  createNotification,
+  getAllNotifications,
 };
 
 export default notificationService;

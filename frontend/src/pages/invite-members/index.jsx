@@ -14,7 +14,7 @@ const InviteMembers = () => {
     e.preventDefault();
     const payload = {
       memberEmail: email.trim(),
-      teamId: user.teamID,
+      teamId: user.teamId,
       senderId: user.userId,
       senderName: user.firstName,
     };

@@ -10,7 +10,7 @@ const inviteMember = async (memberDetails) => {
   await axiosPrivate
     .post("/member", memberDetails)
     .then((res) => {
-      res = response;
+      response = res;
       toast.success("Member added successfully");
     })
     .catch((error) => {

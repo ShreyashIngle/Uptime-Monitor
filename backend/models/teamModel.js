@@ -8,9 +8,15 @@ const TeamSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    members: {
-      type: Array,
-    },
+    members: [
+      {
+        email: String,
+        accepted: {
+          type: Boolean,
+          default: false,
+        },
+      },
+    ],
   },
   {
     timestamps: true,

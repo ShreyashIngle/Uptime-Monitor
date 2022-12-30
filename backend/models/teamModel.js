@@ -14,7 +14,10 @@ const TeamSchema = new mongoose.Schema(
     },
     members: [
       {
-        email: String,
+        email: {
+          type: String,
+          unique: true,
+        },
         accepted: {
           type: Boolean,
           default: false,

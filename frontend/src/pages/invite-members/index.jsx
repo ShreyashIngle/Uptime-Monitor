@@ -16,6 +16,7 @@ const InviteMembers = () => {
       memberEmail: email.trim(),
       teamId: user.teamId,
       senderId: user.userId,
+      teamName: user.teamName,
       senderName: user.firstName,
     };
     dispatch(inviteMember(payload));

@@ -36,4 +36,13 @@ const addMembers = asyncHandler(async (req, res) => {
   return res.status(200).json({ message: "Invitation sent successfully" });
 });
 
-module.exports = { addMembers };
+const getAllMembers = asyncHandler(async (req, res) => {
+  const { teamId } = req.params;
+  const allMembers = await Team.find({ _id: teamId }).select({
+    members: 1,
+    _id: 0,
+  });
+  res.status(200).json(allMembers);
+});
+
+module.exports = { addMembers, getAllMembers };

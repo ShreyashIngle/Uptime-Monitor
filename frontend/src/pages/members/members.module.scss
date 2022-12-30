@@ -3,7 +3,7 @@
   color: $primary-text-color;
   &__grid {
     display: grid;
-    grid-template-columns:1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 15px;
   }
   &__card {
@@ -43,27 +43,26 @@
   }
   &__details {
     p:nth-child(1) {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: #fff;
       display: flex;
       align-items: center;
       gap: 10px;
       //   justify-content: space-between;
-      small {
-        line-height: 0px;
-        display: inline-block;
-        background: $primary-blue;
-        font-size: 1rem;
-        color: rgba(255, 255, 255, 0.596);
-        padding: 8px;
-        border-radius: 10px;
-      }
     }
   }
   &__details {
     p:nth-child(2) {
-      font-size: 1.1rem;
-      // color: #fff;
+      margin-top: 5px;
+      small {
+        line-height: 0px;
+        display: inline-block;
+        background: $primary-blue;
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.596);
+        padding: 8px;
+        border-radius: 10px;
+      }
     }
   }
 }

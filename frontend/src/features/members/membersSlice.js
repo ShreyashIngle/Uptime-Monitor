@@ -26,6 +26,24 @@ export const inviteMember = createAsyncThunk(
   }
 );
 
+export const getAllMembers = createAsyncThunk(
+  "member/getAll",
+  async (teamId, thunkAPI) => {
+    try {
+      return await memberService.getAllMembers(teamId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const membersSlice = createSlice({
   name: "members",
   initialState,
@@ -44,6 +62,19 @@ export const membersSlice = createSlice({
         state.isSuccess = true;
       })
       .addCase(inviteMember.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
+
+      .addCase(getAllMembers.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllMembers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.members = action.payload[0].members;
+      })
+      .addCase(getAllMembers.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       });

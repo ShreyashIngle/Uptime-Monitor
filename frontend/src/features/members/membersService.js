@@ -2,7 +2,8 @@ import { axiosPrivate } from "@/api/axios";
 import { toast } from "react-toastify";
 
 const getAllMembers = async (teamId) => {
-  await axiosPrivate.get("/member");
+  const response = await axiosPrivate.get(`/member/${teamId}`);
+  return response.data;
 };
 
 const inviteMember = async (memberDetails) => {

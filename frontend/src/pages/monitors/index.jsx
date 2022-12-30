@@ -22,6 +22,7 @@ const Monitors = () => {
     if (!user) {
       return navigate("/login");
     }
+    
     if (isError) {
       console.log(message);
     }

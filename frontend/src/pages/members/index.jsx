@@ -14,11 +14,13 @@ const Members = () => {
   useEffect(() => {
     dispatch(getAllMembers(teamId));
 
-    return () => dispatch(reset);
+    return () => dispatch(reset());
   }, []);
 
-  const membersList = members?.map((member) => {
-    return <MemberCard status={member.accepted} email={member.email} />;
+  const membersList = members?.map((member, index) => {
+    return (
+      <MemberCard key={index} status={member.accepted} email={member.email} />
+    );
   });
   return (
     <div className={styles.members}>

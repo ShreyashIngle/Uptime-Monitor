@@ -48,9 +48,7 @@ export const membersSlice = createSlice({
   name: "members",
   initialState,
   reducers: {
-    reducers: {
-      reset: (state) => initialState,
-    },
+    reset: (state) => initialState,
   },
   extraReducers: (builder) => {
     builder

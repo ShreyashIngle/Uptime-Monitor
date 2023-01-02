@@ -15,7 +15,7 @@ const Login = () => {
     password: "chathura123456",
   });
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
 
@@ -23,13 +23,14 @@ const Login = () => {
     if (isError) {
       toast.error(message);
     }
+    const user = localStorage.getItem("user");
 
-    if (isSuccess || user) {
+    if (user) {
       navigate("/");
     }
 
     dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
+  }, [isError, isSuccess, message, navigate, dispatch]);
 
   const handleChange = (e) => {
     const { value, name } = e.target;

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { refreshToken } from "../util/refreshToken";
 // const dispatch = useDispatch();
@@ -32,9 +31,12 @@ axiosPrivate.interceptors.response.use(
     const prevRequest = error?.config;
     if (error?.response?.status === 403 && !prevRequest?.sent) {
       prevRequest.sent = true;
-      const newAccessToken = await refreshToken();
+      const newAccessToken = await refreshToken().catch((error) => {
+        localStorage.removeItem('user');
+        window.location.replace("/login");
+      });
       prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-      return axiosPrivate(prevRequest);
+      return axiosPrivate(prevRequest)
     }
     return Promise.reject(error);
   }

@@ -27,8 +27,6 @@ const Login = () => {
    (state) => state.auth
  );
 
-
- 
   useEffect(() => {
     if (isError) {
       toast.error(message);

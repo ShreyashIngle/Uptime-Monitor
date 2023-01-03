@@ -1,4 +1,5 @@
 const Monitor = require("../models/monitorModel");
+const Incident = require("../models/incidentModel");
 const asyncHandler = require("express-async-handler");
 const testUrl = require("../utils/testUrl");
 
@@ -37,10 +38,11 @@ const getUserMonitors = asyncHandler(async (req, res) => {
 //@access Private
 const deleteMonitor = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const delMon = await Monitor.findOneAndDelete({ _id: id });
+  const deletedMonitor = await Monitor.findOneAndDelete({ _id: id });
+  await Incident.findOneAndDelete({ monitor: id });
   res
     .status(200)
-    .json({ message: "Monitor deleted successfully", id: delMon._id });
+    .json({ message: "Monitor deleted successfully", id: deletedMonitor._id });
 });
 
 //@desc   Add Monitor

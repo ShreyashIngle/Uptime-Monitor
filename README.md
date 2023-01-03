@@ -4,7 +4,7 @@
 <br />
 <p align="center">
   <a href="https://bugvilla.herokuapp.com">
-    <img src="./client/src/assets/images/BugVilla.png" alt="BugVilla Logo" width="200" height="57">
+    <img src="https://github.com/chathurperera/uptime-monitor/blob/main/frontend/src/assets/images/logo.png" alt="Project Logo" width="200" height="57">
   </a>
   <h3 align="center">Website monitoring application</h3>
   <p align="center">

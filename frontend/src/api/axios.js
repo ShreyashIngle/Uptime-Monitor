@@ -17,7 +17,7 @@ export const axiosPrivate = axios.create({
 //Axios interceptors to handle token refresh
 axiosPrivate.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = JSON.parse(localStorage.getItem('token'));
     config.headers["Authorization"] = `Bearer ${token}`;
     
     return config;

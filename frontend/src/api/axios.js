@@ -17,9 +17,9 @@ export const axiosPrivate = axios.create({
 //Axios interceptors to handle token refresh
 axiosPrivate.interceptors.request.use(
   (config) => {
-    const token = JSON.parse(localStorage.getItem('token'));
+    const token = localStorage.getItem("token")
     config.headers["Authorization"] = `Bearer ${token}`;
-    
+
     return config;
   },
   (error) => Promise.reject(error)
@@ -31,12 +31,9 @@ axiosPrivate.interceptors.response.use(
     const prevRequest = error?.config;
     if (error?.response?.status === 403 && !prevRequest?.sent) {
       prevRequest.sent = true;
-      const newAccessToken = await refreshToken().catch((error) => {
-        localStorage.removeItem('user');
-        window.location.replace("/login");
-      });
+      const newAccessToken = await refreshToken();
       prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-      return axiosPrivate(prevRequest)
+      return axiosPrivate(prevRequest);
     }
     return Promise.reject(error);
   }

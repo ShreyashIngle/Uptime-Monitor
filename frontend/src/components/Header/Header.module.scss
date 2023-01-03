@@ -5,6 +5,27 @@
   color: #fff;
   padding-bottom: 10px;
   position: relative;
+  .notifications {
+    margin-right: 2px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    position: relative;
+    &:hover {
+      transition: all ease 0.2s;
+      background-color: #939db834;
+    }
+
+    &Panel{
+      width: max-content;
+      padding: 5px;
+      border-radius: 4px;
+      position: absolute;
+      font-size: 1.2rem;
+      border: 1px solid;
+
+    }
+  }
   &_details {
     border-radius: 5px;
     font-size: 1.2rem;

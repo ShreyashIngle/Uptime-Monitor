@@ -1,6 +1,3 @@
-# uptime-monitor
-📈 Up time monitoring web app built with MERN stack
-
 <br />
 <p align="center">
   <a href="https://bugvilla.herokuapp.com">

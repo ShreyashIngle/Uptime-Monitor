@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://bugvilla.herokuapp.com">
-    <img src="https://github.com/chathurperera/uptime-monitor/blob/main/frontend/src/assets/images/logo.png" alt="Project Logo" width="200" height="57">
+    <img src="https://github.com/chathurperera/uptime-monitor/blob/main/frontend/src/assets/images/logo.png" alt="Project Logo" width="200" height="50">
   </a>
   <h3 align="center">✨Website monitoring application</h3>
   <p align="center">
@@ -22,7 +22,7 @@
 - Users can mark incidents as resolved.
 
 
-## Built using
+## 🛠 Built using
 
 #### Front-end
 
@@ -43,7 +43,7 @@
 - [Dotenv](https://www.npmjs.com/package/dotenv) - To load environment variables from a .env file
 
 
-## Roadmap
+## 🗺 Roadmap
 
 - [x] Create Monitors
 - [x] Create a scheduled Lambda function which makes an HTTP request to the website being monitored every 60 minutes. 
@@ -54,5 +54,5 @@
 - [ ] Charts to display overall uptime of a website
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="center">(<a href="#readme-top">back to top</a>)</p>
 

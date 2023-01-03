@@ -19,3 +19,24 @@
 - JWT authentication
 - Slack integration (in progress)
 - Users can mark incidents as resolved.
+
+
+## Built using
+
+#### Front-end
+
+- [ReactJS](https://reactjs.org/) - Frontend framework
+- [Redux Toolkit w/ useDispatch & useSelector hooks](https://redux.js.org/) - For state management
+- [React Router](https://reactrouter.com/) - For general routing & navigation
+- [Axios](https://axios-http.com/) - For data fetching
+
+#### Back-end
+
+- [Node.js](https://nodejs.org/en/) - Runtime environment for JS
+- [Express.js](https://expressjs.com/) - Node.js framework, makes process of building APIs easier & faster
+- [MongoDB](https://www.mongodb.com/) - Database to store document-based data
+- [Mongoose](https://mongoosejs.com/) - MongoDB object modeling for Node.js
+- [AWS Lambda](https://aws.amazon.com/s3/) - To make HTTP requests to the websites that's being monitored
+- [JSON Web Token](https://jwt.io/) - A standard to secure/authenticate HTTP requests
+- [Bcrypt.js](https://www.npmjs.com/package/bcryptjs) - For hashing passwords
+- [Dotenv](https://www.npmjs.com/package/dotenv) - To load environment variables from a .env file

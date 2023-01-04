@@ -8,7 +8,7 @@ const NotificationsPanel = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   return (
     <div className={styles.notifications}>
-      <div onClick={() => setShowNotifications((prevState) => !prevState)}>
+      <div className={styles.notificationsIcon} onClick={() => setShowNotifications((prevState) => !prevState)}>
         <AiOutlineBell size="22px" />
       </div>
       {showNotifications && (

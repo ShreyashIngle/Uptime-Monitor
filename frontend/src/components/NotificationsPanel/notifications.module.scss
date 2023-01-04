@@ -1,17 +1,19 @@
 @import "../../assets/sass/utils/variables.scss";
 
 .notifications {
-  margin-right: 2px;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 50%;
   position: relative;
-  &:hover {
-    transition: all ease 0.2s;
-    background-color: #939db834;
+  margin-right: 2px;
+  &Icon{
+    padding: 5px 6px;
+    border-radius: 50%;
+    cursor: pointer;
+    &:hover {
+      transition: all ease 0.2s;
+      background-color: #939db834;
+    }
+
   }
   &Panel {
-    background: #293040;
     position: absolute;
     right: 0;
     top: 105%;
@@ -19,7 +21,7 @@
     padding: 5px 7px;
     border-radius: 4px;
     font-size: 1.2rem;
-    background-color: #303132;
+    background-color: #282a2c;
     box-shadow: 0, 0, #00000000, 0, 0, #00000000;
     .notification {
       padding: 10px;
@@ -54,9 +56,9 @@
           border: 2px solid #3b4254;
           transition: all ease .2s;
           font-size: 1.2rem;
+          border-radius: 3px;
           &:nth-child(1) {
             color: #fff;
-            // border: 1px solid ;
             background-color: transparent;
           }
           &:nth-child(2) {

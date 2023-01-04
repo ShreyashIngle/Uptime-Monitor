@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styles from "./Header.module.scss";
-import { AiOutlineDown, AiOutlineBell ,AiOutlineMail} from "react-icons/ai";
+import { AiOutlineDown } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import HeaderMenu from "@/components/HeaderMenu";
+import NotificationsPanel from "../NotificationsPanel";
 
 const Header = () => {
   const [pp, setPp] = useState(false);
@@ -11,14 +12,7 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.notifications}>
-        <AiOutlineBell size="22px" />
-        <div className={styles.notificationsPanel}>
-          <div className={styles.notification}>
-              <AiOutlineMail size="18px"/> Chathura Invited you to join Apple
-          </div>
-        </div>
-      </div>
+      <NotificationsPanel />
       <div
         onClick={() => setShowMenu((prevState) => !prevState)}
         className={`${styles.header_details} hoverEffect`}

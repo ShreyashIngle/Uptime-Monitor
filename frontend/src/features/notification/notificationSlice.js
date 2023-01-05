@@ -35,9 +35,10 @@ export const notificationSlice = createSlice({
       .addCase(getAllNotifications.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getAllNotifications.fulfilled, (state) => {
+      .addCase(getAllNotifications.fulfilled, (state , action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.notifications = action.payload;
       })
       .addCase(getAllNotifications.rejected, (state) => {
         state.isLoading = false;

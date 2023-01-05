@@ -13,8 +13,10 @@ const HeaderMenu = () => {
     dispatch(reset());
     dispatch(logout());
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     navigate("/");
   };
+  
   return (
     <div className={styles.headerMenu}>
       <div className={styles.menuItem}>

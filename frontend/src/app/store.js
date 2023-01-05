@@ -3,6 +3,7 @@ import authReducer from "../features/auth/authSlice";
 import monitorReducer from "../features/monitors/monitorSlice";
 import incidentReducer from "../features/incidents/incidentSlice";
 import memberReducer from "../features/members/membersSlice";
+import notificationReducer from "../features/notification/notificationSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     monitor: monitorReducer,
     incident: incidentReducer,
     member: memberReducer,
+    notification: notificationReducer,
   },
 });
 

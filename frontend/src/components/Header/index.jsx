@@ -1,18 +1,32 @@
 import React, { useState } from "react";
 import styles from "./Header.module.scss";
 import { AiOutlineDown } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import HeaderMenu from "@/components/HeaderMenu";
 import NotificationsPanel from "../NotificationsPanel";
+import { useEffect } from "react";
+import { getAllNotifications } from "@/features/notification/notificationSlice";
 
 const Header = () => {
   const [pp, setPp] = useState(false);
-  const { firstName, lastName } = useSelector((state) => state.auth.user);
+  const { firstName, lastName, userId } = useSelector(
+    (state) => state.auth.user
+  );
   const [showMenu, setShowMenu] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllNotifications(userId));
+  }, []);
+
+  const { notifications, isLoading } = useSelector(
+    (state) => state.notification
+  );
+  console.log("notifications", notifications);
 
   return (
     <header className={styles.header}>
-      <NotificationsPanel />
+      <NotificationsPanel notifications={notifications} />
       <div
         onClick={() => setShowMenu((prevState) => !prevState)}
         className={`${styles.header_details} hoverEffect`}

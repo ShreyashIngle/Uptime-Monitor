@@ -46,9 +46,9 @@
 ## 🗺 Roadmap
 
 - [x] Create Monitors
-     [x] To test availability
-     [] SSL expiration
-     [] Keyword availability
+    - [x] To test availability
+    - [ ] SSL expiration
+    - [ ] Keyword availability
 - [x] Create a scheduled Lambda function which makes an HTTP request to the website being monitored every 60 minutes. 
 - [x] Ability to send invites by the admin 
 - [x] Trigger email alerts when the site goes down

@@ -7,7 +7,8 @@ const generateTokens = async (userId) => {
         id: userId,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "10s" }
+      // { expiresIn: "10s" }
+      { expiresIn: "1h" }
     );
 
     const refreshToken = jwt.sign(
@@ -15,7 +16,7 @@ const generateTokens = async (userId) => {
         id: userId,
       },
       process.env.JWT_REFRESH_SECRET,
-      { expiresIn: "15s" }
+      { expiresIn: "24h" }
     );
 
     return Promise.resolve({ accessToken, refreshToken });

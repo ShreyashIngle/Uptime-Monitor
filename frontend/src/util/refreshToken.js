@@ -2,6 +2,7 @@ import axios from "../api/axios";
 
 export const refreshToken = async () => {
   let response;
+  
   await axios.get("/refresh", {
     withCredentials: true,
   }).then((res) => {

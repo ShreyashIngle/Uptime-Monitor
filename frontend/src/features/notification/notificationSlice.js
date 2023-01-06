@@ -23,6 +23,20 @@ export const getAllNotifications = createAsyncThunk(
   }
 );
 
+export const respondToNotification = createAsyncThunk(
+  "notifications/respond",
+  async (payload, thunkAPI) => {
+    try {
+      return await notificationSerivce.respondToNotification(payload);
+    } catch (error) {
+      const message =
+        error.response?.data?.message || error.message || error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const notificationSlice = createSlice({
   name: "notification",
   initialState,
@@ -43,7 +57,20 @@ export const notificationSlice = createSlice({
       .addCase(getAllNotifications.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
-      });
+      })
+
+      .addCase(respondToNotification.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(respondToNotification.fulfilled, (state , action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        // state.message = action.payload;
+      })
+      .addCase(respondToNotification.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
   },
 });
 

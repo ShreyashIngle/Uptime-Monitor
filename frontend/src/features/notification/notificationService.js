@@ -5,8 +5,14 @@ const getAllNotifications = async (userId) => {
   return response.data;
 };
 
+const respondToNotification = async (payload) => {
+  const response = await axiosPrivate.post('/invitation', payload);
+  return response.data;
+}
+
 const notificationService = {
   getAllNotifications,
+  respondToNotification
 };
 
 export default notificationService;

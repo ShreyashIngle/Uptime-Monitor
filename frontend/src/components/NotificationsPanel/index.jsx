@@ -3,10 +3,21 @@ import styles from "./notifications.module.scss";
 import { AiOutlineBell, AiOutlineMail } from "react-icons/ai";
 import invitationIcon from "@/assets/images/invitation.png";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { respondToNotification } from "@/features/notification/notificationSlice";
 
-const NotificationsPanel = ({ notifications }) => {
+const NotificationsPanel = ({ notifications, email }) => {
   const [showNotifications, setShowNotifications] = useState(false);
+  const dispatch = useDispatch();
 
+  const handleResponse = (invitationId, status) => {
+    const payload = {
+      email: email,
+      invitationId,
+      status,
+    };
+    dispatch(respondToNotification(payload));
+  };
   return (
     <div className={styles.notifications}>
       <div
@@ -25,7 +36,13 @@ const NotificationsPanel = ({ notifications }) => {
                   {notification?.message}
                   <div className={styles.buttons}>
                     <button>Deny</button>
-                    <button>Approve</button>
+                    <button
+                      onClick={() =>
+                        handleResponse(notification?._id, "accepted")
+                      }
+                    >
+                      Approve
+                    </button>
                   </div>
                 </div>
               </div>

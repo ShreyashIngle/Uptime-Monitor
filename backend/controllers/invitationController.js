@@ -4,8 +4,8 @@ const asyncHandler = require('express-async-handler');
 
 const invitationResponse = asyncHandler(async (req, res) => {
     const { email, invitationId, status } = req.body;
-    const updatedInvitation = await Invitation.findByIdAndUpdate({ _id: invitationId }, { status: status });
-    console.log('updatedInvitation', updatedInvitation);
+    await Invitation.findByIdAndUpdate({ _id: invitationId }, { status: status });
+
     await Team.updateOne({ 'members.email': email }, {
         $set: {
             'members.$.accepted': status === 'accepted' ? true : false

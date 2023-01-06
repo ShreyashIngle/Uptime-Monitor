@@ -9,7 +9,7 @@ import { getAllNotifications } from "@/features/notification/notificationSlice";
 
 const Header = () => {
   const [pp, setPp] = useState(false);
-  const { firstName, lastName, userId } = useSelector(
+  const { firstName, lastName, userId, email } = useSelector(
     (state) => state.auth.user
   );
   const [showMenu, setShowMenu] = useState(false);
@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <NotificationsPanel notifications={notifications} />
+      <NotificationsPanel notifications={notifications} email={email} />
       <div
         onClick={() => setShowMenu((prevState) => !prevState)}
         className={`${styles.header_details} hoverEffect`}

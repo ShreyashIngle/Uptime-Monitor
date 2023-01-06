@@ -6,10 +6,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { reset, loginUser } from "@/features/auth/authSlice";
 import { toast } from "react-toastify";
 import bannerImage from "@/assets/images/homepageImage.png";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
+  const [showPassword, setShowPassword] = useState(false);
   const [loginDetails, setLoginDetails] = useState({
     email: "chathuraperera007@gmail.com",
     password: "chathura123456",
@@ -75,13 +78,23 @@ const Login = () => {
             <div className={styles.inputControl}>
               <label>Password</label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 required
                 name="password"
                 value={loginDetails.password}
                 onChange={handleChange}
                 placeholder="password"
               />
+              <div
+                className={styles.revealIcon}
+                onClick={() => setShowPassword((prevState) => !prevState)}
+              >
+                {showPassword ? (
+                  <AiOutlineEyeInvisible size="18px" color="#383838c6" />
+                ) : (
+                  <AiOutlineEye size="18px" color="#383838c6" />
+                )}
+              </div>
             </div>
             <label htmlFor="rememberLogin" className={styles.rememberLogin}>
               <input type="checkbox" name="" id="rememberLogin" />

@@ -38,6 +38,7 @@ const Login = () => {
     dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
+  //handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSignUpDetails((prevDetails) => {
@@ -48,6 +49,7 @@ const Login = () => {
     });
   };
 
+  //handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (singUpDetails.password !== singUpDetails.confirmedPassword) {

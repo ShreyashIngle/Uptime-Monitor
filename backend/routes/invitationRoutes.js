@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const { invitationResponse } = require("../controllers/invitationController");
+const { invitationResponse, getAllInvitations } = require("../controllers/invitationController");
 const { protect } = require('../middleware/authMiddleware');
 
 router.post('/', protect, invitationResponse);
+router.get('/', protect, getAllInvitations);
 
 module.exports = router;
 

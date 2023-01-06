@@ -18,6 +18,7 @@ const NotificationsPanel = ({ notifications, email }) => {
     };
     dispatch(respondToNotification(payload));
   };
+
   return (
     <div className={styles.notifications}>
       <div
@@ -35,13 +36,13 @@ const NotificationsPanel = ({ notifications, email }) => {
                 <div className={styles.content}>
                   {notification?.message}
                   <div className={styles.buttons}>
-                    <button>Deny</button>
+                    <button>Mark as read</button>
                     <button
                       onClick={() =>
                         handleResponse(notification?._id, "accepted")
                       }
                     >
-                      Approve
+                      Delete
                     </button>
                   </div>
                 </div>

@@ -48,6 +48,11 @@
           background-color: red;
       }
       .content {
+        .buttons{
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+        }
         button {
           padding: 4px 8px;
           cursor: pointer;

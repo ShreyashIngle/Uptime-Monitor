@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./incidents.module.scss";
-import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,7 +9,7 @@ import {
   AiOutlineSafety,
 } from "react-icons/ai";
 import IncidentActionMenu from "./components/IncidentActionMenu";
-import TableRowSkeletonLoaders from "./components/TableRowSkeletonLoaders";
+import TableRowSkeletonLoaders from "@/components/TableRowSkeletonLoaders";
 
 import { getIncidents, reset } from "@/features/incidents/incidentSlice";
 

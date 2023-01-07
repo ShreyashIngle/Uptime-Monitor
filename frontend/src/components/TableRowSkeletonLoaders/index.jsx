@@ -2,6 +2,9 @@ import React from "react";
 import LoadingSkeletonText from "@/components/LoadingSkeletonText";
 
 const TableRowSkeletonLoaders = () => {
+  
+
+  
   return (
     <>
       <tr>

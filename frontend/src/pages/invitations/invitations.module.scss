@@ -1,0 +1,104 @@
+@import '@/assets/sass/utils/variables.scss';
+
+.invitations {
+  color:#fff;
+  .title {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  &__table {
+    width: 100%;
+    table {
+      border: 0.8px solid rgba(210, 212, 210, 0.089);
+      border-bottom: none;
+      width: 100%;
+      border-radius: 8px;
+
+      thead {
+        text-align: left;
+        background-color: #27293be5;
+        border-collapse: collapse;
+        & th {
+          font-weight: 400;
+          font-family: $montserrat;
+          color: $primary-text-color;
+          font-size: 1.3rem;
+          padding: 10px;
+        }
+      }
+      tbody {
+        position: relative;
+        tr td {
+          border-bottom: 0.8px solid rgba(210, 212, 210, 0.089);
+          padding: 10px;
+          color: #c3cad4;
+          font-size: 1.2rem;
+        }
+        .monitor {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .actionMenuDotsTD {
+          position: relative;
+        }
+        .actionMenuDots {
+          border-radius: 2px;
+          cursor: pointer;
+          position: absolute;
+          top: 12px;
+          right: 5px;
+        }
+        .url {
+          font-weight: 600;
+          font-family: $montserrat;
+          font-size: 1.3rem;
+        }
+        .cause {
+          font-size: 1.1rem;
+          color: $primary-text-color;
+        }
+        .currentStatus {
+          padding-left: 20px;
+          span {
+            position: relative;
+          }
+          span::before {
+            position: absolute;
+            left: -12px;
+            top: 4px;
+            content: "";
+            width: 7px;
+            height: 7px;
+            background: #ff4242;
+            border-radius: 50%;
+          }
+        }
+        .iconWrapper {
+          border-radius: 3px;
+          padding: 5px;
+          width: 30px;
+          height: 30px;
+          display: grid;
+          place-items: center;
+          background: #e0373731;
+          font-size: 1.5rem;
+        }
+        .emptyTable {
+          color: #c3cad4c7;
+          text-align: center;
+          position: absolute;
+          top: 0px;
+          font-size: 2rem;
+          left: 50%;
+          -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+          td {
+            font-size: 2rem;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+}

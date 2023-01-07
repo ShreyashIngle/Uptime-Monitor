@@ -7,6 +7,7 @@ import {
   AiOutlineWarning,
   AiOutlineUsergroupAdd,
   AiOutlineApi,
+  AiOutlineLink
 } from "react-icons/ai";
 
 const Sidebar = () => {
@@ -26,6 +27,9 @@ const Sidebar = () => {
       </SidebarLink>
       <SidebarLink to="/team/integrations" text="Integrations">
         <AiOutlineApi size="20px" />
+      </SidebarLink>
+      <SidebarLink to="/team/invitations" text="Invitations">
+        <AiOutlineLink size="20px" />
       </SidebarLink>
     </aside>
   );

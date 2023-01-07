@@ -5,7 +5,7 @@ const { invitationResponse, getAllInvitations } = require("../controllers/invita
 const { protect } = require('../middleware/authMiddleware');
 
 router.post('/', protect, invitationResponse);
-router.get('/', protect, getAllInvitations);
+router.get('/:id', protect, getAllInvitations);
 
 module.exports = router;
 

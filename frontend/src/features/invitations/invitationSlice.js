@@ -11,7 +11,7 @@ const initialState = {
 }
 
 export const respondToInvitation = createAsyncThunk(
-    "notifications/respond",
+    "invitation/respond",
     async (payload, thunkAPI) => {
         try {
             return await invitationService.respondToNotification(payload);
@@ -23,6 +23,21 @@ export const respondToInvitation = createAsyncThunk(
         }
     }
 );
+
+export const getAllInvitations = createAsyncThunk(
+    "invitation/get",
+    async (userId, thunkAPI) => {
+        try {
+            return await invitationService.getAllInvitations(userId);
+        } catch (error) {
+            const message =
+                error.response?.data?.message || error.message || error.toString();
+
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+)
+
 
 const invitationsSlice = createSlice({
     name: 'invitation',
@@ -41,6 +56,21 @@ const invitationsSlice = createSlice({
                 // state.message = action.payload;
             })
             .addCase(respondToInvitation.rejected, (state) => {
+                state.isLoading = false;
+                state.isError = true;
+            })
+
+            
+            .addCase(getAllInvitations.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getAllInvitations.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                console.log('action.payload',action.payload);
+                state.invitations = action.payload;
+            })
+            .addCase(getAllInvitations.rejected, (state) => {
                 state.isLoading = false;
                 state.isError = true;
             })

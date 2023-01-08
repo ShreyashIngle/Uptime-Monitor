@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Spinner from "@/components/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./InviteMembers.module.scss";
-import { inviteMember } from "../../features/members/membersSlice";
+import { inviteMember } from "@/features/members/membersSlice";
+import BackButton from "@/components/BackButton";
 
 const InviteMembers = () => {
   const [email, setEmail] = useState("");
@@ -25,6 +26,7 @@ const InviteMembers = () => {
 
   return (
     <div className={styles.wrapper}>
+      <BackButton />      
       <h1>Invite Members</h1>
       <form onSubmit={handleSubmit}>
         <section className="sectionWrapper">

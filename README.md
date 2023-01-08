@@ -49,6 +49,10 @@
     - [x] To test availability
     - [ ] SSL expiration
     - [ ] Keyword availability
+- [x] Manage team members
+    - [x] Invite members
+    - [x] Remove members
+    - [ ] Assign members to specific incidents
 - [x] Create a scheduled Lambda function which makes an HTTP request to the website being monitored every 60 minutes. 
 - [x] Ability to send invites by the admin 
 - [x] Trigger email alerts when the site goes down

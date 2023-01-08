@@ -6,10 +6,14 @@ const asyncHandler = require("express-async-handler");
 
 const addMembers = asyncHandler(async (req, res) => {
   const { teamId, senderId, memberEmail, senderName, teamName } = req.body;
+
+  //Verifying the user exists
   const foundUser = await User.findOne({ email: memberEmail });
   if (!foundUser) {
     return res.status(400).json({ message: "User does not exist" });
   }
+
+  //Finding the related team
   const foundTeam = await Team.findOne({ _id: teamId }).populate({
     path: "admin",
     select: "email",
@@ -24,13 +28,7 @@ const addMembers = asyncHandler(async (req, res) => {
     return res.status(409).json({ message: "Member already exists" });
   }
 
-  //Updating the team with the new member
-  await Team.updateOne(
-    { _id: teamId },
-    { $push: { members: { email: memberEmail } } }
-  );
-
-  //Sending a notification to the member
+  //Sending a notification to the invited member
   await Notification.create({
     sender: senderId,
     receiver: foundUser._id,
@@ -38,11 +36,17 @@ const addMembers = asyncHandler(async (req, res) => {
   });
 
   //Sending the invitation to the member
-  await Invitation.create({
+  const invitation = await Invitation.create({
     sender: senderId,
     receiver: foundUser._id,
     teamId: teamId,
   })
+
+  //Updating the team with the new member
+  await Team.updateOne(
+    { _id: teamId },
+    { $push: { members: { email: memberEmail, invitation: invitation._id } } }
+  );
 
   return res.status(200).json({ message: "Invitation sent successfully" });
 });
@@ -57,16 +61,19 @@ const getAllMembers = asyncHandler(async (req, res) => {
 });
 
 const deleteMember = asyncHandler(async (req, res) => {
-  const { teamId, memberId } = req.body;
-  // await Team.findOneAndUpdate({ _id: teamId }, { "$pull": { "members": { "_id": memberId } } }, { safe: true, multi: true });
+  const { teamId, memberId, invitation } = req.body;
+
+  //Find and delete the team member
   await Team.findOne({ _id: teamId }).then(team => {
-    console.log('team.members', team.members);
     team.members = team.members.filter(member => {
       member._id !== memberId
     })
     team.save();
   }
   )
+
+  await Invitation.findByIdAndRemove(invitation);
+
   return res.status(200).json({ message: 'Member deleted successfully' })
 })
 

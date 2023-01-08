@@ -19,6 +19,10 @@ const TeamSchema = new mongoose.Schema(
           unique: true, 
           sparse: true
         },
+        invitation: {
+          type: Schema.Types.ObjectId,
+          ref:"Invitation"
+        },
         accepted: {
           type: Boolean,
           default: false,

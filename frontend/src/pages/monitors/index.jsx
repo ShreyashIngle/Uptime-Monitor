@@ -35,7 +35,7 @@ const Monitors = () => {
   return (
     <div className={styles.monitors}>
       <div className={styles.monitors_head}>
-        <h2>How are you today, Chathura</h2>
+        <h2>How are you today, {user.firstName}</h2>
         <button onClick={() => navigate("/team/create-monitor")}>
           Create monitor
         </button>

@@ -56,4 +56,18 @@ const getAllMembers = asyncHandler(async (req, res) => {
   res.status(200).json(allMembers);
 });
 
-module.exports = { addMembers, getAllMembers };
+const deleteMember = asyncHandler(async (req, res) => {
+  const { teamId, memberId } = req.body;
+  // await Team.findOneAndUpdate({ _id: teamId }, { "$pull": { "members": { "_id": memberId } } }, { safe: true, multi: true });
+  await Team.findOne({ _id: teamId }).then(team => {
+    console.log('team.members', team.members);
+    team.members = team.members.filter(member => {
+      member._id !== memberId
+    })
+    team.save();
+  }
+  )
+  return res.status(200).json({ message: 'Member deleted successfully' })
+})
+
+module.exports = { addMembers, getAllMembers, deleteMember };

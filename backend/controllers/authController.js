@@ -58,6 +58,7 @@ const register = asyncHandler(async (req, res) => {
 
   const verificationURL = `${process.env.BASE_URL}/user/verify/${userDetails._id}/${verificationLinkToken}`;
 
+  //Sending email verification email
   sendEmail(
     email,
     { verificationURL },
@@ -79,6 +80,7 @@ const register = asyncHandler(async (req, res) => {
     token,
   });
 });
+
 
 //@desc   Login
 //@route  POST /api/v1/login

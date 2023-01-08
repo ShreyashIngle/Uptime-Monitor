@@ -16,7 +16,8 @@ const TeamSchema = new mongoose.Schema(
       {
         email: {
           type: String,
-          unique: true,
+          unique: true, 
+          sparse: true
         },
         accepted: {
           type: Boolean,

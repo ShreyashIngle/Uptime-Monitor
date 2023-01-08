@@ -13,11 +13,11 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const [singUpDetails, setSignUpDetails] = useState({
-    email: "h@gmail.com",
-    password: "john123456",
-    confirmedPassword: "john123456",
-    firstName: "john",
-    lastName: "alex",
+    email: "chathurapereraaa@gmail.com",
+    password: "chathura123456",
+    confirmedPassword: "chathura123456",
+    firstName: "chathuraaa",
+    lastName: "perera",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
@@ -58,7 +58,7 @@ const Login = () => {
     const { confirmedPassword, ...userData } = singUpDetails;
 
     await dispatch(registerUser(userData));
-    navigate("/email-verification");
+    isSuccess && navigate("/email-verification");
   };
 
   return (

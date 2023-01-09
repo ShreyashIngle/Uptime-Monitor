@@ -4,6 +4,9 @@ const Notification = require("../models/notificationModel");
 const Invitation = require("../models/invitationModel");
 const asyncHandler = require("express-async-handler");
 
+//@desc   Add new members
+//@route  post /api/v1/member
+//@access Private
 const addMembers = asyncHandler(async (req, res) => {
   const { teamId, senderId, memberEmail, senderName, teamName } = req.body;
 
@@ -51,6 +54,9 @@ const addMembers = asyncHandler(async (req, res) => {
   return res.status(200).json({ message: "Invitation sent successfully" });
 });
 
+//@desc   Get all team members 
+//@route  get /api/v1/member
+//@access Private
 const getAllMembers = asyncHandler(async (req, res) => {
   const { teamId } = req.params;
   const allMembers = await Team.find({ _id: teamId }).select({
@@ -60,6 +66,9 @@ const getAllMembers = asyncHandler(async (req, res) => {
   res.status(200).json(allMembers);
 });
 
+//@desc   Delete a member along with the invitation
+//@route  team /api/v1/member
+//@access Private
 const deleteMember = asyncHandler(async (req, res) => {
   const { teamId, memberId, invitation } = req.body;
 

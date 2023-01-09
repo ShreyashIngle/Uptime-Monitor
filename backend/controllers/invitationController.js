@@ -15,7 +15,9 @@ const invitationResponse = asyncHandler(async (req, res) => {
     res.status(200).json({ message: 'Invitation update' })
 });
 
-
+//@desc   Get all invitations
+//@route  post /api/v1/member
+//@access Private
 const getAllInvitations = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const allInvitations = await Invitation.find({ receiver: id })

@@ -10,6 +10,13 @@ const getAllNotifications = asyncHandler(async (req, res) => {
   res.status(200).json(notifications);
 });
 
+//@desc   get notifications
+//@route  get /api/v1/notification
+//@access Private
+const batchMarkAsRead = asyncHandler(async (req, res) => {
+
+})
+
 module.exports = {
   getAllNotifications,
 };

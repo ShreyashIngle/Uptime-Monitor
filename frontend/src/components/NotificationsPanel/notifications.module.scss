@@ -1,9 +1,10 @@
 @import "../../assets/sass/utils/variables.scss";
+@import "../../assets/sass/utils/mixins.scss";
 
 .notifications {
   position: relative;
   margin-right: 2px;
-  &Icon{
+  &Icon {
     padding: 5px 6px;
     border-radius: 50%;
     cursor: pointer;
@@ -11,7 +12,6 @@
       transition: all ease 0.2s;
       background-color: #939db834;
     }
-
   }
   &Panel {
     position: absolute;
@@ -23,6 +23,25 @@
     font-size: 1.2rem;
     background-color: #282a2c;
     box-shadow: 0, 0, #00000000, 0, 0, #00000000;
+
+    .notificationMarkAsRead {
+      display: flex;
+      justify-content: flex-end;
+      button {
+        border: none;
+        color: rgb(199, 194, 194);
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        &:hover {
+          transition: all ease .2s;
+          color: rgba(255, 255, 255, 0.567);
+        }
+      }
+    }
+
     .notification {
       padding: 10px;
       display: flex;
@@ -31,13 +50,13 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.086);
       color: #d3d3d3;
       font-size: 1.3rem;
-      &:last-child{
+      &:last-child {
         border: none;
       }
-      img{
-          width: 25px;
+      img {
+        width: 25px;
       }
-      .name{
+      .name {
         width: 30px;
         height: 30px;
         display: grid;
@@ -45,13 +64,17 @@
         font-weight: 600;
         place-items: center;
         border-radius: 50%;
-          background-color: red;
+        background-color: red;
       }
       .content {
-        .buttons{
+        font-size: 1.5rem;
+        .date {
+          padding-top: 3px;
+          color: #9e9797;
+          font-size: 1.1rem;
           display: flex;
           align-items: center;
-          justify-content: flex-end;
+          // justify-content: flex-end;
         }
         button {
           padding: 4px 8px;
@@ -59,7 +82,7 @@
           margin-top: 8px;
           margin-right: 8px;
           border: 2px solid #3b4254;
-          transition: all ease .2s;
+          transition: all ease 0.2s;
           font-size: 1.2rem;
           border-radius: 3px;
           &:nth-child(1) {
@@ -68,7 +91,7 @@
           }
           &:nth-child(2) {
             color: #fff;
-            background-color:$primary-button;
+            background-color: $primary-button;
           }
         }
       }

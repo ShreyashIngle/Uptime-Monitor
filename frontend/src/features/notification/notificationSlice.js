@@ -37,6 +37,21 @@ export const markAllAsRead = createAsyncThunk(
   }
 );
 
+export const deleteAll = createAsyncThunk(
+  "notifications/delete",
+  async (notificationIds, thunkAPI) => {
+    try {
+      console.log('deleteAll called')
+      return await notificationSerivce.deleteAll({ notificationIds });
+    } catch (error) {
+      const message =
+        error.response?.data?.message || error.message || error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const notificationSlice = createSlice({
   name: "notification",
   initialState,
@@ -68,6 +83,18 @@ export const notificationSlice = createSlice({
         // state.message = action.payload;
       })
       .addCase(markAllAsRead.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
+
+      .addCase(deleteAll.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteAll.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+      })
+      .addCase(deleteAll.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       })

@@ -5,18 +5,28 @@ import { BiCheckDouble } from "react-icons/bi";
 import invitationIcon from "@/assets/images/invitation.png";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { markAllAsRead } from "@/features/notification/notificationSlice";
+import {
+  markAllAsRead,
+  deleteAll,
+} from "@/features/notification/notificationSlice";
 import moment from "moment";
 
 const NotificationsPanel = ({ notifications, email }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const dispatch = useDispatch();
 
-  const handleResponse = () => {
+  const markAllAsRead = () => {
     const notificationIds = notifications.map(
       (notification) => notification._id
     );
     dispatch(markAllAsRead(notificationIds));
+  };
+
+  const deleteAllNotifications = () => {
+    const notificationIds = notifications.map(
+      (notification) => notification._id
+    );
+    dispatch(deleteAll(notificationIds));
   };
 
   return (
@@ -45,10 +55,10 @@ const NotificationsPanel = ({ notifications, email }) => {
             );
           })}
           <div className={styles.notificationMarkAsRead}>
-            <button onClick={handleResponse}>
+            <button onClick={markAllAsRead}>
               <BiCheckDouble size="18" /> Mark as read
             </button>
-            <button>
+            <button onClick={deleteAllNotifications}>
               <AiOutlineDelete size="18" /> Delete
             </button>
           </div>

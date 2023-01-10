@@ -23,11 +23,11 @@ export const getAllNotifications = createAsyncThunk(
   }
 );
 
-export const respondToNotification = createAsyncThunk(
-  "notifications/respond",
-  async (payload, thunkAPI) => {
+export const markAllAsRead = createAsyncThunk(
+  "notifications/markAsRead",
+  async (notificationIds, thunkAPI) => {
     try {
-      return await notificationSerivce.respondToNotification(payload);
+      return await notificationSerivce.markAllAsRead({ notificationIds });
     } catch (error) {
       const message =
         error.response?.data?.message || error.message || error.toString();
@@ -49,7 +49,7 @@ export const notificationSlice = createSlice({
       .addCase(getAllNotifications.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getAllNotifications.fulfilled, (state , action) => {
+      .addCase(getAllNotifications.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.notifications = action.payload;
@@ -59,15 +59,15 @@ export const notificationSlice = createSlice({
         state.isError = true;
       })
 
-      .addCase(respondToNotification.pending, (state) => {
+      .addCase(markAllAsRead.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(respondToNotification.fulfilled, (state , action) => {
+      .addCase(markAllAsRead.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         // state.message = action.payload;
       })
-      .addCase(respondToNotification.rejected, (state) => {
+      .addCase(markAllAsRead.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       })

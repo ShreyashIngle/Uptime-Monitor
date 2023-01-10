@@ -10,8 +10,14 @@ const respondToNotification = async (payload) => {
   return response.data;
 }
 
+const markAllAsRead = async (notificationIds) => {
+  const response = await axiosPrivate.post('/notification', notificationIds);
+  return response.data;
+}
+
 const notificationService = {
   getAllNotifications,
+  markAllAsRead,
   respondToNotification
 };
 

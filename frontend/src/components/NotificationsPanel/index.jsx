@@ -1,24 +1,22 @@
 import React from "react";
 import styles from "./notifications.module.scss";
-import { AiOutlineBell, AiOutlineMail } from "react-icons/ai";
+import { AiOutlineBell, AiOutlineDelete } from "react-icons/ai";
 import { BiCheckDouble } from "react-icons/bi";
 import invitationIcon from "@/assets/images/invitation.png";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { respondToNotification } from "@/features/notification/notificationSlice";
+import { markAllAsRead } from "@/features/notification/notificationSlice";
 import moment from "moment";
 
 const NotificationsPanel = ({ notifications, email }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const dispatch = useDispatch();
 
-  const handleResponse = (invitationId, status) => {
-    const payload = {
-      email: email,
-      invitationId,
-      status,
-    };
-    dispatch(respondToNotification(payload));
+  const handleResponse = () => {
+    const notificationIds = notifications.map(
+      (notification) => notification._id
+    );
+    dispatch(markAllAsRead(notificationIds));
   };
 
   return (
@@ -31,11 +29,6 @@ const NotificationsPanel = ({ notifications, email }) => {
       </div>
       {showNotifications && (
         <div className={styles.notificationsPanel}>
-          <div className={styles.notificationMarkAsRead}>
-            <button>
-              <BiCheckDouble size="18" /> Mark as read
-            </button>
-          </div>
           {notifications.map((notification) => {
             return (
               <div className={styles.notification} key={notification?._id}>
@@ -51,6 +44,14 @@ const NotificationsPanel = ({ notifications, email }) => {
               </div>
             );
           })}
+          <div className={styles.notificationMarkAsRead}>
+            <button onClick={handleResponse}>
+              <BiCheckDouble size="18" /> Mark as read
+            </button>
+            <button>
+              <AiOutlineDelete size="18" /> Delete
+            </button>
+          </div>
         </div>
       )}
     </div>

@@ -10,13 +10,17 @@ const getAllNotifications = asyncHandler(async (req, res) => {
   res.status(200).json(notifications);
 });
 
-//@desc   get notifications
-//@route  get /api/v1/notification
+//@desc   Mark all notifications as read
+//@route  post /api/v1/notification
 //@access Private
 const batchMarkAsRead = asyncHandler(async (req, res) => {
+  const { notificationIds } = req.body;
 
+  await Notification.updateMany({ _id: { $in: notificationIds } }, { read: true });
+  res.status(200).json({ message: 'All messages read' });
 })
 
 module.exports = {
+  batchMarkAsRead,
   getAllNotifications,
 };

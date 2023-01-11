@@ -54,14 +54,20 @@ const NotificationsPanel = ({ notifications, email }) => {
               </div>
             );
           })}
-          <div className={styles.notificationMarkAsRead}>
-            <button onClick={markAllAsRead}>
-              <BiCheckDouble size="18" /> Mark as read
-            </button>
-            <button onClick={deleteAllNotifications}>
-              <AiOutlineDelete size="18" /> Delete
-            </button>
-          </div>
+          {notifications.length ? (
+            <div className={styles.notificationMarkAsRead}>
+              <button onClick={markAllAsRead}>
+                <BiCheckDouble size="18" /> Mark as read
+              </button>
+              <button onClick={deleteAllNotifications}>
+                <AiOutlineDelete size="18" /> Delete
+              </button>
+            </div>
+          ) : (
+            <div>
+              you're all caught up for now 
+            </div>
+          )}
         </div>
       )}
     </div>

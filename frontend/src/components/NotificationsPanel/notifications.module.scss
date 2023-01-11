@@ -25,19 +25,24 @@
     box-shadow: 0, 0, #00000000, 0, 0, #00000000;
 
     .notificationMarkAsRead {
+      padding-top: 5px;
+      padding-right: 5px;
       display: flex;
       justify-content: flex-end;
+      gap: 10px;
       button {
         border: none;
-        color: rgb(199, 194, 194);
+        color: rgb(151, 147, 147);
         background: transparent;
         cursor: pointer;
+        line-height: 0;
         display: flex;
         align-items: center;
-        gap: 2px;
+        gap: 4px;
+        font-size: 1rem;
         &:hover {
           transition: all ease .2s;
-          color: rgba(255, 255, 255, 0.567);
+          color: rgba(242, 242, 242, 0.842);
         }
       }
     }

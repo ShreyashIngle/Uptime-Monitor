@@ -1,9 +1,10 @@
 import React from "react";
-import styles from "./LoadingSkeleton.module.scss";
+import styles from "./LoadingSkeletonCircle.module.scss";
+
 const LoadingSkeletonCircle = ({ width, height }) => {
   return (
     <div
-      className={styles.LoadingSkeleton}
+      className={styles.circle}
       style={{
         height: `${height}px`,
         width: `${width}px`,

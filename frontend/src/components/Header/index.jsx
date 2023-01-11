@@ -26,7 +26,11 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <NotificationsPanel notifications={notifications} email={email} />
+      <NotificationsPanel
+        notifications={notifications}
+        isLoading={isLoading}
+        email={email}
+      />
       <div
         onClick={() => setShowMenu((prevState) => !prevState)}
         className={`${styles.header_details} hoverEffect`}

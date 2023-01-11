@@ -10,8 +10,9 @@ import {
   deleteAll,
 } from "@/features/notification/notificationSlice";
 import moment from "moment";
+import NotificationSkeleton from "@/components/NotificationSkeleton";
 
-const NotificationsPanel = ({ notifications, email }) => {
+const NotificationsPanel = ({ notifications, email, isLoading }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const dispatch = useDispatch();
 
@@ -37,6 +38,7 @@ const NotificationsPanel = ({ notifications, email }) => {
       >
         <AiOutlineBell size="22px" />
       </div>
+      {isLoading && <NotificationSkeleton />}
       {showNotifications && (
         <div className={styles.notificationsPanel}>
           {notifications.map((notification) => {
@@ -64,9 +66,7 @@ const NotificationsPanel = ({ notifications, email }) => {
               </button>
             </div>
           ) : (
-            <div>
-              you're all caught up for now 
-            </div>
+            <div>you're all caught up for now</div>
           )}
         </div>
       )}

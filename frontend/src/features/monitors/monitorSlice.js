@@ -16,7 +16,7 @@ export const createMonitor = createAsyncThunk(
     try {
       return await monitorService.createMonitor(monitorData);
     } catch (error) {
-      console.log('error',error);
+      console.log('error', error);
       const message =
         error.response?.data?.message || error.message || error.toString();
 
@@ -72,21 +72,6 @@ export const monitorSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      //Create Monitor
-      .addCase(createMonitor.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(createMonitor.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.monitors.push(action.payload);
-      })
-      .addCase(createMonitor.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
-
       //Get all Monitors
       .addCase(getMonitors.pending, (state) => {
         state.isLoading = true;
@@ -102,17 +87,24 @@ export const monitorSlice = createSlice({
         state.message = action.payload;
       })
 
+      //Create Monitor
+      .addCase(createMonitor.fulfilled, (state, action) => {
+        state.monitors.push(action.payload);
+      })
+      .addCase(createMonitor.rejected, (state, action) => {
+        state.message = action.payload;
+      })
+
       //Delete Monitor
       .addCase(deleteMonitor.fulfilled, (state, action) => {
-        state.isSuccess = true;
         state.monitors = state.monitors.filter((monitor) => {
           return monitor._id !== action.payload.id;
         });
       })
       .addCase(deleteMonitor.rejected, (state, action) => {
-        state.isError = true;
         state.message = action.payload.message;
       });
+      
   },
 });
 

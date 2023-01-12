@@ -11,16 +11,23 @@ import {
 
 import { deleteMonitor } from "@/features/monitors/monitorSlice";
 import Spinner from "@/components/Spinner";
+import { useState } from "react";
 
 const MonitorActionsMenu = ({ monitorId, setShowActions }) => {
   const dispatch = useDispatch();
-  const { isLoading, isSuccess } = useSelector((state) => state.monitor);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleDelete = async (monitorId) => {
-    console.log('deleting ID',monitorId);
-    await dispatch(deleteMonitor(monitorId));
-    isSuccess && setShowActions(false);
-    console.log("this");
+    setIsLoading(true);
+    await dispatch(deleteMonitor(monitorId))
+      .unwrap()
+      .then(() => {
+        setIsLoading(false);
+        setShowActions(false);
+      })
+      .catch(() => {
+        setIsLoading(false);
+      });
   };
 
   return (

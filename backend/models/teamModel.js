@@ -23,9 +23,10 @@ const TeamSchema = new mongoose.Schema(
           type: Schema.Types.ObjectId,
           ref:"Invitation"
         },
-        accepted: {
-          type: Boolean,
-          default: false,
+        status: {
+          type: String,
+          enum:["pending","accepted","rejected"],
+          default: "pending",
         },
       },
     ],

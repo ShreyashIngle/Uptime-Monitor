@@ -1,0 +1,17 @@
+@import "@/assets/sass/utils/variables.scss";
+
+.menuItem {
+  margin: 3px;
+  cursor: pointer;
+  background-color: $secondary-blue;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.3rem;
+  &:hover {
+    background-color: #3b4254;
+  }
+}

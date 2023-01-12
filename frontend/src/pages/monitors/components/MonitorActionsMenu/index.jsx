@@ -17,6 +17,7 @@ const MonitorActionsMenu = ({ monitorId, setShowActions }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
+  //Handle deleting the monitor
   const handleDelete = async (monitorId) => {
     setIsLoading(true);
     await dispatch(deleteMonitor(monitorId))

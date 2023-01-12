@@ -1,0 +1,14 @@
+@import "@/assets/sass/utils/variables.scss";
+
+.menuList {
+  border: 1px solid #3b4254;
+  border-radius: 5px;
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  top: 100%;
+  width: 200px;
+  height: max-content;
+  right: 0;
+  background-color: $secondary-blue;
+}

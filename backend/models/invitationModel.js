@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const InvitationSchema = mongoose.Schema({
     sender: {
         type: mongoose.Types.ObjectId,

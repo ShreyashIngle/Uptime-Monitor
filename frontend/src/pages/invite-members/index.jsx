@@ -9,7 +9,8 @@ const InviteMembers = () => {
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const { isLoading, isSuccess } = useSelector((state) => state.member);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,13 +21,23 @@ const InviteMembers = () => {
       teamName: user.teamName,
       senderName: user.firstName,
     };
-    dispatch(inviteMember(payload));
-    isSuccess && setEmail("");
+
+    dispatch(inviteMember(payload))
+      .unwrap()
+      .then(() => {
+        setIsLoading(false);
+        setEmail("");
+        toast.success("Member added successfully");
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        toast.error(error.response.data.message);
+      });
   };
 
   return (
     <div className={styles.wrapper}>
-      <BackButton />      
+      <BackButton />
       <h1>Invite Members</h1>
       <form onSubmit={handleSubmit}>
         <section className="sectionWrapper">

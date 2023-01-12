@@ -52,15 +52,11 @@ export const membersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(inviteMember.pending, (state) => {
-        state.isLoading = true;
-      })
+
       .addCase(inviteMember.fulfilled, (state) => {
-        state.isLoading = false;
         state.isSuccess = true;
       })
       .addCase(inviteMember.rejected, (state) => {
-        state.isLoading = false;
         state.isError = true;
       })
 

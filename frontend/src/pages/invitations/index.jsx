@@ -1,8 +1,8 @@
-import TableRowSkeletonLoaders from "../../components/TableRowSkeletonLoaders";
+import TableRowSkeletonLoaders from "@/components/TableRowSkeletonLoaders";
 import styles from "./invitations.module.scss";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllInvitations } from "../../features/invitations/invitationSlice";
+import { getAllInvitations } from "@/features/invitations/invitationSlice";
 import moment from "moment";
 
 const Invitations = () => {
@@ -20,17 +20,11 @@ const Invitations = () => {
   const invitationsTableRows = invitations?.map((invitation, index) => {
     return (
       <tr key={index}>
-        <td className={styles.monitor}>
-          <div className={styles.iconWrapper}></div>
-          <div>
-            <p className={styles.url}></p>
-            <p className={styles.cause}></p>
-          </div>
-        </td>
-        <td></td>
-        <td className={styles.currentStatus}></td>
-        <td className={styles.actionMenuDotsTD}>
-          <div className={styles.actionMenuDots}></div>
+        <td className={styles.monitor}>{invitation.sender.firstName}</td>
+        <td>{moment(invitation.createdAt).format("MMMM Do YYYY, h:mm:ss a")}</td>
+        <td className={styles.actionButtons}>
+          <button>Accept</button>
+          <button>Reject</button>
         </td>
       </tr>
     );
@@ -43,10 +37,9 @@ const Invitations = () => {
         <table>
           <thead>
             <tr>
-              <th>Monitor</th>
-              <th>Started At</th>
+              <th>Sent by</th>
+              <th>Sent At</th>
               <th>Status</th>
-              <th></th>
             </tr>
           </thead>
 

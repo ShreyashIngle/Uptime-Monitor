@@ -10,6 +10,7 @@ const getAllInvitations = async (userId) => {
     console.log('response',response);
     return response.data;
 }
+
 const invitationService = {
     respondToNotification,
     getAllInvitations

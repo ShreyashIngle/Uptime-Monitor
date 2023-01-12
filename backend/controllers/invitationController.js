@@ -20,7 +20,7 @@ const invitationResponse = asyncHandler(async (req, res) => {
 //@access Private
 const getAllInvitations = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const allInvitations = await Invitation.find({ receiver: id })
+    const allInvitations = await Invitation.find({ receiver: id }).populate({ path: 'sender', select: "firstName" });
     res.status(200).json(allInvitations);
 });
 

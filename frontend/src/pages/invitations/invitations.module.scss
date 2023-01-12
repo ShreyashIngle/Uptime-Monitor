@@ -1,7 +1,8 @@
-@import '@/assets/sass/utils/variables.scss';
+@import "@/assets/sass/utils/variables.scss";
+@import "@/assets/sass/utils/mixins.scss";
 
 .invitations {
-  color:#fff;
+  color: #fff;
   .title {
     font-size: 3rem;
     margin-bottom: 10px;
@@ -32,32 +33,24 @@
           border-bottom: 0.8px solid rgba(210, 212, 210, 0.089);
           padding: 10px;
           color: #c3cad4;
-          font-size: 1.2rem;
-        }
-        .monitor {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-        .actionMenuDotsTD {
-          position: relative;
-        }
-        .actionMenuDots {
-          border-radius: 2px;
-          cursor: pointer;
-          position: absolute;
-          top: 12px;
-          right: 5px;
-        }
-        .url {
-          font-weight: 600;
-          font-family: $montserrat;
           font-size: 1.3rem;
         }
-        .cause {
-          font-size: 1.1rem;
-          color: $primary-text-color;
+        .actionButtons {
+          display: flex;
+          align-items: center;
+
+          button {
+            &:nth-child(1) {
+              @include primaryButton;
+              margin-right: 10px;
+            }
+            &:nth-child(2) {
+              @include outlinedButton;
+              margin-right: 10px;
+            }
+          }
         }
+
         .currentStatus {
           padding-left: 20px;
           span {

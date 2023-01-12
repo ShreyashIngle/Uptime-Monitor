@@ -19,7 +19,14 @@ const Members = () => {
 
   const membersList = members?.map((member, index) => {
     return (
-      <MemberCard key={index} status={member.accepted} email={member.email} />
+      <MemberCard
+        key={index}
+        status={member.accepted}
+        email={member.email}
+        memberId={member._id}
+        teamId={teamId}
+        invitation={member.invitation}
+      />
     );
   });
   return (

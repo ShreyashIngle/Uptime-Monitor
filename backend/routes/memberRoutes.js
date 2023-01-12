@@ -5,7 +5,7 @@ const router = express.Router();
 const { protect } = require("../middleware/authMiddleware");
 
 router.post("/", protect, addMembers);
+router.post("/delete", protect, deleteMember);
 router.get("/:teamId", protect, getAllMembers);
-router.delete("/", protect, deleteMember);
 
 module.exports = router;

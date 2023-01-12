@@ -4,49 +4,72 @@ import MenuItem from "@/components/MenuItem";
 import styles from "../../members.module.scss";
 
 import {
-  AiOutlinePauseCircle,
-  AiOutlineSetting,
+  AiOutlineMore,
   AiOutlineDelete,
-  AiOutlineWarning,
+  AiOutlineReload,
 } from "react-icons/ai";
+import { useState } from "react";
+import { removeMember } from "../../../../features/members/membersSlice";
+import { useDispatch } from "react-redux";
 
 const test = () => {
   console.log("working");
 };
 
-const MemberCard = ({ status, email }) => {
+const MemberCard = ({ status, email, memberId, teamId, invitation }) => {
+  const [showMenu, setShowMenu] = useState(false);
+  const dispatch = useDispatch();
+
+  const removeUser = () => {
+    dispatch(removeMember({ teamId, memberId, invitation }))
+      .unwrap()
+      .then((res) => {
+        console.log("member removed");
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
+
   return (
     <div className={styles.members__card}>
-      <button>Remove</button>
-      <MenuList>
-        <MenuItem
-          icon={<AiOutlinePauseCircle />}
-          text="settings"
-          handleClick={test}
+      <div className={styles.members__content}>
+        <div className={styles.members__image}>{email[0]?.toUpperCase()}</div>
+        <div className={styles.members__details}>
+          <p>{email}</p>
+          <p>
+            <small>
+              {typeof status === "string"
+                ? "Admin"
+                : status
+                ? "Accepted"
+                : "Pending"}
+            </small>
+          </p>
+        </div>
+      </div>
+      <div className={styles.menuToggleButton}>
+        <AiOutlineMore
+          size="20"
+          color="#fff"
+          onClick={() => setShowMenu((prevState) => !prevState)}
         />
-        <MenuItem
-          icon={<AiOutlinePauseCircle />}
-          text="settings"
-          handleClick={test}
-        />
-        <MenuItem
-          icon={<AiOutlinePauseCircle />}
-          text="settings"
-          handleClick={test}
-        />
-      </MenuList>
-      <div className={styles.members__image}>{email[0]?.toUpperCase()}</div>
-      <div className={styles.members__details}>
-        <p>{email}</p>
-        <p>
-          <small>
-            {typeof status === "string"
-              ? "Admin"
-              : status
-              ? "Accepted"
-              : "Pending"}
-          </small>
-        </p>
+        {showMenu && (
+          <div className={styles.menuListWrapper}>
+            <MenuList>
+              <MenuItem
+                icon={<AiOutlineReload size="18" />}
+                text="Resend"
+                handleClick={test}
+              />
+              <MenuItem
+                icon={<AiOutlineDelete size="18" />}
+                text="Remove"
+                handleClick={removeUser}
+              />
+            </MenuList>
+          </div>
+        )}
       </div>
     </div>
   );

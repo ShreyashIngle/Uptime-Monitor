@@ -11,9 +11,15 @@ const inviteMember = async (memberDetails) => {
   return response.data;
 };
 
+const removeMember = async (memberDetails) => {
+  const response = await axiosPrivate.post("/member/delete", memberDetails);
+  return response.data;
+};
+
 const memberService = {
   getAllMembers,
   inviteMember,
+  removeMember
 };
 
 export default memberService;

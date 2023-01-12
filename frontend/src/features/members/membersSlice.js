@@ -26,6 +26,24 @@ export const inviteMember = createAsyncThunk(
   }
 );
 
+export const removeMember = createAsyncThunk(
+  "member/remove",
+  async (memberDetails, thunkAPI) => {
+    try {
+      return await memberService.removeMember(memberDetails);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const getAllMembers = createAsyncThunk(
   "member/getAll",
   async (teamId, thunkAPI) => {
@@ -53,6 +71,12 @@ export const membersSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
+      .addCase(removeMember.fulfilled, (state) => {
+        state.isSuccess = true;
+        state.members = state.members.filter((member) => {
+          return member._id !== action.payload.memberId;
+        })
+      })
       .addCase(inviteMember.fulfilled, (state) => {
         state.isSuccess = true;
       })

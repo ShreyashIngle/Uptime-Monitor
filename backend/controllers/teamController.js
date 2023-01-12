@@ -83,7 +83,7 @@ const deleteMember = asyncHandler(async (req, res) => {
 
   await Invitation.findByIdAndRemove(invitation);
 
-  return res.status(200).json({ message: 'Member deleted successfully' })
+  return res.status(200).json({ message: 'Member deleted successfully', memberId })
 })
 
 module.exports = { addMembers, getAllMembers, deleteMember };

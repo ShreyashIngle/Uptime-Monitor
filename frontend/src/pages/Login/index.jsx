@@ -11,20 +11,22 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const [showPassword, setShowPassword] = useState(false);
   const [loginDetails, setLoginDetails] = useState({
     email: "john@gmail.com",
     password: "john123456",
   });
 
-  //chathurapereraaa@gmail.com
-  //chathura123456
+  /*
+    chathurapereraaa@gmail.com
+    chathura123456
 
-  const { isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
-
+    
+  */
+ const { isLoading, isError, isSuccess, message } = useSelector(
+   (state) => state.auth
+ );
   useEffect(() => {
     if (isError) {
       toast.error(message);

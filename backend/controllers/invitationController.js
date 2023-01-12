@@ -12,6 +12,8 @@ const invitationResponse = asyncHandler(async (req, res) => {
         }
     })
 
+    await Invitation.findByIdAndDelete(invitationId);
+
     res.status(200).json({ message: 'Invitation update' })
 });
 

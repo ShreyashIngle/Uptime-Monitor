@@ -5,6 +5,7 @@ import BackButton from "@/components/BackButton";
 import Spinner from "@/components/Spinner";
 import { createMonitor } from "@/features/monitors/monitorSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const CreateMonitor = () => {
   const { userId, teamId, email } = useSelector((state) => state.auth.user);
@@ -30,20 +31,24 @@ const CreateMonitor = () => {
     });
   };
 
-  const resetInputs = () => {
-    setMonitorDetails({
-      url: "https://",
-      team: teamId,
-      user: userId,
-      alertsTriggeredOn: 1,
-    });
-  };
-
+  //Handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createMonitor(monitorDetails));
-    console.log("isSuccess", isSuccess);
-    isSuccess && resetInputs();
+
+    dispatch(createMonitor(monitorDetails))
+      .unwrap()
+      .then(() => {
+        setMonitorDetails((prevState) => {
+          return {
+            ...prevState,
+            url: "https://",
+          };
+        });
+        toast.success("Monitor created successfully");
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
   };
 
   return (

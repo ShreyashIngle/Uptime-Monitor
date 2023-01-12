@@ -47,19 +47,12 @@ const invitationsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(respondToInvitation.pending, (state) => {
-                state.isLoading = true;
-            })
             .addCase(respondToInvitation.fulfilled, (state, action) => {
-                state.isLoading = false;
                 state.isSuccess = true;
-                // state.message = action.payload;
             })
             .addCase(respondToInvitation.rejected, (state) => {
-                state.isLoading = false;
                 state.isError = true;
             })
-
             
             .addCase(getAllInvitations.pending, (state) => {
                 state.isLoading = true;

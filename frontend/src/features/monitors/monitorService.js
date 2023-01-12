@@ -4,18 +4,7 @@ import { axiosPrivate } from "../../api/axios";
 
 //Create new monitor
 const createMonitor = async (monitorData) => {
-  let response;
-  await axiosPrivate
-    .post("/monitor", monitorData)
-    .then((res) => {
-      res = response;
-      toast.success("Monitor created successfully");
-    })
-    .catch((error) => {
-      console.log("error", error);
-      toast.error(error.response.data.message);
-    });
-
+  const response = await axiosPrivate.post("/monitor", monitorData)
   return response.data;
 };
 

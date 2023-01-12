@@ -16,6 +16,7 @@ export const createMonitor = createAsyncThunk(
     try {
       return await monitorService.createMonitor(monitorData);
     } catch (error) {
+      console.log('error',error);
       const message =
         error.response?.data?.message || error.message || error.toString();
 

@@ -31,7 +31,7 @@ const createAnIncident = async (monitorId, userId, statusCode) => {
   });
 
   //Updates the monitor availability
-  await Monitor.updateOne({ _id: monitorId }, { active: false });
+  await Monitor.updateOne({ _id: monitorId }, { availability: false });
   
 };
 
@@ -52,6 +52,7 @@ const sendIncidentAlert = async (
     createdAt: currentDate,
   };
 
+  //Sending email alerts to all the assigned members
   for (const email of alertEmails) {
     await sendEmail(
       email,

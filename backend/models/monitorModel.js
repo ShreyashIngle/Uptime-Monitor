@@ -21,6 +21,14 @@ const MonitorSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    availability: {
+      type: Boolean,
+      default: true,
+    },
+    lastIncidentAt: {
+      type: Date,
+      default: Date.now()
+    },
     alertEmails: {
       type: Array,
     },

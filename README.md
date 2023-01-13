@@ -52,10 +52,10 @@
 - [x] Manage team members
     - [x] Invite members
     - [x] Remove members
-    - [ ] Assign members to specific incidents
+    - [ ] Assign members to monitors
 - [x] Create a scheduled Lambda function which makes an HTTP request to the website being monitored every 60 minutes. 
 - [x] Ability to send invites by the admin 
-- [x] Trigger email alerts when the site goes down
+- [x] Notify all assigned members as soon as an incident occurs through email 
 - [ ] Slack integration
 - [ ] Profile page
 - [ ] Page Speed Reports

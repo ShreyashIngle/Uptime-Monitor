@@ -1,4 +1,5 @@
 const Incident = require("../models/incidentModel");
+const Monitor = require("../models/monitorModel");
 const axios = require("axios");
 const sendEmail = require("./sendEmail");
 
@@ -22,12 +23,16 @@ const testUrl = async (monitor) => {
 
 //Creates an incident
 const createAnIncident = async (monitorId, userId, statusCode) => {
+  //Creates an incident
   await Incident.create({
     monitor: monitorId,
     user: userId,
     cause: `Status ${statusCode}`,
   });
-  console.log("Incident created");
+
+  //Updates the monitor availability
+  await Monitor.updateOne({ _id: monitorId }, { active: false });
+  
 };
 
 //Send email alerts for given assignees

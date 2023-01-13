@@ -16,7 +16,6 @@ const markAllAsRead = async (notificationIds) => {
 }
 
 const deleteAll = async (notificationIds) => {
-  console.log()
   const response = await axiosPrivate.post('/notification/delete', notificationIds);
   return response.data;
 }

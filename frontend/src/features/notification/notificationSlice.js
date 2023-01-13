@@ -73,30 +73,11 @@ export const notificationSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
       })
-
-      .addCase(markAllAsRead.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(markAllAsRead.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        // state.message = action.payload;
-      })
-      .addCase(markAllAsRead.rejected, (state) => {
-        state.isLoading = false;
-        state.isError = true;
-      })
-
-      .addCase(deleteAll.pending, (state) => {
-        state.isLoading = true;
-      })
+      
       .addCase(deleteAll.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-      })
-      .addCase(deleteAll.rejected, (state) => {
-        state.isLoading = false;
-        state.isError = true;
+        state.notifications = [];
       })
   },
 });

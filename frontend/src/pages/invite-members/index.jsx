@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./InviteMembers.module.scss";
 import { inviteMember } from "@/features/members/membersSlice";
 import BackButton from "@/components/BackButton";
+import { toast } from "react-toastify";
 
 const InviteMembers = () => {
   const [email, setEmail] = useState("");

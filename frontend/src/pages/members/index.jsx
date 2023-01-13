@@ -21,7 +21,7 @@ const Members = () => {
     return (
       <MemberCard
         key={index}
-        status={member.accepted}
+        status={member.status}
         email={member.email}
         memberId={member._id}
         teamId={teamId}

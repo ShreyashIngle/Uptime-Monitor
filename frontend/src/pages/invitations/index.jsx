@@ -44,10 +44,10 @@ const Invitations = () => {
           {moment(invitation.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
         </td>
         <td className={styles.actionButtons}>
-          <button onClick={() => handleResponse("accept", invitation._id)}>
+          <button onClick={() => handleResponse("accepted", invitation._id)}>
             Accept
           </button>
-          <button onClick={() => handleResponse("reject", invitation._id)}>
+          <button onClick={() => handleResponse("rejected", invitation._id)}>
             Reject
           </button>
         </td>

@@ -71,7 +71,7 @@ export const membersSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-      .addCase(removeMember.fulfilled, (state) => {
+      .addCase(removeMember.fulfilled, (state , action) => {
         state.isSuccess = true;
         state.members = state.members.filter((member) => {
           return member._id !== action.payload.memberId;

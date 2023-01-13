@@ -38,13 +38,7 @@ const MemberCard = ({ status, email, memberId, teamId, invitation }) => {
         <div className={styles.members__details}>
           <p>{email}</p>
           <p>
-            <small>
-              {typeof status === "string"
-                ? "Admin"
-                : status
-                ? "Accepted"
-                : "Pending"}
-            </small>
+            <small>{status}</small>
           </p>
         </div>
       </div>

@@ -80,8 +80,7 @@ const CreateMonitor = () => {
                   <label>Notify me when</label>
                   <select onChange={handleChange} name="alertsTriggeredOn">
                     <option value="1">Becomes Unavailable</option>
-                    <option value="2">SSL Expires</option>
-                    <option value="3">Doesn't contain a keyword</option>
+                    <option value="2">Doesn't contain a keyword</option>
                   </select>
                 </div>
               </div>

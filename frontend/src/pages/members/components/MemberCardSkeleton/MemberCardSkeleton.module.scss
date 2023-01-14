@@ -1,0 +1,21 @@
+.container {
+  display: grid;
+  grid-template-columns:1fr  1fr 1fr;
+  gap: 15px;
+}
+.card {
+  padding: 1.4rem 1rem;
+  border-radius: 5px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background-color: #27293be5;
+  box-shadow: 0, 0, #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000,
+    0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  position: relative;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

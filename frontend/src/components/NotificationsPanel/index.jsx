@@ -15,12 +15,9 @@ import { BiCheckDouble } from "react-icons/bi";
 import NotificationSkeleton from "@/components/NotificationSkeleton";
 
 const NotificationsPanel = () => {
-  const [showNotifications, setShowNotifications] = useState(false);
   const dispatch = useDispatch();
 
-  const { notifications, isLoading } = useSelector(
-    (state) => state.notification
-  );
+  const { notifications, isLoading } = useSelector((state) => state.notification);
 
   //Mark all notifications as read
   const markAsRead = () => {

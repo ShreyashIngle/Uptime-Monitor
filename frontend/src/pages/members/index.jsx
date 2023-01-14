@@ -5,6 +5,7 @@ import MemberCard from "./components/MemberCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllMembers, reset } from "@/features/members/membersSlice";
+import MemberCardSkeleton from "./components/MemberCardSkeleton";
 
 const Members = () => {
   const { teamId, email } = useSelector((state) => state.auth.user);
@@ -36,10 +37,8 @@ const Members = () => {
         navigateTo="/team/members/add"
         buttonText="Invite Members"
       />
-      <div className={styles.members__grid}>
-        <MemberCard status="admin" email={email} />
-        {!isLoading && membersList}
-      </div>
+      {isLoading && <MemberCardSkeleton />}
+      <div className={styles.members__grid}>{!isLoading && membersList}</div>
     </div>
   );
 };

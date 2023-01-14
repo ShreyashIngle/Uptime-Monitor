@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Header.module.scss";
-import { AiOutlineDown } from "react-icons/ai";
+import { AiOutlineDown, AiOutlineBell } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import HeaderMenu from "@/components/HeaderMenu";
 import NotificationsPanel from "../NotificationsPanel";
@@ -14,23 +14,23 @@ const Header = () => {
   );
   const [showMenu, setShowMenu] = useState(false);
   const dispatch = useDispatch();
+  const [showNotifications, setShowNotifications] = useState(false);
 
   useEffect(() => {
     dispatch(getAllNotifications(userId));
   }, []);
 
-  const { notifications, isLoading } = useSelector(
-    (state) => state.notification
-  );
-  console.log("notifications", notifications);
-
   return (
     <header className={styles.header}>
-      <NotificationsPanel
-        notifications={notifications}
-        isLoading={isLoading}
-        email={email}
-      />
+      <div className={styles.notifications}>
+        <div
+          className={styles.notificationsIcon}
+          onClick={() => setShowNotifications((prevState) => !prevState)}
+        >
+          <AiOutlineBell size="22px" />
+        </div>
+        {showNotifications && <NotificationsPanel />}
+      </div>
       <div
         onClick={() => setShowMenu((prevState) => !prevState)}
         className={`${styles.header_details} hoverEffect`}

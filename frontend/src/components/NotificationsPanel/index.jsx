@@ -1,28 +1,36 @@
 import React from "react";
-import styles from "./notifications.module.scss";
-import { AiOutlineBell, AiOutlineDelete } from "react-icons/ai";
-import { BiCheckDouble } from "react-icons/bi";
-import invitationIcon from "@/assets/images/invitation.png";
+import moment from "moment";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import styles from "./notifications.module.scss";
+
+import { useDispatch, useSelector } from "react-redux";
 import {
   markAllAsRead,
   deleteAll,
 } from "@/features/notification/notificationSlice";
-import moment from "moment";
+
+import { AiOutlineDelete } from "react-icons/ai";
+import { BiCheckDouble } from "react-icons/bi";
+
 import NotificationSkeleton from "@/components/NotificationSkeleton";
 
-const NotificationsPanel = ({ notifications, email, isLoading }) => {
+const NotificationsPanel = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const dispatch = useDispatch();
 
-  const markAllAsRead = () => {
+  const { notifications, isLoading } = useSelector(
+    (state) => state.notification
+  );
+
+  //Mark all notifications as read
+  const markAsRead = () => {
     const notificationIds = notifications.map(
       (notification) => notification._id
     );
     dispatch(markAllAsRead(notificationIds));
   };
 
+  //Delete all notifications
   const deleteAllNotifications = () => {
     const notificationIds = notifications.map(
       (notification) => notification._id
@@ -31,15 +39,9 @@ const NotificationsPanel = ({ notifications, email, isLoading }) => {
   };
 
   return (
-    <div className={styles.notifications}>
-      <div
-        className={styles.notificationsIcon}
-        onClick={() => setShowNotifications((prevState) => !prevState)}
-      >
-        <AiOutlineBell size="22px" />
-      </div>
+    <div>
       {isLoading && <NotificationSkeleton />}
-      {showNotifications && (
+      {!isLoading && (
         <div className={styles.notificationsPanel}>
           {notifications.map((notification) => {
             return (
@@ -58,7 +60,7 @@ const NotificationsPanel = ({ notifications, email, isLoading }) => {
           })}
           {notifications.length ? (
             <div className={styles.notificationMarkAsRead}>
-              <button onClick={markAllAsRead}>
+              <button onClick={markAsRead}>
                 <BiCheckDouble size="18" /> Mark as read
               </button>
               <button onClick={deleteAllNotifications}>

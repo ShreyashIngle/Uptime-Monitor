@@ -1,4 +1,4 @@
-@import '../../assets/sass/utils/variables.scss';
+@import "../../assets/sass/utils/variables.scss";
 .header {
   display: flex;
   align-items: center;
@@ -6,7 +6,20 @@
   color: #fff;
   padding-bottom: 10px;
   position: relative;
-  
+
+  .notifications {
+    position: relative;
+    margin-right: 2px;
+    &Icon {
+      padding: 5px 6px;
+      border-radius: 50%;
+      cursor: pointer;
+      &:hover {
+        transition: all ease 0.2s;
+        background-color: #939db834;
+      }
+    }
+  }
   &_details {
     border-radius: 5px;
     font-size: 1.2rem;

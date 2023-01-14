@@ -31,8 +31,8 @@ const createAnIncident = async (monitorId, userId, statusCode) => {
   });
 
   //Updates the monitor availability
-  await Monitor.updateOne({ _id: monitorId }, { availability: false });
-  
+  await Monitor.updateOne({ _id: monitorId }, { availability: false, lastIncidentAt: Date.now() });
+
 };
 
 //Send email alerts for given assignees

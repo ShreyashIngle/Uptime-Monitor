@@ -8,7 +8,6 @@ import Monitor from "@/pages/monitors/components/Monitor";
 import NoMonitors from "./components/NoMonitors";
 import MonitorSkeleton from "./components/MonitorSkeleton";
 
-
 const Monitors = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ const Monitors = () => {
     if (!user) {
       return navigate("/login");
     }
-    
+
     if (isError) {
       console.log(message);
     }
@@ -48,8 +47,8 @@ const Monitors = () => {
         </>
       )}
       {monitors?.length === 0 && isSuccess && <NoMonitors />}
-      {monitors?.map((monitor) => {
-        return <Monitor key={monitor._id} monitor={monitor} />;
+      {monitors?.map((monitor, index) => {
+        return <Monitor key={index} monitor={monitor} />;
       })}
     </div>
   );

@@ -3,6 +3,8 @@ import styles from "./Monitor.module.scss";
 import { AiOutlineEllipsis, AiOutlineBell } from "react-icons/ai";
 import MonitorActionsMenu from "@/pages/monitors/components/MonitorActionsMenu";
 import useOutSideClick from "@/hooks/user-outSideClick";
+import { getTimePeriod } from "../../../../util/getTimePeriod";
+import moment from "moment";
 
 const Monitor = ({ monitor }) => {
   const [showActions, setShowActions] = useState(false);
@@ -11,30 +13,31 @@ const Monitor = ({ monitor }) => {
     e.stopPropagation();
     setShowActions((prevState) => !prevState);
   }
+  const period = getTimePeriod(monitor.lastIncidentAt);
 
   return (
     <div className={styles.monitor}>
       <div className={styles.info}>
-        <div
+        <span
           className={
-            monitor.active
+            monitor.availability
               ? `${styles.info_dot} ${styles.active}`
               : `${styles.info_dot} ${styles.paused}`
           }
-        ></div>
+        ></span>
         <div className={styles.info_url}>
           <p className={styles.url}>{monitor.url}</p>
           <p className={styles.status}>
             <span
               className={
-                monitor.active
+                monitor.availability
                   ? `${styles.status_text} ${styles.up}`
                   : `${styles.status_text} ${styles.paused}`
               }
             >
-              {monitor.active ? "Active" : "Paused"}
+              {monitor.availability ? "Up" : "Down"}
             </span>
-            : 15d 6h
+            : {getTimePeriod(monitor.lastIncidentAt)} 
           </p>
         </div>
       </div>

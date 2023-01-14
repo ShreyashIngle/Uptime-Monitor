@@ -26,7 +26,7 @@ const MonitorSchema = new mongoose.Schema(
       default: true,
     },
     lastIncidentAt: {
-      type: Date,
+      type: String,
       default: Date.now()
     },
     alertEmails: {

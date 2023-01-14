@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const CreateMonitor = () => {
   const { userId, teamId, email } = useSelector((state) => state.auth.user);
-  const { isLoading, isSuccess } = useSelector((state) => state.monitor);
+  const [isLoading, seIstLoading] = useState(false);
   const [monitorDetails, setMonitorDetails] = useState({
     url: "https://",
     team: teamId,
@@ -34,10 +34,11 @@ const CreateMonitor = () => {
   //Handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    seIstLoading(true);
     dispatch(createMonitor(monitorDetails))
       .unwrap()
       .then(() => {
+        seIstLoading(false);
         setMonitorDetails((prevState) => {
           return {
             ...prevState,
@@ -47,6 +48,7 @@ const CreateMonitor = () => {
         toast.success("Monitor created successfully");
       })
       .catch((error) => {
+        seIstLoading(false);
         toast.error(error.response.data.message);
       });
   };

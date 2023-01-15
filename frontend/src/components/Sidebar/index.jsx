@@ -7,7 +7,8 @@ import {
   AiOutlineWarning,
   AiOutlineUsergroupAdd,
   AiOutlineApi,
-  AiOutlineLink
+  AiOutlineLink,
+  AiOutlineSetting,
 } from "react-icons/ai";
 
 const Sidebar = () => {
@@ -16,21 +17,26 @@ const Sidebar = () => {
       <div className={styles.aside_logo}>
         <img src={logo} alt="logo" />
       </div>
-      <SidebarLink to="/" text="Monitors">
-        <AiOutlineSecurityScan size="20px" />
-      </SidebarLink>
-      <SidebarLink to="/team/incidents" text="Incidents">
-        <AiOutlineWarning size="20px" />
-      </SidebarLink>
-      <SidebarLink to="/team/members" text="Team Members">
-        <AiOutlineUsergroupAdd size="20px" />
-      </SidebarLink>
-      <SidebarLink to="/team/integrations" text="Integrations">
-        <AiOutlineApi size="20px" />
-      </SidebarLink>
-      <SidebarLink to="/team/invitations" text="Invitations">
-        <AiOutlineLink size="20px" />
-      </SidebarLink>
+      <div>
+        <SidebarLink to="/" text="Monitors">
+          <AiOutlineSecurityScan size="20px" />
+        </SidebarLink>
+        <SidebarLink to="/team/incidents" text="Incidents">
+          <AiOutlineWarning size="20px" />
+        </SidebarLink>
+        <SidebarLink to="/team/members" text="Team Members">
+          <AiOutlineUsergroupAdd size="20px" />
+        </SidebarLink>
+        <SidebarLink to="/team/integrations" text="Integrations">
+          <AiOutlineApi size="20px" />
+        </SidebarLink>
+        <SidebarLink to="/team/invitations" text="Invitations">
+          <AiOutlineLink size="20px" />
+        </SidebarLink>
+      </div>
+      <div className={styles.manageTeam}>
+        <AiOutlineSetting size="20px" /> Manage Team
+      </div>
     </aside>
   );
 };

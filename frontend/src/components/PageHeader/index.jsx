@@ -7,7 +7,7 @@ const PageHeader = ({ title, navigateTo, buttonText }) => {
   return (
     <div className={styles.pageHeader}>
       <h2>{title}</h2>
-      <button onClick={() => navigate(navigateTo)}>{buttonText}</button>
+      {buttonText && <button onClick={() => navigate(navigateTo)}>{buttonText}</button>}
     </div>
   );
 };

@@ -9,12 +9,14 @@ const Integrations = () => {
       <PageHeader title="Integrations" buttonText="" />
       <div className={styles.integrations__wrapper}>
         <div className={styles.integrations__card}>
-          <div className={styles.logo}>
-            <img src={slackIcon} alt="slack" />
-          </div>
-          <div className={styles.text}>
-            <h5>Slack</h5>
-            <p>Send incident alerts to your channel</p>
+          <div className={styles.content}>
+            <div className={styles.logo}>
+              <img src={slackIcon} alt="slack" />
+            </div>
+            <div className={styles.text}>
+              <h5>Slack</h5>
+              <p>Send incident alerts to your channel</p>
+            </div>
           </div>
           <div className={styles.button}>
             <a href="#">Add</a>

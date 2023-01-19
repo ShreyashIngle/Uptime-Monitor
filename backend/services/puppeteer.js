@@ -2,13 +2,24 @@ const puppeteer = require('puppeteer');
 
 
 const checkForKeyword = async (keyword, url) => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto("https://chathuraperera.netlify.app/");
-    const found = await page.evaluate(() => window.find("Developer"));
-    await browser.close();
-    return found;
-}
+    try {
+        //creating the browser instance
+        const browser = await puppeteer.launch();
 
-const value = checkForKeyword();
-console.log('value',value);
+        //creating a new page
+        const page = await browser.newPage();
+
+        //navigate to the desired URL
+        await page.goto(url);
+
+        //check to see if the keyword exists on the page
+        const found = await page.evaluate(() => window.find(keyword));
+
+        //closes Chromium and all of its pages 
+        await browser.close();
+
+        return Promise.resolve(found);
+    } catch (error) {
+        Promise.reject(error);
+    }
+}

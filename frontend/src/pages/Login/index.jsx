@@ -110,7 +110,7 @@ const Login = () => {
               {isLoading ? <Spinner /> : "Login"}
             </button>
             <p className={styles.redirect}>
-              New to ChatMore ? <Link to="/register">Sign up</Link>{" "}
+              New to Uptime Saga ? <Link to="/register">Sign up</Link>{" "}
             </p>
           </form>
         </div>

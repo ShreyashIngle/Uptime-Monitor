@@ -16,10 +16,6 @@ const incidentSchema = new Schema(
     cause: {
       type: String,
     },
-    //How long incident had been activated
-    length: {
-      type: String,
-    },
     acknowledged: {
       type: Boolean,
       default: false,

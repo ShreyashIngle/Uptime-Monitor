@@ -1,4 +1,6 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
+const Incident = require('../models/incidentModel');
+
 
 
 const checkForKeyword = async (keyword, url) => {

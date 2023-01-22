@@ -4,10 +4,10 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const sendEmail = async (
   recipient,
   dynamicData,
-  templateId,
-) => {
-
-
+  templateId,) => {
+    console.log('recipient',recipient);
+    console.log('dynamicData',dynamicData);
+    console.log('templateId',templateId);
   sgMail
     .send({
       to: {

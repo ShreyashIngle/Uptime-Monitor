@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer-core');
+const { chromium } = require('playwright-chromium');
 const Incident = require('../models/incidentModel');
 
 
@@ -6,7 +6,8 @@ const Incident = require('../models/incidentModel');
 const checkForKeyword = async (keyword, url) => {
     try {
         //creating the browser instance
-        const browser = await puppeteer.launch();
+        // console.log()
+        const browser = await chromium.launch();
 
         //creating a new page
         const page = await browser.newPage();
@@ -15,8 +16,11 @@ const checkForKeyword = async (keyword, url) => {
         await page.goto(url);
 
         //check to see if the keyword exists on the page
-        const found = await page.evaluate(() => window.find(keyword));
 
+        // const found = await page.evaluate(() => window.find(keyword));
+
+        const found = page.locator(`text=${keyword}`).first();
+        console.log('found', found);
         //closes Chromium and all of its pages 
         await browser.close();
 
@@ -25,6 +29,8 @@ const checkForKeyword = async (keyword, url) => {
         Promise.reject(error);
     }
 };
+
+checkForKeyword('xxxxx', 'https://chathuraperera.netlify.app/');
 
 const getSecurityDetails = async (url) => {
     try {
@@ -45,7 +51,7 @@ const getSecurityDetails = async (url) => {
         console.log(securityDetails.validFrom())
         console.log(securityDetails.validTo())
 
-        
+
         const validFrom = new Date(securityDetails.validFrom() * 1000);
         const validTo = new Date(securityDetails.validTo() * 1000);
 
@@ -57,9 +63,9 @@ const getSecurityDetails = async (url) => {
     }
 }
 
-module.exports = {
-    checkForKeyword,
-    getSecurityDetails
-}
+// module.exports = {
+//     checkForKeyword,
+//     getSecurityDetails
+// }
 
 

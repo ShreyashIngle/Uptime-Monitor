@@ -19,8 +19,8 @@ const SSLCheckSchema = new Schema({
     protocol: {
         type: String,
     },
-    alertDate: {
-        type: String
+    notifyExpiration: {
+        type: Number
     }
 
 })

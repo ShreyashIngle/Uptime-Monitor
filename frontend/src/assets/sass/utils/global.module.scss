@@ -11,8 +11,12 @@
   display: grid;
   grid-template-columns: 2fr 5fr;
   margin-bottom: 20px;
+  .two-col{
+    display: flex;
+    gap: 20px;
+  }
   .description {
-    padding-top: 10px;
+    // padding-top: 10px;
     h4 {
       font-size: 2rem;
       color: #fff;
@@ -33,7 +37,7 @@
     }
     .inputWrapper,
     .selectWrapper {
-      margin-bottom: 20px;
+      margin-top: 20px;
       display: flex;
       flex-direction: column;
       &:last-child {

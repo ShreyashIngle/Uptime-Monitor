@@ -47,7 +47,7 @@ const Monitor = ({ monitor }) => {
           <p>
             {monitor.alertsTriggeredOn === 1
               ? "URL Monitoring"
-              : monitor.alertsTriggeredOn === 2
+              : monitor.alertsTriggeredOn === 3
               ? "SSL Monitoring"
               : "Keyword Monitoring"}
           </p>

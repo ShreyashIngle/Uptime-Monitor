@@ -16,6 +16,7 @@ const CreateMonitor = () => {
     user: userId,
     alertEmails: [email],
     alertsTriggeredOn: 1,
+    notifyExpiration: 1,
   });
 
   const dispatch = useDispatch();
@@ -76,12 +77,28 @@ const CreateMonitor = () => {
                     id=""
                   />
                 </div>
-                <div className="selectWrapper">
-                  <label>Notify me when</label>
-                  <select onChange={handleChange} name="alertsTriggeredOn">
-                    <option value="1">Becomes Unavailable</option>
-                    <option value="2">Doesn't contain a keyword</option>
-                  </select>
+                <div className="two-col">
+                  <div className="selectWrapper">
+                    <label>Notify me when</label>
+                    <select onChange={handleChange} name="alertsTriggeredOn">
+                      <option value="1">Becomes Unavailable</option>
+                      <option value="2">Doesn't contain a keyword</option>
+                      <option value="3">SSL Expiration</option>
+                    </select>
+                  </div>
+                  {monitorDetails.alertsTriggeredOn === "3" && (
+                    <div className="selectWrapper">
+                      <label>Notify me when</label>
+                      <select onChange={handleChange} name="notifyExpiration">
+                        <option value="1">Alert 1 day before</option>
+                        <option value="2">Alert 2 days before</option>
+                        <option value="3">Alert 3 days before</option>
+                        <option value="7">Alert 7 days before</option>
+                        <option value="30">Alert One month before</option>
+                        <option value="60">Alert Two months before</option>
+                      </select>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

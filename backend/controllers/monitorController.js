@@ -85,8 +85,8 @@ const addMonitor = asyncHandler(async (req, res) => {
 
   //If the monitor is for monitoring the SSL expiration
   if (alertsTriggeredOn === "3") {
-    console.log("alert triggered 3");
-    const secDetails = await checkSSLDetails(url, notifyExpiration, createdMonitor._id);
+
+    const secDetails = await checkSSLDetails(url, notifyExpiration, createdMonitor._id, user);
 
   }
 

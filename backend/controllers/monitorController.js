@@ -1,16 +1,17 @@
 const Monitor = require("../models/monitorModel");
 const Incident = require("../models/incidentModel");
+const SSLCheck = require('../models/sslCheckModel');
 const asyncHandler = require("express-async-handler");
 const testUrl = require("../utils/testUrl");
 
 function isValidURL(str) {
   var pattern = new RegExp(
     "^(https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-      "(\\#[-a-z\\d_]*)?$",
+    "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+    "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+    "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+    "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+    "(\\#[-a-z\\d_]*)?$",
     "i"
   ); // fragment locator
   return !!pattern.test(str);
@@ -49,7 +50,7 @@ const deleteMonitor = asyncHandler(async (req, res) => {
 //@route  POST /api/v1/monitor
 //@access Private
 const addMonitor = asyncHandler(async (req, res) => {
-  const { url, user, team, alertsTriggeredOn } = req.body;
+  const { url, user, team, alertsTriggeredOn, SSL } = req.body;
 
   if (!url || !user || !team) {
     return res.status(400).json({ message: "Provide all required fields" });
@@ -75,9 +76,16 @@ const addMonitor = asyncHandler(async (req, res) => {
     return res.status(409).json({ message: "Duplicate url" });
   }
 
+  //Creates the new monitor
   const createdMonitor = await Monitor.create(req.body);
 
+  //If the monitor is created to monitor the site availability
   if (createdMonitor.alertsTriggeredOn === 1) await testUrl(createdMonitor);
+
+  //If the monitor is created to monitor the expiration of a website
+  if (createdMonitor.alertsTriggeredOn === 2 && SSL) {
+    await SSLCheck.create({ SSL, monitor: createdMonitor._id });
+  }
 
   res.status(201).json({ message: "Monitor created successfully" });
 });

@@ -20,7 +20,7 @@ const SSLCheckSchema = new Schema({
         type: String,
     },
     notifyExpiration: {
-        type: Number
+        type: String
     }
 
 })

@@ -6,6 +6,7 @@ import Spinner from "@/components/Spinner";
 import { createMonitor } from "@/features/monitors/monitorSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { trimInputValues } from "@/util/helper";
 
 const CreateMonitor = () => {
   const { userId, teamId, email } = useSelector((state) => state.auth.user);
@@ -15,8 +16,8 @@ const CreateMonitor = () => {
     team: teamId,
     user: userId,
     alertEmails: [email],
-    alertsTriggeredOn: 1,
-    notifyExpiration: 1,
+    alertsTriggeredOn: "1",
+    notifyExpiration: "1",
   });
 
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const CreateMonitor = () => {
       })
       .catch((error) => {
         seIstLoading(false);
+        console.log('error',error);
         toast.error(error.response.data.message);
       });
   };

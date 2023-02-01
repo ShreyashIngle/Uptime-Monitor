@@ -1,9 +1,12 @@
 import { toast } from "react-toastify";
 import { axiosPrivate } from "../../api/axios";
+import { trimInputValues } from "../../util/helper";
 
 
 //Create new monitor
 const createMonitor = async (monitorData) => {
+  monitorData = trimInputValues(monitorData);
+  console.log('monitorData',monitorData);
   const response = await axiosPrivate.post("/monitor", monitorData)
   return response.data;
 };

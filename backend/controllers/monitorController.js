@@ -1,8 +1,9 @@
 const Monitor = require("../models/monitorModel");
 const Incident = require("../models/incidentModel");
-const SSLCheck = require('../models/sslCheckModel');
+const SSLCheck = require("../models/sslCheckModel");
 const asyncHandler = require("express-async-handler");
 const testUrl = require("../utils/testUrl");
+const { checkSSLDetails } = require("../services/puppeteer");
 
 function isValidURL(str) {
   var pattern = new RegExp(
@@ -79,12 +80,14 @@ const addMonitor = asyncHandler(async (req, res) => {
   //Creates the new monitor
   const createdMonitor = await Monitor.create(req.body);
 
-  //If the monitor is created to monitor the site availability
-  if (createdMonitor.alertsTriggeredOn === 1) await testUrl(createdMonitor);
+  //If the monitor is for monitoring the site availability
+  if (createdMonitor.alertsTriggeredOn === "1") await testUrl(createdMonitor);
 
-  //If the monitor is created to monitor the expiration of a website
-  if (createdMonitor.alertsTriggeredOn === 2 && SSL) {
-    await SSLCheck.create({ SSL, monitor: createdMonitor._id });
+  //If the monitor is for monitoring the SSL expiration
+  if (alertsTriggeredOn === "3") {
+    console.log("alert triggered 3");
+    const secDetails = await checkSSLDetails(url, notifyExpiration, createdMonitor._id);
+
   }
 
   res.status(201).json({ message: "Monitor created successfully" });

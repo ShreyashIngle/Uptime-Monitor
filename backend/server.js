@@ -36,10 +36,6 @@ app.use("/api/v1/member", memberRoutes);
 app.use("/api/v1/notification", notificationRoutes);
 app.use("/api/v1/invitation", invitationRoutes);
 
-app.get("/", (req, res) => {
-  res.send("<div>Hello world</div>");
-});
-
 //SERVE STATIC ASSETS IF IN PRODUCTION
 if (process.env.NODE_ENV === "production") {
   //SET STATIC FOLDER

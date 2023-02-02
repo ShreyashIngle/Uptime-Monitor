@@ -40,6 +40,16 @@ app.get("/", (req, res) => {
   res.send("<div>Hello world</div>");
 });
 
+//SERVE STATIC ASSETS IF IN PRODUCTION
+if (process.env.NODE_ENV === "production") {
+  //SET STATIC FOLDER
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
+  });
+}
+
 //CONNECTING TO THE DATABASE
 mongoose.connection.once("open", () => {
   console.log("connected to MongoDB");

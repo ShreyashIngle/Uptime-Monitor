@@ -4,12 +4,13 @@ import { refreshToken } from "../util/refreshToken";
 // const dispatch = useDispatch();
 
 export default axios.create({
-  baseURL: "http://localhost:5000/api/v1/",
+  baseURL: import.meta.BASE_URL,
+  headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
 
 export const axiosPrivate = axios.create({
-  baseURL: "http://localhost:5000/api/v1/",
+  baseURL: import.meta.BASE_URL,
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });

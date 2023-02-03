@@ -51,7 +51,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //CONNECTING TO THE DATABASE
-mongoose.connection.once("open", () => {
+mongoose.connection.once("open", async() => {
   console.log("connected to MongoDB");
   app.listen(PORT, () => console.log(`server running on port ${PORT}...`));
 });

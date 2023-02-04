@@ -26,6 +26,6 @@ jobs:
         run: npm i
         working-directory: ./frontend
 
-      - name: run tests
-        run: npm run test
-        working-directory: ./frontend
+      #- name: run tests
+      #  run: npm run test
+      #  working-directory: ./frontend

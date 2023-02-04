@@ -49,8 +49,18 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+//SERVE STATIC ASSETS IF IN PRODUCTION
+if (process.env.NODE_ENV === "production") {
+  //SET STATIC FOLDER
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
+  });
+}
+
 //CONNECTING TO THE DATABASE
-mongoose.connection.once("open", () => {
+mongoose.connection.once("open", async() => {
   console.log("connected to MongoDB");
   app.listen(PORT, () => console.log(`server running on port ${PORT}...`));
 });

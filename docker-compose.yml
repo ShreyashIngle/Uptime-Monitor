@@ -1,0 +1,21 @@
+version: '2.12.2'
+services:
+  backend:
+    build: ./backend
+    container_name: backend_container
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+  
+  frontend:
+    build: ./frontend
+    container_name: frontend_container
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true

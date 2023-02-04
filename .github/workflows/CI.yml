@@ -21,7 +21,7 @@ jobs:
       - name: use Node.js ${{matrix.node-version}}
         uses: action/setup-node@v3
         with:
-          node-version: ${{matrix.node-version}}
+          node-version: 16
 
       - name: npm install
         run: npm i

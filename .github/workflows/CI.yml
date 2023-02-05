@@ -50,7 +50,7 @@ jobs:
 
       - name: docker push
         run: |
-          docker push frontend ${{ secrets.DOCKER_USERNAME }}/uptime-monitor
-          docker push backend ${{ secrets.DOCKER_USERNAME }}/uptime-monitor
+          docker push  ${{ secrets.DOCKER_USERNAME }}/uptime-monitor
+          docker push  ${{ secrets.DOCKER_USERNAME }}/uptime-monitor
           
 

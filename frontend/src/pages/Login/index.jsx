@@ -33,11 +33,6 @@ const Login = () => {
     if (isError) {
       toast.error(message);
     }
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 45202c00be80282fd9c6d471e10ae0171d5ea2b1
     const user = localStorage.getItem("user");
 
     if (user) {

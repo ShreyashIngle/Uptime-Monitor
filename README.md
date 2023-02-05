@@ -9,6 +9,7 @@
   </p>
 </p>
 
+
 ![](https://github.com/chathurperera/uptime-monitor/blob/main/assets/Vite%20%2B%20React.gif)
 
 <p align="center">Website monitoring application built with MERN stack that keeps track of a website's availability. Users receive an email alert when the site goes down.</p>

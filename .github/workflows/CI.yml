@@ -50,7 +50,7 @@ jobs:
 
       - name: docker push
         run: |
-          docker push frontend
-          docker push backend
+          docker push chathuraa/uptime-monitor
+          docker push chathuraa/uptime-monitor
           
 

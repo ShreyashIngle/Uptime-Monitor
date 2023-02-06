@@ -6,11 +6,10 @@
   </a>
   <h3 align="center">✨Website monitoring application</h3>
   <p align="center">
-  ![](https://mern-ecom.s3.ap-south-1.amazonaws.com/Vite+%2B+React.mp4)
   </p>
 </p>
 
-![](https://github.com/chathurperera/uptime-monitor/blob/main/assets/Vite%20%2B%20React.gif)
+![](https://mern-ecom.s3.ap-south-1.amazonaws.com/Vite+%2B+React.mp4)
 
 <p align="center">Website monitoring application built with MERN stack that keeps track of a website's availability. Users receive an email alert when the site goes down.</p>
 

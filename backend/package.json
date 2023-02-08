@@ -4,8 +4,8 @@
   "description": "",
   "main": "backend/server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "build": "/frontend",
+    "start": "node server.js",
+    "build": "./frontend",
     "dev": "nodemon backend/server.js"
   },
   "repository": {

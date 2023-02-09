@@ -40,6 +40,7 @@ app.use("/api/v1/member", memberRoutes);
 app.use("/api/v1/notification", notificationRoutes);
 app.use("/api/v1/invitation", invitationRoutes);
 
+console.log('process.env.NODE_ENV',process.env.NODE_ENV);
 //SERVE STATIC ASSETS IF IN PRODUCTION
 if (process.env.NODE_ENV === "production") {
   //SET STATIC FOLDER

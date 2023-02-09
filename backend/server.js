@@ -44,7 +44,7 @@ app.use("/api/v1/invitation", invitationRoutes);
 if (process.env.NODE_ENV === "production") {
   //SET STATIC FOLDER
   app.use(express.static("frontend/dist"));
-
+  console.log('runs in prod')
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
   });
@@ -53,7 +53,7 @@ if (process.env.NODE_ENV === "production") {
 
 
 //CONNECTING TO THE DATABASE
-mongoose.connection.once("open", async() => {
+mongoose.connection.once("open", async () => {
   console.log("connected to MongoDB");
   app.listen(PORT, () => console.log(`server running on port ${PORT}...`));
 });

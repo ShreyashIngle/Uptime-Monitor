@@ -6,6 +6,7 @@ const app = express();
 const connectDB = require("./config/db");
 connectDB(process.env.MONGO_URI);
 const cors = require("cors");
+const path = require('path');
 
 //Imported routes
 const monitorRoutes = require("./routes/monitorRoutes");

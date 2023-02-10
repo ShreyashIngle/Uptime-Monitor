@@ -4,13 +4,13 @@ import { refreshToken } from "../util/refreshToken";
 // const dispatch = useDispatch();
 
 export default axios.create({
-  baseURL: import.meta.BASE_URL,
+  baseURL: 'https://uptime-monitor-aj01.onrender.com/api/v1',
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
 
 export const axiosPrivate = axios.create({
-  baseURL: import.meta.BASE_URL,
+  baseURL: 'https://uptime-monitor-aj01.onrender.com/api/v1',
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });

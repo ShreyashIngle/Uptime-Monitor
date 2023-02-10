@@ -44,7 +44,7 @@ console.log('process.env.NODE_ENV',process.env.NODE_ENV);
 //SERVE STATIC ASSETS IF IN PRODUCTION
 if (process.env.NODE_ENV === "production") {
   //SET STATIC FOLDER
-  app.use(express.static("../frontend/dist"));
+  app.use(express.static("frontend/dist"));
   console.log('runs in prod')
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));

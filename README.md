@@ -49,6 +49,8 @@
     - [x] To test availability
     - [ ] SSL expiration
     - [ ] Keyword availability
+    - [ ] Perfomance monitoring
+    - [ ] Core web vital reports
 - [x] Manage team members
     - [x] Invite members
     - [x] Remove members
